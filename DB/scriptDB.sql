@@ -1,17 +1,15 @@
--- Creamos la tabla si esta no existe
 CREATE DATABASE IF NOT EXISTS PE2;
 
--- Indicamos que trabajaremos sobre la tabla 
--- recien creada
 USE PE2;
 
--- Declaramos las tablas de nuestra DB
 CREATE TABLE profesor (
 profesorID INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 fechaContratacion datetime,
 nombre VARCHAR(100) NOT NULL,
 apellidoP VARCHAR(100),
-apellidoM VARCHAR (100)
+apellidoM VARCHAR(100),
+codigo VARCHAR(20) NOT NULL,
+password VARCHAR(60) NOT NULL
 );
 
 CREATE TABLE grupo (

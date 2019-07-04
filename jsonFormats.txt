@@ -1,0 +1,10 @@
+localhost:4000/courses/profesor
+
+{
+	"nombre": "abc",
+	"apellidoP": "abc",
+	"apellidoM": "abc",
+	"codigo":"codigo",
+	"password":"pass123",
+	"fechaContratacion":"2012-03-19 10:00:00"
+}
