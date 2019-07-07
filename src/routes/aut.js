@@ -15,7 +15,7 @@ router.post('/profesor', async (req, res) => {
             //ingresar el registro
             var a = await registro.registrar(fecha, tiempo, user.profesorID);
             console.log(a);
-            res.sendStatus(200);
+            res.status(200).send(a);
         }
         else{
             res.status(400).send('Incorrect Password');
