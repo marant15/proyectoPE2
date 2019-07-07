@@ -1,0 +1,42 @@
+localhost:4000/courses/profesor
+
+{
+	"nombre": "abc",
+	"apellidoP": "abc",
+	"apellidoM": "abc",
+	"codigo":"codigo",
+	"password":"pass123",
+	"fechaContratacion":"2012-03-19 10:00:00"
+}
+
+localhost:4000/courses/grupo
+
+{
+	"nombre": "A"
+}
+
+localhost:4000/courses/materia
+
+{
+	"nombre":"Fisica"
+}
+
+localhost:4000/courses/asignacion
+
+{
+	"profesorID":1,
+	"grupoID":3,
+	"materiaID":2,
+	"fechaInicio":"2019-07-04",
+	"fechaFin":"2019-07-25",
+	"horaInicio":"10:00:00",
+	"horaFin":"12:15:00"
+}
+localhost:4000/aut/profesor
+
+{
+	"codigo":"codigo",
+	"password":"pass123",
+	"tiempo":"10:00:00",
+	"fecha":"2019-07-24"
+}
