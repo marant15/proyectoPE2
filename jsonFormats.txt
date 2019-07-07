@@ -32,3 +32,11 @@ localhost:4000/courses/asignacion
 	"horaInicio":"10:00:00",
 	"horaFin":"12:15:00"
 }
+localhost:4000/aut/profesor
+
+{
+	"codigo":"codigo",
+	"password":"pass123",
+	"tiempo":"10:00:00",
+	"fecha":"2019-07-24"
+}
