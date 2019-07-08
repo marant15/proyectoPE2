@@ -1,0 +1,18 @@
+<h1>Registrar Profesor</h1>
+<h2>Datos del Profesor</h2>
+<div>
+    <input type="text" #name placeholder="Nombre">
+    <br>
+    <input type="text" #lastNameP placeholder="Apellido Paterno">
+    <br>
+    <input type="text" #lastNameM placeholder="Apellido Materno">
+    <br>
+    <input type="text" #username placeholder="Codigo Usuario">
+    <br>
+    <input type="password" #password placeholder="Password">
+    <br>
+    <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Fecha Contratacion">
+    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+    <br>
+    <button (click)="register(name.value,lastNameP.value,lastNameM.value,username.value,password.value,dt1._selected)" >Registrar</button>
+</div>

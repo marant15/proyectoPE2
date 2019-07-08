@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../http.service'
+import { DataService } from '../http.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  clickMessage = '';
-  counter = 1;
 
-  logIn(user, pass) {
-    //this._dataService.attendance(user,pass);
-    console.log(user);
-    this.counter++;
+  logIn(user:string, pass:string) {
+    //this._dataService.regprofessor(user,pass);
   }
 
 }

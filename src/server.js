@@ -1,10 +1,12 @@
 const express = require('express');
+var cors = require('cors');
 
 //initialization
 const app = express();
 
 //settings
 app.set('port', process.env.PORT || 4000);
+app.use(cors());
 //Global variables
 
 //other
