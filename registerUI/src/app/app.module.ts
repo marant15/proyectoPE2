@@ -9,6 +9,8 @@ import { RProfesorComponent } from './r-profesor/r-profesor.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RCsComponent } from './r-cs/r-cs.component';
+import { AssignComponent } from './assign/assign.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     LoginComponent,
     RProfesorComponent,
     NavBarComponent,
+    RCsComponent,
+    AssignComponent,
   ],
   imports: [
     BrowserModule,

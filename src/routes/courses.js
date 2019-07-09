@@ -52,4 +52,19 @@ router.post('/asignacion', async (req, res) => {
     res.sendStatus(200);
 })
 
+router.get('/materia', async(req, res) => {
+    const result = await pool.query('SELECT * FROM materia');
+    res.json(result);
+})
+
+router.get('/profesor', async(req, res) => {
+    const result = await pool.query('SELECT * FROM profesor');
+    res.json(result);
+})
+
+router.get('/grupo', async(req, res) => {
+    const result = await pool.query('SELECT * FROM grupo');
+    res.json(result);
+})
+
 module.exports = router;

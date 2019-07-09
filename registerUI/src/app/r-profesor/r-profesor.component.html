@@ -11,7 +11,7 @@
     <br>
     <input type="password" #password placeholder="Password">
     <br>
-    <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Fecha Contratacion">
+    <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Fecha Contratacion" readonly>
     <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
     <br>
     <button (click)="register(name.value,lastNameP.value,lastNameM.value,username.value,password.value,dt1._selected)" >Registrar</button>
