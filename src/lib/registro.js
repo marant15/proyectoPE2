@@ -15,15 +15,19 @@ registro.registrar = async (date, time, profesorID) => {
                         asignacionID,
                         fechaRegistro
                     }
-                    const result = await pool.query('INSERT INTO registro set ?', [newReg]);
-                    const res = await pool.query('SELECT * FROM registro WHERE fechaRegistro = ? and asignacionID = ?',[fechaRegistro,row.asignacionID]);
-                    return res[0].registroID;
+                    const verification = await pool.query('SELECT * FROM registro WHERE DATE(fechaRegistro) = ? AND asignacionID = ?',[date,row.asignacionID]);
+                    if(verification.length == 0){
+                        const result = await pool.query('INSERT INTO registro set ?', [newReg]);
+                        const res = await pool.query('SELECT * FROM registro WHERE fechaRegistro = ? and asignacionID = ?',[fechaRegistro,row.asignacionID]);
+                        return res[0].registroID;
+                    }else return "ya existe el registro "+verification[0].registroID;
                 }
             }
         }
+        return "no existe asignacion";
     }
     else{
-        return 0;
+        return "no existe asignacion";
     }
 };
 

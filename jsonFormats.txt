@@ -1,4 +1,4 @@
-localhost:4000/courses/profesor
+POST: localhost:4000/courses/profesor
 
 {
 	"nombre": "abc",
@@ -9,19 +9,19 @@ localhost:4000/courses/profesor
 	"fechaContratacion":"2012-03-19 10:00:00"
 }
 
-localhost:4000/courses/grupo
+POST: localhost:4000/courses/grupo
 
 {
 	"nombre": "A"
 }
 
-localhost:4000/courses/materia
+POST: localhost:4000/courses/materia
 
 {
 	"nombre":"Fisica"
 }
 
-localhost:4000/courses/asignacion
+POST: localhost:4000/courses/asignacion
 
 {
 	"profesorID":1,
@@ -32,7 +32,7 @@ localhost:4000/courses/asignacion
 	"horaInicio":"10:00:00",
 	"horaFin":"12:15:00"
 }
-localhost:4000/aut/profesor
+POST: localhost:4000/aut/profesor
 
 {
 	"codigo":"codigo",
@@ -40,3 +40,9 @@ localhost:4000/aut/profesor
 	"tiempo":"10:00:00",
 	"fecha":"2019-07-24"
 }
+
+GET: localhost:4000/courses/grupo
+
+GET: localhost:4000/courses/materia
+
+GET: localhost:4000/courses/profesor

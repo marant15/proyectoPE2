@@ -15,8 +15,13 @@ router.post('/profesor', async (req, res) =>{
         fechaContratacion
     };
     newProf.password = await helpers.encryptPassword(password);
-    const result = await pool.query('INSERT INTO profesor set ?', [newProf]);
-    res.sendStatus(200);
+    const verification = await pool.query('SELECT * FROM profesor WHERE codigo = ?',[newProf.codigo]);
+    if(verification.length == 0){
+        const result = await pool.query('INSERT INTO profesor set ?', [newProf]);
+        res.status(200).send("saved")
+    }else{
+        res.status(200).send("codigo repetido");
+    }
 })
 
 router.post('/grupo', async (req, res) => {
@@ -24,8 +29,13 @@ router.post('/grupo', async (req, res) => {
     const newGroup = {
         nombre
     }
-    const result = await pool.query('INSERT INTO grupo set ?', [newGroup]);
-    res.sendStatus(200);
+    const verification = await pool.query('SELECT * FROM grupo WHERE nombre = ?',[newGroup.nombre]);
+    if(verification.length == 0){
+        const result = await pool.query('INSERT INTO grupo set ?', [newGroup]);
+        res.status(200).send("saved")
+    }else{
+        res.status(200).send("nombre repetido");
+    }
 })
 
 router.post('/materia', async (req, res) => {
@@ -33,8 +43,13 @@ router.post('/materia', async (req, res) => {
     const newM = {
         nombre
     }
-    const result = await pool.query('INSERT INTO materia set ?', [newM]);
-    res.sendStatus(200);
+    const verification = await pool.query('SELECT * FROM materia WHERE nombre = ?',[newM.nombre]);
+    if(verification.length == 0){
+        const result = await pool.query('INSERT INTO materia set ?', [newM]);
+        res.status(200).send("saved")
+    }else{
+        res.status(200).send("nombre repetido");
+    }
 })
 
 router.post('/asignacion', async (req, res) => {
