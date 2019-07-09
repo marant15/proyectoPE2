@@ -24,4 +24,17 @@ router.post('/profesor', async (req, res) => {
     }
 })
 
+router.post('/exc', async (req,res) => {
+    const { asignacionID, tipo, profesorID, tiempo, fecha } = req.body;
+    const fechaExcepcion = fecha + " " + tiempo;
+    const newEx = {
+        asignacionID,
+        tipo,
+        profesorID,
+        fechaExcepcion
+    }
+    const result = await pool.query('INSERT INTO excepcion set ?', [newEx]);
+    res.status(200).send("exception saved");
+})
+
 module.exports = router;

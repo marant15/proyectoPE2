@@ -46,3 +46,15 @@ GET: localhost:4000/courses/grupo
 GET: localhost:4000/courses/materia
 
 GET: localhost:4000/courses/profesor
+
+POST: localhost:4000/aut/exc
+
+{
+	"asignacionID":3,
+	"tipo":"RM",
+	"profesorID":1,
+	"tiempo":"10:00:00",
+	"fecha":"2019-07-10"
+}
+
+'El tipo puede ser RM = reemplazo o RP = repocicion'
