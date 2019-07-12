@@ -24,6 +24,23 @@ router.post('/profesor', async (req, res) => {
     }
 })
 
+router.post('/usuario', async (req, res) => {
+    const { usuario, password } = req.body;
+    const rows = await pool.query('SELECT * FROM usuario WHERE usuario = ?',[usuario]);
+    if(rows.length > 0){
+        const user = rows[0];
+        const valid = await helpers.matchPassword(password, user.password);
+        if(valid){
+            res.status(200).send(""+rows[0].usuarioID);
+        }
+        else{
+            res.status(400).send('Incorrect Password');
+        }
+    }else{
+        res.status(400).send('Incorrect code')
+    }
+})
+
 router.post('/exc', async (req,res) => {
     const { asignacionID, tipo, profesorID, tiempo, fecha } = req.body;
     const fechaExcepcion = fecha + " " + tiempo;

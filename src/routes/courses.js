@@ -82,4 +82,38 @@ router.get('/grupo', async(req, res) => {
     res.json(result);
 })
 
+router.get('/registro', async(req, res) => {
+    const result = await pool.query('SELECT * FROM registro');
+    res.json(result);
+})
+
+router.get('/exc', async(req, res) => {
+    const result = await pool.query('SELECT * FROM excepcion');
+    res.json(result);
+})
+
+router.get('/materia/:id', async(req, res) => {
+    const result = await pool.query('SELECT * FROM materia WHERE materiaID=?',[req.params.id]);
+    res.json(result);
+})
+
+router.get('/profesor/:id', async(req, res) => {
+    const result = await pool.query('SELECT * FROM profesor WHERE profesorID=?',[req.params.id]);
+    res.json(result);
+})
+
+router.get('/grupo/:id', async(req, res) => {
+    const result = await pool.query('SELECT * FROM grupo WHERE grupoID=?',[req.params.id]);
+    res.json(result);
+})
+
+router.get('/registro/:id', async(req, res) => {
+    const result = await pool.query('SELECT * FROM registro WHERE registroID=?',[req.params.id]);
+    res.json(result);
+})
+
+router.get('/exc/:id', async(req, res) => {
+    const result = await pool.query('SELECT * FROM excepcion WHERE excepcionID=?',[req.params.id]);
+    res.json(result);
+})
 module.exports = router;
