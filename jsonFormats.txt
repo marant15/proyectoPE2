@@ -8,18 +8,21 @@ POST: localhost:4000/courses/profesor
 	"password":"pass123",
 	"fechaContratacion":"2012-03-19 10:00:00"
 }
+(texto)
 
 POST: localhost:4000/courses/grupo
 
 {
 	"nombre": "A"
 }
+(texto)
 
 POST: localhost:4000/courses/materia
 
 {
 	"nombre":"Fisica"
 }
+(texto)
 
 POST: localhost:4000/courses/asignacion
 
@@ -32,6 +35,8 @@ POST: localhost:4000/courses/asignacion
 	"horaInicio":"10:00:00",
 	"horaFin":"12:15:00"
 }
+(texto)
+
 POST: localhost:4000/aut/profesor
 
 {
@@ -40,6 +45,7 @@ POST: localhost:4000/aut/profesor
 	"tiempo":"10:00:00",
 	"fecha":"2019-07-24"
 }
+(texto)
 
 GET: localhost:4000/courses/grupo			localhost:4000/courses/grupo/:id
 
@@ -50,6 +56,7 @@ GET: localhost:4000/courses/profesor		localhost:4000/courses/profesor/:id
 GET: localhost:4000/courses/registro		localhost:4000/courses/registro/:id
 
 GET: localhost:4000/courses/exc				localhost:4000/courses/exc/:id
+(todos estos son JSON)
 
 POST: localhost:4000/aut/exc
 
@@ -60,7 +67,7 @@ POST: localhost:4000/aut/exc
 	"tiempo":"10:00:00",
 	"fecha":"2019-07-10"
 }
-
+(texto)
 'El tipo puede ser RM = reemplazo o RP = repocicion'
 
 POST: localhost:4000/admin/reg
@@ -73,6 +80,7 @@ POST: localhost:4000/admin/reg
 	"apellidoP":"b",
 	"apellidoM":"c"
 }
+(texto)
 
 POST: localhost:4000/aut/usuario
 
@@ -80,3 +88,4 @@ POST: localhost:4000/aut/usuario
 	"usuario":"admin",
 	"password":"admin"
 }
+(texto)
