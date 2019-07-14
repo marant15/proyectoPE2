@@ -25,7 +25,7 @@ router.post('/reg', async (req, res) =>{
 })
 
 router.get('/usuario/:id', async(req, res) => {
-    const result = await pool.query('SELECT * FROM usuario WHERE usuarioID=?',[req.params.id]);
+    const result = await pool.query('SELECT * FROM usuario WHERE usuario=?',[req.params.id]);
     res.json(result);
 })
 
