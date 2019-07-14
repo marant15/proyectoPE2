@@ -56,6 +56,8 @@ GET: localhost:4000/courses/profesor		localhost:4000/courses/profesor/:id
 GET: localhost:4000/courses/registro		localhost:4000/courses/registro/:id
 
 GET: localhost:4000/courses/exc				localhost:4000/courses/exc/:id
+
+GEt: localhost:4000/admin/usuario/:id
 (todos estos son JSON)
 
 POST: localhost:4000/aut/exc
