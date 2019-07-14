@@ -14,6 +14,8 @@ import { AssignComponent } from './assign/assign.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
+import { ReportsComponent } from './reports/reports.component';
+import { ExcelService } from './services/excel.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { AuthGuard } from './auth.guard';
     AssignComponent,
     MenuBarComponent,
     RegisterComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,10 @@ import { AuthGuard } from './auth.guard';
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    ExcelService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
