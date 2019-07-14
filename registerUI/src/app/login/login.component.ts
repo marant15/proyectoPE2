@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(user:string, pass:string) {
-    //this._dataService.regprofessor(user,pass);
+    
   }
 
 }

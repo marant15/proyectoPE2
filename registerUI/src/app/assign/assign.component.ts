@@ -19,7 +19,6 @@ export class AssignComponent implements OnInit {
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
       }
-      console.log(this.profesors);
     },
     error => {
       console.log("Error", error);
@@ -30,7 +29,6 @@ export class AssignComponent implements OnInit {
       for (let index = 0; index < count; index++) {
          this.materias.push(response[index]);
       }
-      console.log(this.materias);
     },
     error => {
       console.log("Error", error);
@@ -41,20 +39,29 @@ export class AssignComponent implements OnInit {
       for (let index = 0; index < count; index++) {
          this.grupos.push(response[index]);
       }
-      console.log(this.grupos);
     },
     error => {
       console.log("Error", error);
     });
   }
 
-  register(name:string) {
-    /*var month = fecha.getUTCMonth() + 1; //months from 1-12
-    var day = fecha.getUTCDate();
-    var year = fecha.getUTCFullYear();
-    var newdate = year + "-" + month + "-" + day + " 00:00:00";
-    this._dataService.regprofessor(name,lastNameP,lastNameM,user,pass,newdate);*/
-    console.log(name);
+  register(pid:number,mid:number,gid:number,fi:Date,hi:Date,ff:Date,hf:Date) {
+    var mi = fi.getUTCMonth() + 1; //months from 1-12
+    var di = fi.getUTCDate();
+    var yi = fi.getUTCFullYear();
+    var datei = yi + "-" + mi + "-" + di;
+    var houri = hi.getHours();
+    var mini = hi.getUTCMinutes();
+    var ihour = houri+":"+mini+":00";
+    var mf = ff.getUTCMonth() + 1; //months from 1-12
+    var df = ff.getUTCDate();
+    var yf = ff.getUTCFullYear();
+    var datef = yf + "-" + mf + "-" + df;
+    var hourf = hf.getHours();
+    var minf = hf.getUTCMinutes();
+    var fhour = hourf+":"+minf+":00";
+
+    this._dataService.assign(pid,gid,mid,datei,datef,ihour,fhour);
   }
 
 }

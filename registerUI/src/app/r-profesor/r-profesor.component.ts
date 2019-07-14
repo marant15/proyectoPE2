@@ -15,6 +15,8 @@ export class RProfesorComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+
   register(name:string,lastNameP:string,lastNameM:string,user:string, pass:string, fecha:Date) {
     var month = fecha.getUTCMonth() + 1; //months from 1-12
     var day = fecha.getUTCDate();

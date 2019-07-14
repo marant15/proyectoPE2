@@ -1,4 +1,4 @@
-localhost:4000/courses/profesor
+POST: localhost:4000/courses/profesor
 
 {
 	"nombre": "abc",
@@ -9,19 +9,19 @@ localhost:4000/courses/profesor
 	"fechaContratacion":"2012-03-19 10:00:00"
 }
 
-localhost:4000/courses/grupo
+POST: localhost:4000/courses/grupo
 
 {
 	"nombre": "A"
 }
 
-localhost:4000/courses/materia
+POST: localhost:4000/courses/materia
 
 {
 	"nombre":"Fisica"
 }
 
-localhost:4000/courses/asignacion
+POST: localhost:4000/courses/asignacion
 
 {
 	"profesorID":1,
@@ -32,11 +32,51 @@ localhost:4000/courses/asignacion
 	"horaInicio":"10:00:00",
 	"horaFin":"12:15:00"
 }
-localhost:4000/aut/profesor
+POST: localhost:4000/aut/profesor
 
 {
 	"codigo":"codigo",
 	"password":"pass123",
 	"tiempo":"10:00:00",
 	"fecha":"2019-07-24"
+}
+
+GET: localhost:4000/courses/grupo			localhost:4000/courses/grupo/:id
+
+GET: localhost:4000/courses/materia			localhost:4000/courses/materia/:id
+
+GET: localhost:4000/courses/profesor		localhost:4000/courses/profesor/:id
+
+GET: localhost:4000/courses/registro		localhost:4000/courses/registro/:id
+
+GET: localhost:4000/courses/exc				localhost:4000/courses/exc/:id
+
+POST: localhost:4000/aut/exc
+
+{
+	"asignacionID":3,
+	"tipo":"RM",
+	"profesorID":1,
+	"tiempo":"10:00:00",
+	"fecha":"2019-07-10"
+}
+
+'El tipo puede ser RM = reemplazo o RP = repocicion'
+
+POST: localhost:4000/admin/reg
+
+{
+	"usuario":"admin",
+	"password":"admin",
+	"isAdmin":true,
+	"nombre":"a",
+	"apellidoP":"b",
+	"apellidoM":"c"
+}
+
+POST: localhost:4000/aut/usuario
+
+{
+	"usuario":"admin",
+	"password":"admin"
 }

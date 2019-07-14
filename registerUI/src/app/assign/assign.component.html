@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <h1>Asignar</h1>
 <h2>Datos de Asignacion</h2>
 <div>
@@ -15,9 +16,13 @@
     <br>
     <input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
     <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
+    <input [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
+    <owl-date-time [pickerType]="'timer'" #hinicio></owl-date-time>
     <br>
     <input [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
     <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
+    <input [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
+    <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
     <br>
-    <button (click)="register(profID.value)" >Registrar</button>
+    <button (click)="register(profID.value,matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Registrar</button>
 </div>

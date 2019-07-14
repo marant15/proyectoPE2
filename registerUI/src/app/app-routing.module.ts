@@ -4,10 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { RProfesorComponent} from './r-profesor/r-profesor.component';
 import { RCsComponent} from './r-cs/r-cs.component';
 import { AssignComponent} from './assign/assign.component';
+import { RegisterComponent} from './register/register.component';
+
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/rprofesor', pathMatch: 'full'},
+    {path: '', redirectTo: '/register', pathMatch: 'full'},
+    {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'rprofesor', component: RProfesorComponent},
     {path: 'rcs',component: RCsComponent},

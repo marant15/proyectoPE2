@@ -1,12 +1,13 @@
 const pool = require('../database');
 const moment = require('moment');
+const { adelanto } = require('../config');
 const registro = {};
 
 registro.registrar = async (date, time, profesorID) => {
     const rows = await pool.query('SELECT * FROM asignacion WHERE profesorID = ?',[profesorID]);
     if(rows.length>0){
         for(let row of rows){
-            var tiempo =  moment(time,"HH:mm:ss").add(20, 'm');
+            var tiempo =  moment(time,"HH:mm:ss").add(adelanto, 'm');
             if(moment(date,"YYYY-MM-DD").isSameOrBefore(row.fechaFin) && moment(date,"YYYY-MM-DD").isSameOrAfter(row.fechaInicio)){
                 if(moment(tiempo).isSameOrBefore(moment(row.horaFin,"HH:mm:ss")) && moment(tiempo).isSameOrAfter(moment(row.horaInicio,"HH:mm:ss"))){
                     var fechaRegistro = date+" "+time;
@@ -15,15 +16,19 @@ registro.registrar = async (date, time, profesorID) => {
                         asignacionID,
                         fechaRegistro
                     }
-                    const result = await pool.query('INSERT INTO registro set ?', [newReg]);
-                    const res = await pool.query('SELECT * FROM registro WHERE fechaRegistro = ? and asignacionID = ?',[fechaRegistro,row.asignacionID]);
-                    return res[0].registroID;
+                    const verification = await pool.query('SELECT * FROM registro WHERE DATE(fechaRegistro) = ? AND asignacionID = ?',[date,row.asignacionID]);
+                    if(verification.length == 0){
+                        const result = await pool.query('INSERT INTO registro set ?', [newReg]);
+                        const res = await pool.query('SELECT * FROM registro WHERE fechaRegistro = ? and asignacionID = ?',[fechaRegistro,row.asignacionID]);
+                        return res[0].registroID;
+                    }else return "ya existe el registro "+verification[0].registroID;
                 }
             }
         }
+        return "no existe asignacion";
     }
     else{
-        return 0;
+        return "no existe asignacion";
     }
 };
 
