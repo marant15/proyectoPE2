@@ -15,7 +15,11 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(user:string, pass:string) {
-    
+    this._dataService.login(user,pass);
+  }
+
+  stat(){
+    console.log(this._dataService.isLoggedin());
   }
 
 }

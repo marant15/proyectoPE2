@@ -13,6 +13,7 @@ import { RCsComponent } from './r-cs/r-cs.component';
 import { AssignComponent } from './assign/assign.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { RegisterComponent } from './register/register.component';
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

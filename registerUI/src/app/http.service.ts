@@ -1,14 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  islogged:boolean = false;
+
   result:any;
 
-  constructor(private _http: HttpClient){ }
+  constructor(private _http: HttpClient, private myRoute: Router){ }
+
+  isLoggedin(){
+    if(localStorage.getItem('token')!=null){
+      return true;
+    }
+    return false;
+  }
+  
+  login(user:string,pwd:string){
+    return this._http.post("http://localhost:4000/aut/usuario",
+    {
+      "usuario":user,
+      "password":pwd
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.status==200){
+        this.myRoute.navigate(["rprofesor"]);
+        localStorage.setItem('token',user);
+      }
+    });
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.myRoute.navigate(["login"]);
+  }
 
   getprofesor(){
     return this._http.get("http://localhost:4000/courses/profesor");
@@ -85,5 +117,21 @@ export class DataService {
       error  => {
         console.log("Error", error);  
       });
+  }
+  regusuario(){
+    console.log("registrando");
+    return this._http.post("http://localhost:4000/admin/reg",
+    {
+      "usuario":"admin",
+	    "password":"admin",
+	    "isAdmin":true,
+	    "nombre":"a",
+	    "apellidoP":"b",
+	    "apellidoM":"c"
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => console.log(res.body,res.status));
   }
 }
