@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +13,9 @@ import { AssignComponent } from './assign/assign.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
+import { CusersComponent } from './cusers/cusers.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { AuthGuard } from './auth.guard';
     AssignComponent,
     MenuBarComponent,
     RegisterComponent,
+    CusersComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { AuthGuard } from './auth.guard';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../http.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +9,10 @@ import { DataService } from '../http.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService, private myRoute: Router) { }
 
   ngOnInit() {
+    localStorage.removeItem('token');
   }
 
   logIn(user:string, pass:string) {

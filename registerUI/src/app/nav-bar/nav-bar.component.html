@@ -2,5 +2,6 @@
     <li><a routerLink="/rprofesor">Docentes</a></li>
     <li><a routerLink="/rcs">Materias/Grupos</a></li>
     <li><a routerLink="/assign">Asignar</a></li>
+    <li><a routerLink="/cusers" *ngIf="isadmin">Usuarios</a></li>
     <li><a (click)="logout()">Logout</a></li>
 </ul>
