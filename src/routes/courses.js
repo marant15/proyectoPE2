@@ -3,7 +3,7 @@ const router = express.Router();
 
 const pool = require('../database');
 const helpers = require('../lib/helpers')
-
+//rutas referentes a los cursos
 router.post('/profesor', async (req, res) =>{
     const { nombre, apellidoP, apellidoM, codigo, password, fechaContratacion } = req.body;
     const newProf = {
@@ -118,7 +118,7 @@ router.get('/exc/:id', async(req, res) => {
 })
 
 router.get('/registros/:fecha1/:fecha2/:codigo', async(req, res) => {
-    const result = await pool.query('select fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
+    const result = await pool.query('select asignacion.asignacionID, fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from registro inner join '+
     'asignacion on registro.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
@@ -129,7 +129,7 @@ router.get('/registros/:fecha1/:fecha2/:codigo', async(req, res) => {
 })
 
 router.get('/excs/:fecha1/:fecha2/:codigo', async(req, res) => {
-    const result = await pool.query('select fechaExcepcion, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
+    const result = await pool.query('select asignacion.asignacionID, fechaExcepcion, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'tipo, grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from excepcion inner join '+
     'asignacion on excepcion.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+

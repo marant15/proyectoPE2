@@ -2,7 +2,7 @@ const pool = require('../database');
 const moment = require('moment');
 const { adelanto } = require('../config');
 const registro = {};
-
+//funcion para registrar un docente en un determinado dia
 registro.registrar = async (date, time, profesorID) => {
     const rows = await pool.query('SELECT * FROM asignacion WHERE profesorID = ?',[profesorID]);
     if(rows.length>0){
