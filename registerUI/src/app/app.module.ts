@@ -13,9 +13,10 @@ import { AssignComponent } from './assign/assign.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
+import { ReportsComponent } from './reports/reports.component';
+import { ExcelService } from './services/excel.service';
 import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     AssignComponent,
     MenuBarComponent,
     RegisterComponent,
+    ReportsComponent,
     CusersComponent,
   ],
   imports: [
@@ -38,7 +40,10 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    ExcelService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
