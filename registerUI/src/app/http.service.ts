@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  //@ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
 
+  
+  
   islogged:boolean = false;
 
   result:any;
@@ -17,6 +21,11 @@ export class DataService {
       return true;
     }
     return false;
+  }
+
+  isadmin(){
+    var user = localStorage.getItem('token');
+    return this._http.get("http://localhost:4000/admin/usuario/"+user);
   }
   
   login(user:string,pwd:string){
@@ -40,6 +49,28 @@ export class DataService {
   logout(){
     localStorage.removeItem('token');
     this.myRoute.navigate(["login"]);
+  }
+
+  entry(user:string,pwd:string,date:string,time:string){
+    return this._http.post("http://localhost:4000/aut/profesor",
+    {
+      "usuario":user,
+      "password":pwd,
+      "tiempo":time,
+      "fecha":date
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.status==200){
+        this.myRoute.navigate(["register"]);
+        console.log("Se registro Entrada");
+      }else{
+        console.log("Ya se registro una entrada");
+      }
+    });
   }
 
   getprofesor(){
@@ -118,16 +149,17 @@ export class DataService {
         console.log("Error", error);  
       });
   }
-  regusuario(){
+
+  regusuario(user:string,pwd:string,admin:boolean,name:string,pln:string,mln:string){
     console.log("registrando");
     return this._http.post("http://localhost:4000/admin/reg",
     {
-      "usuario":"admin",
-	    "password":"admin",
-	    "isAdmin":true,
-	    "nombre":"a",
-	    "apellidoP":"b",
-	    "apellidoM":"c"
+      "usuario":user,
+	    "password":pwd,
+	    "isAdmin":admin,
+	    "nombre":name,
+	    "apellidoP":pln,
+	    "apellidoM":mln
     },
     {
       responseType: 'text',

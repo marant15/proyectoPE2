@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +16,8 @@ import { AuthGuard } from './auth.guard';
 import { ReportsComponent } from './reports/reports.component';
 import { ExcelService } from './services/excel.service';
 import { ToasterService } from './services/toaster.service'
+import { CusersComponent } from './cusers/cusers.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ToasterService } from './services/toaster.service'
     MenuBarComponent,
     RegisterComponent,
     ReportsComponent,
+    CusersComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { ToasterService } from './services/toaster.service'
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [
     AuthGuard,
