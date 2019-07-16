@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
 import { ReportsComponent } from './reports/reports.component';
 import { ExcelService } from './services/excel.service';
+import { ToasterService } from './services/toaster.service'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ExcelService } from './services/excel.service';
   ],
   providers: [
     AuthGuard,
-    ExcelService
+    ExcelService,
+    ToasterService
   ],
   bootstrap: [AppComponent]
 })

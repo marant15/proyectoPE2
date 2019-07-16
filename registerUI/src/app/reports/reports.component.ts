@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ExcelService} from '../services/excel.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-reports',
@@ -24,7 +25,7 @@ export class ReportsComponent implements OnInit {
     ename: 'rajesh',
     esal: 3000
   }];
-  constructor(private excelService:ExcelService){
+  constructor(private excelService:ExcelService, private toaterservice:ToasterService){
 
   }
   ngOnInit() {
@@ -32,6 +33,22 @@ export class ReportsComponent implements OnInit {
 
   exportAsXLSX():void {
     this.excelService.exportAsExcelFile(this.data, 'sample');
+  }
+
+  success(){
+    this.toaterservice.success("success")
+  }
+
+  warning(){
+    this.toaterservice.warning("warning")
+  }
+
+  info(){
+    this.toaterservice.info("info")
+  }
+
+  error(){
+    this.toaterservice.error("error")
   }
 
 }
