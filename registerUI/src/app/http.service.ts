@@ -7,9 +7,6 @@ import { Router } from '@angular/router';
 })
 export class DataService {
   //@ViewChild(Ng2PopupComponent) popup: Ng2PopupComponent;
-
-  
-  
   islogged:boolean = false;
 
   result:any;
@@ -43,6 +40,9 @@ export class DataService {
         this.myRoute.navigate(["rprofesor"]);
         localStorage.setItem('token',user);
       }
+    },
+    error  => {
+      console.log("Error", error);  
     });
   }
 
@@ -64,7 +64,9 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
-
+    },
+    error  => {
+      console.log("Error", error);  
     });
   }
 
@@ -98,39 +100,48 @@ export class DataService {
         "codigo":user,
         "password":passwd,
         "fechaContratacion":fecha
-    }).subscribe(
-      data  => {
-        console.log("POST Request is successful ", data);
-      },
-      error  => {
-        console.log("Error", error);  
-      });
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+    },
+    error  => {
+      console.log("Error", error);  
+    });
   }
 
   regGrupo(name:string){
     return this._http.post("http://localhost:4000/courses/grupo",
     {
         "nombre": name,
-    }).subscribe(
-      data  => {
-        console.log("POST Request is successful ", data);
-      },
-      error  => {
-        console.log("Error", error);  
-      });
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+    },
+    error  => {
+      console.log("Error", error);  
+    });
   }
 
   regMateria(name:string){
     return this._http.post("http://localhost:4000/courses/materia",
     {
         "nombre": name,
-    }).subscribe(
-      data  => {
-        console.log("POST Request is successful ", data);
-      },
-      error  => {
-        console.log("Error", error);  
-      });
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+    },
+    error  => {
+      console.log("Error", error);  
+    });
   }
 
   assign(pid:number,gid:number,mid:number,finicio:string,ffin:string,hinicio:string,hfin:string){
@@ -144,13 +155,16 @@ export class DataService {
       "fechaFin":ffin,
       "horaInicio":hinicio,
       "horaFin":hfin
-    }).subscribe(
-      data  => {
-        console.log("POST Request is successful ", data);
-      },
-      error  => {
-        console.log("Error", error);  
-      });
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+    },
+    error  => {
+      console.log("Error", error);  
+    });
   }
 
   regusuario(user:string,pwd:string,admin:boolean,name:string,pln:string,mln:string){
@@ -167,6 +181,11 @@ export class DataService {
     {
       responseType: 'text',
       observe:'response'
-    }).subscribe(res => console.log(res.body,res.status));
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+    },
+    error  => {
+      console.log("Error", error);  
+    });
   }
 }
