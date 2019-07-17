@@ -2,17 +2,23 @@
 <h1>Asignar</h1>
 <h2>Datos de Asignacion</h2>
 <div>
-    <select #profID>
-            <option *ngFor="let profesor of profesors" [value]="profesor.profesorID">{{profesor.codigo}}</option> 
-    </select>
+    <label>Profesor: 
+        <select #profID>
+                <option *ngFor="let profesor of profesors" [value]="profesor.profesorID">{{profesor.codigo}}</option> 
+        </select>
+    </label>
     <br>
-    <select #matID>
-            <option *ngFor="let materia of materias" [value]="materia.materiaID">{{materia.nombre}}</option> 
-    </select>
+    <label>Materia: 
+        <select #matID>
+                <option *ngFor="let materia of materias" [value]="materia.materiaID">{{materia.nombre}}</option> 
+        </select>
+    </label>
     <br>
-    <select #groupID>
-            <option *ngFor="let grupo of grupos" [value]="grupo.grupoID">{{grupo.nombre}}</option> 
-    </select>
+    <label>Grupo
+        <select #groupID>
+                <option *ngFor="let grupo of grupos" [value]="grupo.grupoID">{{grupo.nombre}}</option> 
+        </select>
+    </label>
     <br>
     <input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
     <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>

@@ -1,5 +1,5 @@
 import { Injectable, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -54,7 +54,7 @@ export class DataService {
   entry(user:string,pwd:string,date:string,time:string){
     return this._http.post("http://localhost:4000/aut/profesor",
     {
-      "usuario":user,
+      "codigo":user,
       "password":pwd,
       "tiempo":time,
       "fecha":date
@@ -64,12 +64,7 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
-      if(res.status==200){
-        this.myRoute.navigate(["register"]);
-        console.log("Se registro Entrada");
-      }else{
-        console.log("Ya se registro una entrada");
-      }
+
     });
   }
 
@@ -83,6 +78,14 @@ export class DataService {
 
   getgrupo(){
     return this._http.get("http://localhost:4000/courses/grupo");
+  }
+
+  getfirmas(finicio:string,ffin:string,codigo:string){
+    return this._http.get("http://localhost:4000/courses/registros/"+finicio+"/"+ffin+"/"+codigo);
+  }
+
+  getexcepciones(finicio:string,ffin:string,codigo:string){
+    return this._http.get("localhost:4000/courses/excs/"+finicio+"/"+ffin+"/"+codigo);
   }
 
   regprofessor(name:string,pln:string,mln:string,user:string,passwd:string,fecha:string){
