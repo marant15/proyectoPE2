@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ExcelService} from '../services/excel.service';
+import { ToasterService } from '../services/toaster.service';
 import { DataService } from '../http.service';
 import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 
@@ -15,7 +16,7 @@ export class ReportsComponent implements OnInit {
   registros = [];
   firmas = [];
 
-  constructor(private _dataService: DataService,private excelService:ExcelService){}
+  constructor(private _dataService: DataService,private excelService:ExcelService, private toaterservice:ToasterService){}
   ngOnInit() {
     this._dataService.getprofesor().subscribe(response =>{
       var count = Object.keys(response).length;
@@ -29,7 +30,7 @@ export class ReportsComponent implements OnInit {
   }
 
   /*
-  {
+ {
     grupo: "a",
     materia: "Fisica",
     nfirmas: 10,
@@ -110,6 +111,22 @@ export class ReportsComponent implements OnInit {
 
   exportAsXLSX():void {
     this.excelService.exportAsExcelFile(this.registros, 'sample');
+  }
+
+  success(){
+    this.toaterservice.success("success")
+  }
+
+  warning(){
+    this.toaterservice.warning("warning")
+  }
+
+  info(){
+    this.toaterservice.info("info")
+  }
+
+  error(){
+    this.toaterservice.error("error")
   }
 
 }

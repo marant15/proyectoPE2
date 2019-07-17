@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
 import { ReportsComponent } from './reports/reports.component';
 import { ExcelService } from './services/excel.service';
+import { ToasterService } from './services/toaster.service'
 import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
 
@@ -42,7 +43,8 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     AuthGuard,
-    ExcelService
+    ExcelService,
+    ToasterService
   ],
   bootstrap: [AppComponent]
 })
