@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../database');
 const helpers = require('../lib/helpers');
 const registro = require('../lib/registro');
-
+//rutas referentes a la autentificacion de profesores y usuarios
 router.post('/profesor', async (req, res) => {
     const { codigo, password, tiempo, fecha } = req.body;
     const rows = await pool.query('SELECT * FROM profesor WHERE codigo = ?',[codigo]);

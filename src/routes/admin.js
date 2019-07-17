@@ -3,7 +3,7 @@ const router = express.Router();
 
 const pool = require('../database');
 const helpers = require('../lib/helpers');
-
+//rutas referentes a administrativos
 router.post('/reg', async (req, res) =>{
     const { usuario, password, isAdmin, nombre, apellidoP, apellidoM } = req.body;
     const newReg = {
