@@ -1,6 +1,7 @@
 import { Injectable, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToasterService } from './services/toaster.service'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class DataService {
 
   result:any;
 
-  constructor(private _http: HttpClient, private myRoute: Router){ }
+  constructor(private _http: HttpClient, private myRoute: Router, private toasterService: ToasterService){ }
 
   isLoggedin(){
     if(localStorage.getItem('token')!=null){
@@ -42,7 +43,10 @@ export class DataService {
       }
     },
     error  => {
-      console.log("Error", error);  
+      console.log("Error", error);
+      if(error.status==400){
+        this.toasterService.error("Password o usuario incorrecto");
+      } 
     });
   }
 
@@ -64,9 +68,19 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
+      if(res.body==="no existe asignacion"){
+        this.toasterService.info("No existe una asignacion en el horario actual");
+      }else if(res.body.split(" ")[0]==="ya"){
+        this.toasterService.warning("Ya existe un registro para este horario");
+      }else{
+        this.toasterService.success("registro guardado");
+      }
     },
     error  => {
-      console.log("Error", error);  
+      console.log("Error", error);
+      if(error.status==400){
+        this.toasterService.error("Password o usuario incorrecto");
+      } 
     });
   }
 
@@ -106,6 +120,11 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
+      if(res.body === "saved"){
+        this.toasterService.success("Profesor guardado correctamente");
+      }else{
+        this.toasterService.error("codigo repetido")
+      }
     },
     error  => {
       console.log("Error", error);  
@@ -122,6 +141,11 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
+      if(res.body === 'saved'){
+        this.toasterService.success("grupo guardado correctamente");
+      }else{
+        this.toasterService.error("nombre de grupo repetido")
+      }
     },
     error  => {
       console.log("Error", error);  
@@ -138,6 +162,11 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
+      if(res.body === 'saved'){
+        this.toasterService.success("Materia guardada correctamente");
+      }else{
+        this.toasterService.error("Nombre de materia repetido")
+      }
     },
     error  => {
       console.log("Error", error);  
@@ -161,6 +190,7 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
+      this.toasterService.success("Asignacion guardada correctamente");
     },
     error  => {
       console.log("Error", error);  
@@ -183,6 +213,11 @@ export class DataService {
       observe:'response'
     }).subscribe(res => {
       console.log(res.body,res.status);
+      if(res.body === 'saved'){
+        this.toasterService.success("Usuario guardado correctamente");
+      }else{
+        this.toasterService.error("El usuario ya existe")
+      }
     },
     error  => {
       console.log("Error", error);  
