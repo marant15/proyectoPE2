@@ -39,6 +39,8 @@ export class ReportsComponent implements OnInit {
   */
 
   getData(profID:string,salary:number,finicio:Date,ffin:Date){
+    console.log(salary);
+    console.log(salary*10);
     this.registros = [];
     this.firmas = [];
     var mi = finicio.getUTCMonth() + 1; //months from 1-12
