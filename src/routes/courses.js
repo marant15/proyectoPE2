@@ -84,7 +84,11 @@ router.get('/grupo', async(req, res) => {
 })
 
 router.get('/asignacion', async(req, res) => {
-    const result = await pool.query('SELECT * FROM asignacion');
+    const result = await pool.query('select asignacionID, asignacion.profesorID, grupo.grupoID, materia.materiaID, fechaInicio, fechaFin, horaInicio, horaFin, estado,'+
+    'materia.nombre as materia, grupo.nombre as grupo, profesor.nombre as pName, apellidoM, apellidoP, codigo from asignacion inner join '+
+    'profesor on profesor.profesorID = asignacion.profesorID inner join '+
+    'materia on materia.materiaID = asignacion.materiaID inner join '+
+    'grupo on grupo.grupoID = asignacion .grupoID');
     res.json(result);
 })
 
