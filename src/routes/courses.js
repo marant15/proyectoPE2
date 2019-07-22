@@ -127,6 +127,11 @@ router.get('/exc/:id', async(req, res) => {
     res.json(result);
 })
 
+router.get('/asignacion/:id',async(req,res)=>{
+    const result = await pool.query('SELECT * FROM asignacion WHERE asignacionID=?',[req.params.id]);
+    res.json(result);
+})
+
 router.get('/registros/:mes/:codigo', async(req, res) => {
     const result = await pool.query('select asignacion.asignacionID, fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from registro inner join '+

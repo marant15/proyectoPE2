@@ -129,7 +129,7 @@ GET: localhost:4000/courses/excs/mes/:codigo
         "codigo": "codigo"
     }
 
-GET: localhos:4000/courses/asignacion
+GET: localhos:4000/courses/asignacion		localhost:4000/courses/asignacion/:id
 retorna un json
 
 PUT: localhost:4000/courses/asignacion/:id
