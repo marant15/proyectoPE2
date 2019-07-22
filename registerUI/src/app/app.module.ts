@@ -23,6 +23,9 @@ import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angul
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { ExcepcionesComponent } from './excepciones/excepciones.component';
+import { EditAsigComponent } from './edit-asig/edit-asig.component';
+import { SelectAsigComponent } from './select-asig/select-asig.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
     ReportsComponent,
     CusersComponent,
     ConfirmationDialogComponent,
+    ExcepcionesComponent,
+    EditAsigComponent,
+    SelectAsigComponent,
   ],
   imports: [
     NgbModule,

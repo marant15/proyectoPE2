@@ -9,6 +9,7 @@
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
         </mat-autocomplete>
+
     </label>
     <br>
     <label>Materia: 
@@ -34,4 +35,8 @@
     <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
     <br>
     <button (click)="register(matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Registrar</button>
+</div>
+<br>
+<div>
+    <button (click)="edit()" >Editar Asignacion</button>
 </div>

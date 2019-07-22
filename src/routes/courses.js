@@ -53,7 +53,7 @@ router.post('/materia', async (req, res) => {
 })
 
 router.post('/asignacion', async (req, res) => {
-    const { profesorID, grupoID, materiaID, fechaInicio, fechaFin, horaInicio, horaFin } = req.body
+    const { profesorID, grupoID, materiaID, fechaInicio, fechaFin, horaInicio, horaFin, estado } = req.body
     const newAsig = {
         profesorID,
         grupoID,
@@ -61,7 +61,8 @@ router.post('/asignacion', async (req, res) => {
         fechaInicio,
         fechaFin,
         horaInicio,
-        horaFin
+        horaFin,
+        estado
     }
     const result = await pool.query('INSERT INTO asignacion set ?', [newAsig]);
     res.sendStatus(200);
@@ -79,6 +80,15 @@ router.get('/profesor', async(req, res) => {
 
 router.get('/grupo', async(req, res) => {
     const result = await pool.query('SELECT * FROM grupo');
+    res.json(result);
+})
+
+router.get('/asignacion', async(req, res) => {
+    const result = await pool.query('select asignacionID, asignacion.profesorID, grupo.grupoID, materia.materiaID, fechaInicio, fechaFin, horaInicio, horaFin, estado,'+
+    'materia.nombre as materia, grupo.nombre as grupo, profesor.nombre as pName, apellidoM, apellidoP, codigo from asignacion inner join '+
+    'profesor on profesor.profesorID = asignacion.profesorID inner join '+
+    'materia on materia.materiaID = asignacion.materiaID inner join '+
+    'grupo on grupo.grupoID = asignacion .grupoID');
     res.json(result);
 })
 
@@ -117,27 +127,52 @@ router.get('/exc/:id', async(req, res) => {
     res.json(result);
 })
 
-router.get('/registros/:fecha1/:fecha2/:codigo', async(req, res) => {
+router.get('/asignacion/:id',async(req,res)=>{
+    const result = await pool.query('select asignacionID, asignacion.profesorID, grupo.grupoID, materia.materiaID, fechaInicio, fechaFin, horaInicio, horaFin, estado,'+
+    'materia.nombre as materia, grupo.nombre as grupo, profesor.nombre as pName, apellidoM, apellidoP, codigo from asignacion inner join '+
+    'profesor on profesor.profesorID = asignacion.profesorID inner join '+
+    'materia on materia.materiaID = asignacion.materiaID inner join '+
+    'grupo on grupo.grupoID = asignacion.grupoID WHERE asignacionID=?',[req.params.id]);
+    res.json(result);
+})
+
+router.get('/registros/:mes/:codigo', async(req, res) => {
     const result = await pool.query('select asignacion.asignacionID, fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from registro inner join '+
     'asignacion on registro.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
     'materia on materia.materiaID = asignacion.materiaID inner join '+
     'profesor on profesor.profesorID = asignacion.profesorID '+
-    'where (DATE(fechaRegistro) BETWEEN ? AND ?) AND codigo = ?',[req.params.fecha1,req.params.fecha2,req.params.codigo]);
+    'where (month(fechaFin)=?) AND codigo = ?',[req.params.mes,req.params.codigo]);
     res.json(result);
 })
 
-router.get('/excs/:fecha1/:fecha2/:codigo', async(req, res) => {
-    const { codigo, fecha1, fecha2 } = req.body
+router.get('/excs/:mes/:codigo', async(req, res) => {
     const result = await pool.query('select asignacion.asignacionID, fechaExcepcion, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'tipo, grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from excepcion inner join '+
     'asignacion on excepcion.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
     'materia on materia.materiaID = asignacion.materiaID inner join '+
-    'profesor on profesor.profesorID = asignacion.profesorID '+
-    'where (DATE(fechaExcepcion) BETWEEN ? AND ?) AND codigo = ?',[req.params.fecha1,req.params.fecha2,req.params.codigo]);
+    'profesor on profesor.profesorID = exepcion.profesorID '+
+    'where (month(fechaFin) = ?) AND codigo = ?',[req.params.mes,req.params.codigo]);
     res.json(result);
+})
+
+router.put('/asignacion/:id', async(req, res) => {
+    const { id } = req.params;
+    const { profesorID, grupoID, materiaID, fechaInicio, fechaFin, horaInicio, horaFin, estado } = req.body
+    const newAsig = {
+        profesorID,
+        grupoID,
+        materiaID,
+        fechaInicio,
+        fechaFin,
+        horaInicio,
+        horaFin,
+        estado
+    }
+    const result = await pool.query('UPDATE asignacion set ? WHERE asignacionID = ?', [newAsig, id]);
+    res.status(200).send("updated");
 })
 
 module.exports = router;

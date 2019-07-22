@@ -31,6 +31,7 @@ fechaInicio DATE NOT NULL,
 fechaFin DATE NOT NULL,
 horaInicio TIME NOT NULL,
 horaFin TIME NOT NULL,
+estado TINYINT(1) NOT NULL,
 FOREIGN KEY (profesorID) REFERENCES profesor(profesorID),
 FOREIGN KEY (grupoID) REFERENCES grupo(grupoID),
 FOREIGN KEY (materiaID) REFERENCES materia(materiaID)

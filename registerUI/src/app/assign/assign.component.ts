@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
 import { ToasterService } from '../services/toaster.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assign',
@@ -18,6 +19,8 @@ export class AssignComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   codes = [];
+  constructor(private _dataService: DataService, private myRoute: Router) { }
+
   profesors = [];
   materias = [];
   grupos = [];  
@@ -28,6 +31,7 @@ export class AssignComponent implements OnInit {
          this.profesors.push(response[index]);
          this.codes.push(response[index].codigo+"-"+response[index].nombre+" "+response[index].apellidoP+" "+response[index].apellidoM);
       }
+      console.log(this.profesors);
     },
     error => {
       console.log("Error", error);
@@ -104,6 +108,10 @@ export class AssignComponent implements OnInit {
   }else{
     this.toasterService.error("Llene todos los campos");
   }
+  }
+
+  edit(){
+    this.myRoute.navigate(["selectasig"]);
   }
 
 }
