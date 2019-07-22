@@ -20,6 +20,9 @@ import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,10 @@ import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angul
     RegisterComponent,
     ReportsComponent,
     CusersComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -45,13 +50,15 @@ import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angul
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     AuthGuard,
     ExcelService,
-    ToasterService
+    ToasterService,
+    ConfirmationDialogService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent],
 })
 export class AppModule { }

@@ -3,6 +3,8 @@ import { DataService } from '../http.service';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-assign',
@@ -11,7 +13,8 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class AssignComponent implements OnInit {
   myControl = new FormControl();
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService, private confirmationDialogService: ConfirmationDialogService,
+    private toasterService: ToasterService) { }
   filteredOptions: Observable<string[]>;
 
   codes = [];
@@ -23,7 +26,7 @@ export class AssignComponent implements OnInit {
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
-         this.codes.push(response[index].codigo);
+         this.codes.push(response[index].codigo+"-"+response[index].nombre+" "+response[index].apellidoP+" "+response[index].apellidoM);
       }
     },
     error => {
@@ -64,6 +67,7 @@ export class AssignComponent implements OnInit {
   }
 
   register(mid:number,gid:number,fi:Date,hi:Date,ff:Date,hf:Date) {
+    if(fi && hi && ff && hf && this.myControl.value){
     var mi = fi.getUTCMonth() + 1; //months from 1-12
     var di = fi.getUTCDate();
     var yi = fi.getUTCFullYear();
@@ -78,8 +82,28 @@ export class AssignComponent implements OnInit {
     var hourf = hf.getHours();
     var minf = hf.getUTCMinutes();
     var fhour = hourf+":"+minf+":00";
-    var pid = this.profesors.filter(i => i.codigo === this.myControl.value)[0].profesorID;
-    this._dataService.assign(pid,gid,mid,datei,datef,ihour,fhour);
+    var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
+    if(prof){
+      var pid = prof.profesorID;
+      this.confirmationDialogService.confirm('Confirmacion de asignacion', 'Asignacion del profesor: '+this.myControl.value+
+      " para la materia: "+this.materias.filter(i => i.materiaID == mid)[0].nombre+
+      " al grupo: "+this.grupos.filter(i => i.grupoID == gid)[0].nombre+" con las fechas: "+
+      datei+"   "+datef+" en el periodo: "+
+      ihour+" - "+fhour)
+      .then((confirmed) => {
+        console.log('User confirmed:', confirmed)
+        if(confirmed){
+          this.toasterService.success("Asignacion guardada correctamente");
+          this._dataService.assign(pid,gid,mid,datei,datef,ihour,fhour);
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    }else{
+      this.toasterService.error("El profesor no existe");
+    }
+  }else{
+    this.toasterService.error("Llene todos los campos");
+  }
   }
 
 }
