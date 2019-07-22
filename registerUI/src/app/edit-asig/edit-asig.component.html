@@ -1,6 +1,28 @@
 <app-nav-bar></app-nav-bar>
-<h1>Asignar</h1>
-<h2>Datos de Asignacion</h2>
+<h1>Editar Asinancion</h1>
+<h2>Datos de Asignacion Actual</h2>
+
+<table id="registers">
+    <tr>
+        <th>Profesor</th>
+        <th>Grupo</th>
+        <th>Materia</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Horario</th>
+    </tr>
+    <tr *ngFor="let asignacion of this.oAsig" >
+        <td>{{asignacion.pName}} {{asignacion.apellidoP}}</td>
+        <td>{{asignacion.grupo}}</td>
+        <td>{{asignacion.materia}}</td>
+        <td>{{asignacion.fechaInicio.substr(0,10)}}</td>
+        <td>{{asignacion.fechaFin.substr(0,10)}}</td>
+        <td>{{asignacion.horaInicio.substr(0,5)}}-{{asignacion.horaFin.substr(0,5)}}</td>
+    </tr>
+</table>
+
+<br>
+<h3>Datos A cambiar</h3>
 <div>
     <label>Profesor: 
         <select #profID>
@@ -20,6 +42,11 @@
         </select>
     </label>
     <br>
+    <label>Grupo Abierto: 
+        <input type="checkbox" [(ngModel)]="isActive" >
+    </label>
+    
+    <br>
     <input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
     <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
     <input [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
@@ -30,9 +57,5 @@
     <input [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
     <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
     <br>
-    <button (click)="register(profID.value,matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Registrar</button>
-</div>
-<br>
-<div>
-    <button (click)="edit()" >Editar Asignacion</button>
+    <button (click)="register(profID.value,matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Editar</button>
 </div>

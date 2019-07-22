@@ -104,6 +104,14 @@ export class DataService {
     return this._http.get("localhost:4000/courses/excs/"+finicio+"/"+ffin+"/"+codigo);
   }
 
+  getAsignaciones(){
+    return this._http.get("http://localhost:4000/courses/asignacion");
+  }
+
+  getAsignacion(id:string){
+    return this._http.get("http://localhost:4000/courses/asignacion/"+id);
+  }
+
   regprofessor(name:string,pln:string,mln:string,user:string,passwd:string,fecha:string){
     console.log('sending');
     return this._http.post("http://localhost:4000/courses/profesor",
@@ -174,7 +182,6 @@ export class DataService {
   }
 
   assign(pid:number,gid:number,mid:number,finicio:string,ffin:string,hinicio:string,hfin:string){
-    console.log('sending');
     return this._http.post("http://localhost:4000/courses/asignacion",
     {
       "profesorID":pid,
@@ -183,7 +190,8 @@ export class DataService {
       "fechaInicio":finicio,
       "fechaFin":ffin,
       "horaInicio":hinicio,
-      "horaFin":hfin
+      "horaFin":hfin,
+      "estado":true
     },
     {
       responseType: 'text',
@@ -194,6 +202,27 @@ export class DataService {
     },
     error  => {
       console.log("Error", error);  
+    });
+  }
+
+  excep(assig:number,tipo:string,pid:number,fecha:string,tiempo:string){
+    return this._http.post("http://localhost:4000/aut/exc",
+    {
+      "asignacionID":assig,
+      "tipo":tipo,
+      "professorID":pid,
+      "tiempo":tiempo,
+      "fecha":fecha
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      this.toasterService.success("Excepcion guardada correctamente");
+    },
+    error  => {
+      console.log("Error", error);
     });
   }
 
@@ -217,6 +246,35 @@ export class DataService {
         this.toasterService.success("Usuario guardado correctamente");
       }else{
         this.toasterService.error("El usuario ya existe")
+      }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  updateAsig(aID,pid:number,gid:number,mid:number,estado:boolean,finicio:string,ffin:string,hinicio:string,hfin:string){
+    return this._http.put("http://localhost:4000/courses/asignacion/"+aID,{
+      "profesorID":pid,
+      "grupoID":gid,
+      "materiaID":mid,
+      "fechaInicio":finicio,
+      "fechaFin":ffin,
+      "horaInicio":hinicio,
+      "horaFin":hfin,
+      "estado":estado
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.body === 'updated'){
+        this.toasterService.success("Asignacion editada correctamente");
+        this.myRoute.navigate(["rprofesor"]);
+
+      }else{
+        this.toasterService.error("No se pudo actualizar la asignacion")
       }
     },
     error  => {

@@ -1,26 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../http.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-assign',
-  templateUrl: './assign.component.html',
-  styleUrls: ['./assign.component.css']
+  selector: 'app-edit-asig',
+  templateUrl: './edit-asig.component.html',
+  styleUrls: ['./edit-asig.component.css']
 })
-export class AssignComponent implements OnInit {
-
-  constructor(private _dataService: DataService, private myRoute: Router) { }
+export class EditAsigComponent implements OnInit {
 
   profesors = [];
   materias = [];
-  grupos = [];  
+  grupos = []; 
+  isActive:boolean=false;
+  oAsig=[];
+  constructor(private _dataService: DataService) { }
+
   ngOnInit() {
+    var nasig = localStorage.getItem('editAsig');
+    this._dataService.getAsignacion(nasig).subscribe(response => {
+      this.oAsig.push(response[0]);
+    },
+    error => {
+      console.log("Error", error);
+    });
+
     this._dataService.getprofesor().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
       }
-      console.log(this.profesors);
     },
     error => {
       console.log("Error", error);
@@ -48,6 +56,7 @@ export class AssignComponent implements OnInit {
   }
 
   register(pid:number,mid:number,gid:number,fi:Date,hi:Date,ff:Date,hf:Date) {
+    var nasig = localStorage.getItem('editAsig');
     var mi = fi.getUTCMonth() + 1; //months from 1-12
     var di = fi.getUTCDate();
     var yi = fi.getUTCFullYear();
@@ -63,11 +72,9 @@ export class AssignComponent implements OnInit {
     var minf = hf.getUTCMinutes();
     var fhour = hourf+":"+minf+":00";
 
-    this._dataService.assign(pid,gid,mid,datei,datef,ihour,fhour);
+    console.log(nasig,pid,gid,mid,this.isActive);
+    console.log(datei,datef,ihour,fhour);
+    this._dataService.updateAsig(nasig,pid,gid,mid,this.isActive,datei,datef,ihour,fhour);
+    //this._dataService.assign(pid,gid,mid,datei,datef,ihour,fhour);
   }
-
-  edit(){
-    this.myRoute.navigate(["selectasig"]);
-  }
-
 }

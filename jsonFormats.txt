@@ -91,3 +91,47 @@ POST: localhost:4000/aut/usuario
 	"password":"admin"
 }
 (texto)
+
+GET: localhost:4000/courses/registros/:mes/:codigo
+	localhost:4000/courses/registros/7/codigo
+(retorna json con todos los registros) formato de elementos en el vector:
+	{
+        "fechaRegistro": "2019-07-24T14:00:00.000Z",
+        "nombre": "abc",
+        "apellidoM": "abc",
+        "apellidoP": "abc",
+        "fechaInicio": "2019-07-04T04:00:00.000Z",
+        "fechaFin": "2019-07-25T04:00:00.000Z",
+        "horaInicio": "10:00:00",
+        "horaFin": "12:15:00",
+        "grupo": "A",
+        "materia": "Fisica",
+        "fechaContratacion": "2012-03-19T14:00:00.000Z",
+        "codigo": "codigo"
+    }
+
+GET: localhost:4000/courses/excs/mes/:codigo
+	localhost:4000/courses/excs/7/codigo
+(retorna json con todos las excepciones) formato de elementos en el vector:
+	{
+        "fechaExcepcion": "2019-07-10T14:00:00.000Z",
+        "nombre": "abc",
+        "apellidoM": "abc",
+        "apellidoP": "abc",
+        "fechaInicio": "2019-07-04T04:00:00.000Z",
+        "fechaFin": "2019-07-25T04:00:00.000Z",
+        "horaInicio": "10:00:00",
+        "horaFin": "12:15:00",
+        "tipo": "RM",
+        "grupo": "A",
+        "materia": "Fisica",
+        "fechaContratacion": "2012-03-19T14:00:00.000Z",
+        "codigo": "codigo"
+    }
+
+GET: localhos:4000/courses/asignacion		localhost:4000/courses/asignacion/:id
+retorna un json
+
+PUT: localhost:4000/courses/asignacion/:id
+(mandar el json con todos los datos)
+(devuelve updated)

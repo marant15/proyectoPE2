@@ -18,6 +18,9 @@ import { ExcelService } from './services/excel.service';
 import { ToasterService } from './services/toaster.service'
 import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
+import { ExcepcionesComponent } from './excepciones/excepciones.component';
+import { EditAsigComponent } from './edit-asig/edit-asig.component';
+import { SelectAsigComponent } from './select-asig/select-asig.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     ReportsComponent,
     CusersComponent,
+    ExcepcionesComponent,
+    EditAsigComponent,
+    SelectAsigComponent,
   ],
   imports: [
     BrowserModule,
