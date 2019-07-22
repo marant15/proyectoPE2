@@ -18,6 +18,8 @@ import { ExcelService } from './services/excel.service';
 import { ToasterService } from './services/toaster.service'
 import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,10 @@ import { FormsModule } from '@angular/forms';
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   providers: [
     AuthGuard,

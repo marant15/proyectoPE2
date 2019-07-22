@@ -2,10 +2,13 @@
 <h1>Asignar</h1>
 <h2>Datos de Asignacion</h2>
 <div>
-    <label>Profesor: 
-        <select #profID>
-                <option *ngFor="let profesor of profesors" [value]="profesor.profesorID">{{profesor.codigo}}</option> 
-        </select>
+    <label>Profesor:
+        <mat-form-field>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        </mat-form-field>          
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
+        </mat-autocomplete>
     </label>
     <br>
     <label>Materia: 
@@ -30,5 +33,5 @@
     <input [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
     <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
     <br>
-    <button (click)="register(profID.value,matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Registrar</button>
+    <button (click)="register(matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Registrar</button>
 </div>
