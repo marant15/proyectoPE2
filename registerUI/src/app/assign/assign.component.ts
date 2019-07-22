@@ -15,12 +15,10 @@ import { Router } from '@angular/router';
 export class AssignComponent implements OnInit {
   myControl = new FormControl();
   constructor(private _dataService: DataService, private confirmationDialogService: ConfirmationDialogService,
-    private toasterService: ToasterService) { }
+    private toasterService: ToasterService , private myRoute: Router) { }
   filteredOptions: Observable<string[]>;
 
   codes = [];
-  constructor(private _dataService: DataService, private myRoute: Router) { }
-
   profesors = [];
   materias = [];
   grupos = [];  
