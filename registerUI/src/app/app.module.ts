@@ -18,6 +18,11 @@ import { ExcelService } from './services/excel.service';
 import { ToasterService } from './services/toaster.service'
 import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { ExcepcionesComponent } from './excepciones/excepciones.component';
 import { EditAsigComponent } from './edit-asig/edit-asig.component';
 import { SelectAsigComponent } from './select-asig/select-asig.component';
@@ -34,11 +39,13 @@ import { SelectAsigComponent } from './select-asig/select-asig.component';
     RegisterComponent,
     ReportsComponent,
     CusersComponent,
+    ConfirmationDialogComponent,
     ExcepcionesComponent,
     EditAsigComponent,
     SelectAsigComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -46,12 +53,18 @@ import { SelectAsigComponent } from './select-asig/select-asig.component';
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
   ],
   providers: [
     AuthGuard,
     ExcelService,
-    ToasterService
+    ToasterService,
+    ConfirmationDialogService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent],
 })
 export class AppModule { }

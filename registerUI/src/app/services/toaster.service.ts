@@ -23,16 +23,16 @@ export class ToasterService {
   }
   settings(){
     toastr.options = {
-      "closeButton": false,
+      "closeButton": true,
       "debug": false,
-      "newestOnTop": false,
+      "newestOnTop": true,
       "progressBar": false,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": false,
+      "positionClass": "toast-top-full-width",
+      "preventDuplicates": true,
       "onclick": null,
       "showDuration": "300",
       "hideDuration": "1000",
-      "timeOut": "5000",
+      "timeOut": "15000",
       "extendedTimeOut": "1000",
       "showEasing": "swing",
       "hideEasing": "linear",
