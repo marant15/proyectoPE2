@@ -55,13 +55,14 @@ export class DataService {
     this.myRoute.navigate(["login"]);
   }
 
-  entry(user:string,pwd:string,date:string,time:string){
+  entry(user:string,pwd:string,date:string,time:string,image:string){
     return this._http.post("http://localhost:4000/aut/profesor",
     {
       "codigo":user,
       "password":pwd,
       "tiempo":time,
-      "fecha":date
+      "fecha":date,
+      "image":image
     },
     {
       responseType: 'text',
