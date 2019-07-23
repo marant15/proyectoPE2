@@ -1,0 +1,17 @@
+<app-nav-bar></app-nav-bar>
+<br>
+<table id="registers">
+    <tr>
+        <th>Profesor</th>
+        <th>Grupo</th>
+        <th>Materia</th>
+        <th>Editar</th>
+    </tr>
+    <tr *ngFor="let asignacion of this.asignaciones">
+        <td>{{asignacion.pName}} {{asignacion.apellidoP}}</td>
+        <td>{{asignacion.grupo}}</td>
+        <td>{{asignacion.materia}}</td>
+        <td #selected style="display:none;">{{asignacion.asignacionID}}</td>
+        <button (click)="edit(selected.innerText)" >Editar</button>
+    </tr>
+</table>

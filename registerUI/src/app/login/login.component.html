@@ -1,0 +1,9 @@
+<app-menu-bar></app-menu-bar>
+<div>
+    <h1>Iniciar sesión</h1>
+    <input type="text" #username placeholder="Username">
+    <br>
+    <input type="password" #password placeholder="Password">
+    <br>
+    <button (click)="logIn(username.value, password.value)" >Login</button>
+</div>

@@ -1,0 +1,19 @@
+<app-menu-bar></app-menu-bar>
+<div>
+    <h1>Registrar Entrada</h1>
+    <input type="text" #username placeholder="Username">
+    <br>
+    <input type="password" #password placeholder="Password">
+    <br>
+    <button (click)="register(username.value, password.value)" >Registrar</button>
+</div>
+<div>
+    <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions"
+            [imageQuality]="1"
+            (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"
+    ></webcam>
+</div>
+  
