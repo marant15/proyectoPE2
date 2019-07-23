@@ -26,6 +26,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
 import { ExcepcionesComponent } from './excepciones/excepciones.component';
 import { EditAsigComponent } from './edit-asig/edit-asig.component';
 import { SelectAsigComponent } from './select-asig/select-asig.component';
+import {WebcamModule} from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { SelectAsigComponent } from './select-asig/select-asig.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    WebcamModule,
   ],
   providers: [
     AuthGuard,
