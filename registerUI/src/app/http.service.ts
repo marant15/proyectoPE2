@@ -211,7 +211,7 @@ export class DataService {
     {
       "asignacionID":assig,
       "tipo":tipo,
-      "professorID":pid,
+      "profesorID":pid,
       "tiempo":tiempo,
       "fecha":fecha
     },

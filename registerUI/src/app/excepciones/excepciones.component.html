@@ -9,9 +9,12 @@
     </label>
     <br>
     <label>Profesor: 
-        <select #profID>
-                <option *ngFor="let profesor of profesors" [value]="profesor.profesorID">{{profesor.nombre}} {{profesor.apellidoP}}-{{profesor.codigo}}</option> 
-        </select>
+        <mat-form-field>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        </mat-form-field>          
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
+        </mat-autocomplete>
     </label>
     <br>
     <label>Tipo: 
@@ -22,12 +25,15 @@
     </label>
     <br>
     <label>Poner tiempos</label>
-    <input type="checkbox" [(ngModel)]="tiempos" >
+    <input type="checkbox" [(ngModel)]="tiempos" (click)="checkTiempos()">
     <br>
+    <div id="seccion">
     <input [owlDateTimeTrigger]="fe" [owlDateTime]="fe" placeholder="Fecha" readonly>
     <owl-date-time [pickerType]="'calendar'" #fe></owl-date-time>
     <input [owlDateTimeTrigger]="ho" [owlDateTime]="ho" placeholder="Hora" readonly>
     <owl-date-time [pickerType]="'timer'" #ho></owl-date-time>
+    </div>
     <br>
-    <button (click)="register(asignID.value,profID.value,tipo.value,fe._selected,ho._selected)" >Registrar</button>
+    <button *ngIf="tiempos" (click)="register(asignID.value,tipo.value,fe._selected,ho._selected)" >Registrar</button>
+    <button *ngIf="!tiempos" (click)="register(asignID.value,tipo.value,null,null)" >Registrar</button>
 </div>
