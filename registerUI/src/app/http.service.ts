@@ -97,12 +97,12 @@ export class DataService {
     return this._http.get("http://localhost:4000/courses/grupo");
   }
 
-  getfirmas(finicio:string,ffin:string,codigo:string){
-    return this._http.get("http://localhost:4000/courses/registros/"+finicio+"/"+ffin+"/"+codigo);
+  getfirmas(mes:string,codigo:string){
+    return this._http.get("http://localhost:4000/courses/registros/"+mes+"/"+codigo);
   }
 
-  getexcepciones(finicio:string,ffin:string,codigo:string){
-    return this._http.get("localhost:4000/courses/excs/"+finicio+"/"+ffin+"/"+codigo);
+  getexcepciones(mes:string,codigo:string){
+    return this._http.get("http://localhost:4000/courses/excs/"+mes+"/"+codigo);
   }
 
   getAsignaciones(){

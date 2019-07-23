@@ -14,7 +14,12 @@ export class ReportsComponent implements OnInit {
   //en data se ponen los datos para la tabla (contenido de pagos de un profesor en un determinado mes)
   profesors = [];
   registros = [];
-  firmas = [];
+  meses = [
+    {"month":"Enero", "value":1},{"month":"Febrero", "value":2},{"month":"Marzo", "value":3},
+    {"month":"Abril", "value":4},{"month":"Mayo", "value":5},{"month":"Junio", "value":6},
+    {"month":"Julio", "value":7},{"month":"Agosto", "value":8},{"month":"Septiembre", "value":9},
+    {"month":"Octubre", "value":10},{"month":"Noviembre", "value":11},{"month":"Diciembre", "value":12},
+  ]
 
   constructor(private _dataService: DataService,private excelService:ExcelService, private toaterservice:ToasterService){}
   ngOnInit() {
@@ -38,25 +43,22 @@ export class ReportsComponent implements OnInit {
   }
   */
 
-  getData(profID:string,salary:number,finicio:Date,ffin:Date){
-    console.log(salary);
-    console.log(salary*10);
-    this.registros = [];
-    this.firmas = [];
-    var mi = finicio.getUTCMonth() + 1; //months from 1-12
-    var di = finicio.getUTCDate();
-    var yi = finicio.getUTCFullYear();
-    var datei = yi + "-" + mi + "-" + di;
-    var mf = ffin.getUTCMonth() + 1; //months from 1-12
-    var df = ffin.getUTCDate();
-    var yf = ffin.getUTCFullYear();
-    var datef = yf + "-" + mf + "-" + df;
+  getData(profID:string,mes:string){
 
-    this._dataService.getfirmas(datei,datef,profID).subscribe(response =>{
+    console.log(profID,mes);
+    this.fillasignaciones(mes,profID);
+    /*this._dataService.entry("7891011","7891011","2019-07-01","11:05:00","");
+    this._dataService.entry("7891011","7891011","2019-07-02","10:55:00","");
+    this._dataService.entry("7891011","7891011","2019-07-03","11:01:00","");
+    this._dataService.entry("7891011","7891011","2019-07-04","10:58:00","");
+
+    this._dataService.getfirmas(profID).subscribe(response =>{
       var count = Object.keys(response).length;
+      console.log(response);
       for (let index = 0; index < count; index++) {
          this.firmas.push(response[index]);
       }
+      
       if(this.firmas.length>0){
         this.fillingRegistros(salary);
         this.reporteActivo = true;
@@ -64,10 +66,40 @@ export class ReportsComponent implements OnInit {
     },
     error => {
       console.log("Error", error);
+    });*/
+  }
+
+  fillasignaciones(mes:string,profID:string){
+    this._dataService.getfirmas(mes,profID).subscribe(response =>{
+      var count = Object.keys(response).length;
+      console.log(response);
+      for (let index = 0; index < count; index++) {
+        var dateE = new Date(response[index].fechaRegistro.substr(0,10)+" "+response[index].fechaRegistro.substr(11,8));        
+        console.log(dateE);
+        var dateI = new Date(response[index].fechaInicio.substr(0,10)+" "+response[index].horaInicio);
+        console.log(dateI);
+        this.registros.push({
+         "grupo": response[index].grupo,
+         "materia": response[index].materia,
+         "fecha":response[index].fechaRegistro.substr(0,10),
+         "hora":response[index].fechaRegistro.substr(11,5),
+         "tipo":'Reg'
+        });
+      }
+      console.log(this.registros);
+      this.reporteActivo = true;
+      //this.fillexcepciones();
+    },
+    error => {
+      console.log("Error", error);
     });
   }
 
-  fillingRegistros(salary:number){
+  fillexcepciones(){
+
+  }
+
+  /*fillingRegistros(salary:number){
     if(this.registros.length<1){
       this.registros.push({
         grupo:this.firmas[0].grupo,
@@ -101,7 +133,6 @@ export class ReportsComponent implements OnInit {
         });
       }
     }
-    console.log(this.registros);
     this.calculatingSalary(salary);
   }
 
@@ -110,6 +141,14 @@ export class ReportsComponent implements OnInit {
       reg.total = reg.nfirmas * salary;
     }
   }
+
+  datecompare(dateE:Date,dateI:Date){
+    if( > Date.parse('01/01/2011 5:10:10')){
+      console.log('true');
+    }else{
+      console.log('false')
+    }
+  }*/
 
   exportAsXLSX():void {
     this.excelService.exportAsExcelFile(this.registros, 'sample');

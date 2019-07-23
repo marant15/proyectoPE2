@@ -8,15 +8,13 @@
 		</select>
 	</label>
 	<br>
-	<input type="number" step="any" #salary placeholder="Salario por firma">
-    <br>
-	<input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
-    <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
-    <br>
-    <input [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
-    <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
-    <br>
-    <button (click)="getData(profID.value,salary.value,finicio._selected,ffin._selected)" >Registrar</button>
+	<label>Mes: 
+		<select #mesValue>
+			<option *ngFor="let mes of meses" [value]="mes.value">{{mes.month}}</option> 
+		</select>
+	</label>
+	<br>
+    <button (click)="getData(profID.value,mesValue.value)" >Registrar</button>
 </div>
 <br>
 <div *ngIf="reporteActivo">
@@ -25,24 +23,16 @@
 		<tr>
 			<th>Grupo</th>
 			<th>Materia</th>
-			<th>Firmas</th>
-			<th>Atrasos</th>
-			<th>Faltas</th>
-			<th>Reposiciones</th>
-			<th>Total Descuentos</th>
-			<th>Total Ganado</th>
-			<th>Liquido Pagable</th>
+			<th>Fecha</th>
+			<th>Hora</th>
+			<th>Especificacion</th>
 		</tr>
 		<tr *ngFor="let item of this.registros">
 			<td>{{item.grupo}}</td>
 			<td>{{item.materia}}</td>
-			<td>{{item.nfirmas}}</td>
-			<td>#atrasos</td>
-			<td>#faltas</td>
-			<td>#reposiciones</td>
-			<td>Descuentos</td>
-			<td>{{item.total}}</td>
-			<td>Pagable</td>
+			<td>{{item.fecha}}</td>
+			<td>{{item.hora}}</td>
+			<td>{{item.tipo}}</td>
 		</tr>
 	</table>
 </div>
