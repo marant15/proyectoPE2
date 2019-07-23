@@ -3,7 +3,7 @@ const moment = require('moment');
 const { adelanto } = require('../config');
 const registro = {};
 //funcion para registrar un docente en un determinado dia
-registro.registrar = async (date, time, profesorID) => {
+registro.registrar = async (date, time, profesorID, image) => {
     const rows = await pool.query('SELECT * FROM asignacion WHERE profesorID = ?',[profesorID]);
     if(rows.length>0){
         for(let row of rows){
@@ -21,6 +21,9 @@ registro.registrar = async (date, time, profesorID) => {
                         if(verification.length == 0){
                             const result = await pool.query('INSERT INTO registro set ?', [newReg]);
                             const res = await pool.query('SELECT * FROM registro WHERE fechaRegistro = ? and asignacionID = ?',[fechaRegistro,row.asignacionID]);
+                            require("fs").writeFile("images/"+res[0].registroID+".png", image, 'base64', function(err) {
+                                console.log(err);
+                            });
                             return res[0].registroID;
                         }else return "ya existe el registro "+verification[0].registroID;
                     }
