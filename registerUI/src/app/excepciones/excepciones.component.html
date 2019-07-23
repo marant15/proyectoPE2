@@ -1,0 +1,33 @@
+<app-nav-bar></app-nav-bar>
+<h1>Reemplazos y Reposiciones</h1>
+<h2>Datos de Excepcion</h2>
+<div>
+    <label>Asignacion: 
+        <select #asignID>
+                <option *ngFor="let asignacion of asignaciones" [value]="asignacion.asignacionID">{{asignacion.grupo}}-{{asignacion.materia}}-{{asignacion.pName}} {{asignacion.apellidoP}}</option> 
+        </select>
+    </label>
+    <br>
+    <label>Profesor: 
+        <select #profID>
+                <option *ngFor="let profesor of profesors" [value]="profesor.profesorID">{{profesor.nombre}} {{profesor.apellidoP}}-{{profesor.codigo}}</option> 
+        </select>
+    </label>
+    <br>
+    <label>Tipo: 
+        <select #tipo>
+                <option value="RM">Reemplazo</option>
+                <option value="RP">Reposicion</option> 
+        </select>
+    </label>
+    <br>
+    <label>Poner tiempos</label>
+    <input type="checkbox" [(ngModel)]="tiempos" >
+    <br>
+    <input [owlDateTimeTrigger]="fe" [owlDateTime]="fe" placeholder="Fecha" readonly>
+    <owl-date-time [pickerType]="'calendar'" #fe></owl-date-time>
+    <input [owlDateTimeTrigger]="ho" [owlDateTime]="ho" placeholder="Hora" readonly>
+    <owl-date-time [pickerType]="'timer'" #ho></owl-date-time>
+    <br>
+    <button (click)="register(asignID.value,profID.value,tipo.value,fe._selected,ho._selected)" >Registrar</button>
+</div>

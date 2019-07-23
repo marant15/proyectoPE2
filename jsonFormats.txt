@@ -1,0 +1,137 @@
+POST: localhost:4000/courses/profesor
+
+{
+	"nombre": "abc",
+	"apellidoP": "abc",
+	"apellidoM": "abc",
+	"codigo":"codigo",
+	"password":"pass123",
+	"fechaContratacion":"2012-03-19 10:00:00"
+}
+(texto)
+
+POST: localhost:4000/courses/grupo
+
+{
+	"nombre": "A"
+}
+(texto)
+
+POST: localhost:4000/courses/materia
+
+{
+	"nombre":"Fisica"
+}
+(texto)
+
+POST: localhost:4000/courses/asignacion
+
+{
+	"profesorID":1,
+	"grupoID":3,
+	"materiaID":2,
+	"fechaInicio":"2019-07-04",
+	"fechaFin":"2019-07-25",
+	"horaInicio":"10:00:00",
+	"horaFin":"12:15:00"
+}
+(texto)
+
+POST: localhost:4000/aut/profesor
+
+{
+	"codigo":"codigo",
+	"password":"pass123",
+	"tiempo":"10:00:00",
+	"fecha":"2019-07-24"
+}
+(texto)
+
+GET: localhost:4000/courses/grupo			localhost:4000/courses/grupo/:id
+
+GET: localhost:4000/courses/materia			localhost:4000/courses/materia/:id
+
+GET: localhost:4000/courses/profesor		localhost:4000/courses/profesor/:id
+
+GET: localhost:4000/courses/registro		localhost:4000/courses/registro/:id
+
+GET: localhost:4000/courses/exc				localhost:4000/courses/exc/:id
+
+GEt: localhost:4000/admin/usuario/:id
+(todos estos son JSON)
+
+POST: localhost:4000/aut/exc
+
+{
+	"asignacionID":3,
+	"tipo":"RM",
+	"profesorID":1,
+	"tiempo":"10:00:00",
+	"fecha":"2019-07-10"
+}
+(texto)
+'El tipo puede ser RM = reemplazo o RP = repocicion'
+
+POST: localhost:4000/admin/reg
+
+{
+	"usuario":"admin",
+	"password":"admin",
+	"isAdmin":true,
+	"nombre":"a",
+	"apellidoP":"b",
+	"apellidoM":"c"
+}
+(texto)
+
+POST: localhost:4000/aut/usuario
+
+{
+	"usuario":"admin",
+	"password":"admin"
+}
+(texto)
+
+GET: localhost:4000/courses/registros/:mes/:codigo
+	localhost:4000/courses/registros/7/codigo
+(retorna json con todos los registros) formato de elementos en el vector:
+	{
+        "fechaRegistro": "2019-07-24T14:00:00.000Z",
+        "nombre": "abc",
+        "apellidoM": "abc",
+        "apellidoP": "abc",
+        "fechaInicio": "2019-07-04T04:00:00.000Z",
+        "fechaFin": "2019-07-25T04:00:00.000Z",
+        "horaInicio": "10:00:00",
+        "horaFin": "12:15:00",
+        "grupo": "A",
+        "materia": "Fisica",
+        "fechaContratacion": "2012-03-19T14:00:00.000Z",
+        "codigo": "codigo"
+    }
+
+GET: localhost:4000/courses/excs/mes/:codigo
+	localhost:4000/courses/excs/7/codigo
+(retorna json con todos las excepciones) formato de elementos en el vector:
+	{
+        "fechaExcepcion": "2019-07-10T14:00:00.000Z",
+        "nombre": "abc",
+        "apellidoM": "abc",
+        "apellidoP": "abc",
+        "fechaInicio": "2019-07-04T04:00:00.000Z",
+        "fechaFin": "2019-07-25T04:00:00.000Z",
+        "horaInicio": "10:00:00",
+        "horaFin": "12:15:00",
+        "tipo": "RM",
+        "grupo": "A",
+        "materia": "Fisica",
+        "fechaContratacion": "2012-03-19T14:00:00.000Z",
+        "codigo": "codigo"
+    }
+
+GET: localhos:4000/courses/asignacion		localhost:4000/courses/asignacion/:id
+retorna un json
+
+PUT: localhost:4000/courses/asignacion/:id
+(mandar el json con todos los datos)
+(devuelve updated)
