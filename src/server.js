@@ -1,10 +1,12 @@
 const express = require('express');
 var cors = require('cors');
+var bodyParser = require( 'body-parser' );
 
 //initialization
 const app = express();
 
 //settings
+app.use( bodyParser.json( { limit: '50MB' } ) );
 app.set('port', process.env.PORT || 4000);
 app.use(cors());
 //Global variables

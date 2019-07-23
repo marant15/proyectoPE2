@@ -6,14 +6,14 @@ const helpers = require('../lib/helpers');
 const registro = require('../lib/registro');
 //rutas referentes a la autentificacion de profesores y usuarios
 router.post('/profesor', async (req, res) => {
-    const { codigo, password, tiempo, fecha } = req.body;
+    const { codigo, password, tiempo, fecha, image } = req.body;
     const rows = await pool.query('SELECT * FROM profesor WHERE codigo = ?',[codigo]);
     if(rows.length > 0){
         const user = rows[0];
         const valid = await helpers.matchPassword(password, user.password);
         if(valid){
             //ingresar el registro
-            var a = await registro.registrar(fecha, tiempo, user.profesorID);
+            var a = await registro.registrar(fecha, tiempo, user.profesorID, image);
             res.status(200).send(""+a);
         }
         else{
