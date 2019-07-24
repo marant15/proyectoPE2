@@ -153,7 +153,7 @@ router.get('/excs/:mes/:codigo', async(req, res) => {
     'asignacion on excepcion.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
     'materia on materia.materiaID = asignacion.materiaID inner join '+
-    'profesor on profesor.profesorID = exepcion.profesorID '+
+    'profesor on profesor.profesorID = excepcion.profesorID '+
     'where (month(fechaFin) = ?) AND codigo = ?',[req.params.mes,req.params.codigo]);
     res.json(result);
 })

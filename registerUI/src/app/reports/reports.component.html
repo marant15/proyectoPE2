@@ -24,14 +24,18 @@
 			<th>Grupo</th>
 			<th>Materia</th>
 			<th>Fecha</th>
-			<th>Hora</th>
+			<th>Registro</th>
+			<th>Entrada</th>
 			<th>Especificacion</th>
+			<th>Tipo</th>
 		</tr>
 		<tr *ngFor="let item of this.registros">
 			<td>{{item.grupo}}</td>
 			<td>{{item.materia}}</td>
 			<td>{{item.fecha}}</td>
 			<td>{{item.hora}}</td>
+			<td>{{item.inicio}}</td>
+			<td>{{item.estado}}</td>
 			<td>{{item.tipo}}</td>
 		</tr>
 	</table>

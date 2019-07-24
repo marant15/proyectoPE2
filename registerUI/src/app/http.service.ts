@@ -102,6 +102,7 @@ export class DataService {
   }
 
   getexcepciones(mes:string,codigo:string){
+    console.log("http://localhost:4000/courses/excs/"+mes+"/"+codigo);
     return this._http.get("http://localhost:4000/courses/excs/"+mes+"/"+codigo);
   }
 

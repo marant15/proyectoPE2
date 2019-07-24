@@ -11,7 +11,6 @@ import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 })
 export class ReportsComponent implements OnInit {
   reporteActivo = false;
-  //en data se ponen los datos para la tabla (contenido de pagos de un profesor en un determinado mes)
   profesors = [];
   registros = [];
   meses = [
@@ -34,18 +33,7 @@ export class ReportsComponent implements OnInit {
     });
   }
 
-  /*
- {
-    grupo: "a",
-    materia: "Fisica",
-    nfirmas: 10,
-    total: nfirmas * $pagofirma 
-  }
-  */
-
   getData(profID:string,mes:string){
-
-    console.log(profID,mes);
     this.fillasignaciones(mes,profID);
     /*this._dataService.entry("7891011","7891011","2019-07-01","11:05:00","");
     this._dataService.entry("7891011","7891011","2019-07-02","10:55:00","");
@@ -72,83 +60,67 @@ export class ReportsComponent implements OnInit {
   fillasignaciones(mes:string,profID:string){
     this._dataService.getfirmas(mes,profID).subscribe(response =>{
       var count = Object.keys(response).length;
-      console.log(response);
       for (let index = 0; index < count; index++) {
-        var dateE = new Date(response[index].fechaRegistro.substr(0,10)+" "+response[index].fechaRegistro.substr(11,8));        
-        console.log(dateE);
-        var dateI = new Date(response[index].fechaInicio.substr(0,10)+" "+response[index].horaInicio);
-        console.log(dateI);
+        var dateE = new Date(response[index].fechaRegistro.substr(0,10)+" "+response[index].fechaRegistro.substr(11,8));
+        var hourE = this.convertHours(dateE);
+        var di = response[index].fechaRegistro.substr(0,10)+" "+response[index].horaInicio;
         this.registros.push({
          "grupo": response[index].grupo,
          "materia": response[index].materia,
          "fecha":response[index].fechaRegistro.substr(0,10),
-         "hora":response[index].fechaRegistro.substr(11,5),
+         "hora":hourE,
+         "inicio":response[index].horaInicio,
+         "estado": this.atraso(di,dateE),
          "tipo":'Reg'
         });
       }
-      console.log(this.registros);
-      this.reporteActivo = true;
-      //this.fillexcepciones();
+      this.fillexcepciones(mes,profID);
     },
     error => {
       console.log("Error", error);
     });
   }
 
-  fillexcepciones(){
-
-  }
-
-  /*fillingRegistros(salary:number){
-    if(this.registros.length<1){
-      this.registros.push({
-        grupo:this.firmas[0].grupo,
-        materia:this.firmas[0].materia,
-        nfirmas:0,
-        total:0
-      });
-    }
-    this.calculatingfirmas(salary);
-    
-  }
-
-  calculatingfirmas(salary:number){
-    for(let firma of this.firmas){
-      var existe = false;
-      for(let registro of this.registros){
-        if(firma.grupo==registro.grupo){
-          if(firma.materia==registro.materia){
-            registro.nfirmas= registro.nfirmas+1;
-            existe = true;
-            break;
-          }
-        }
-      }
-      if(!existe){
+  fillexcepciones(mes:string,profID:string){
+    this._dataService.getexcepciones(mes,profID).subscribe(response =>{
+      var count = Object.keys(response).length;
+      for (let index = 0; index < count; index++) {
+        var dateE = new Date(response[index].fechaExcepcion.substr(0,10)+" "+response[index].fechaExcepcion.substr(11,8));
+        var hourE = this.convertHours(dateE);
+        var di = response[index].fechaExcepcion.substr(0,10)+" "+response[index].horaInicio;
         this.registros.push({
-          grupo:firma.grupo,
-          materia:firma.materia,
-          nfirmas:1,
-          total:0
+         "grupo": response[index].grupo,
+         "materia": response[index].materia,
+         "fecha":response[index].fechaExcepcion.substr(0,10),
+         "hora":hourE,
+         "inicio":response[index].horaInicio,
+         "estado": this.atraso(di,dateE),
+         "tipo":response[index].tipo
         });
       }
-    }
-    this.calculatingSalary(salary);
+      this.reporteActivo = true;
+    },
+    error => {
+      console.log("Error", error);
+    });
   }
 
-  calculatingSalary(salary:number){
-    for(let reg of this.registros){
-      reg.total = reg.nfirmas * salary;
-    }
+  convertHours(date:Date){
+    date.setTime(date.getTime()-(4*3600*1000));
+    var hour = date.getHours();
+    var min = date.getUTCMinutes();
+    var rhour = hour+":"+min+":00";
+    return rhour;
   }
 
-  datecompare(dateE:Date,dateI:Date){
-    if( > Date.parse('01/01/2011 5:10:10')){
-      console.log('true');
-    }else{
-      console.log('false')
+  atraso(di:string,dr:Date){
+    var dini = new Date(di);
+    dini.setTime(dini.getTime()+(15*60*1000));
+    if(dini<dr){
+      return "Retraso"
     }
-  }*/
+    return "A tiempo"
+  }
 
   exportAsXLSX():void {
     this.excelService.exportAsExcelFile(this.registros, 'sample');
