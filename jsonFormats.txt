@@ -135,3 +135,11 @@ retorna un json
 PUT: localhost:4000/courses/asignacion/:id
 (mandar el json con todos los datos)
 (devuelve updated)
+
+PUT: localhost:4000/courses/profesor/:id
+(mandar el json con todos los datos)
+(devuelve updated)
+
+PUT: localhost:4000/admin/reg/:id
+(mandar el json con todos los datos)
+(devuelve updated)
