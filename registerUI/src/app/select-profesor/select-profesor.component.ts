@@ -25,11 +25,18 @@ export class SelectProfesorComponent implements OnInit {
       console.log("Error", error);
     });
   }
-
+  
   edit(numero:string){
     localStorage.setItem('editProf', numero);
     this.myRoute.navigate(["editprof"]);
   }
 
-  
+  editpwd(numero:string){
+    localStorage.setItem('editProf', numero);
+    this.myRoute.navigate(["editpwdP"]);
+  }
+
+  reset(numero:string){
+
+  }
 }

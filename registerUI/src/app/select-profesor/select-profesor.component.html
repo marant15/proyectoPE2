@@ -12,8 +12,8 @@
         <td>{{profesor.codigo}}</td>
         <td #selected style="display:none;">{{profesor.profesorID}}</td>
         <td><button (click)="edit(selected.innerText)" >Editar</button></td>
-        <td><button (click)="edit(selected.innerText)" >Cambiar</button>
-            <button (click)="edit(selected.innerText)" >Resetear</button></td>
+        <td><button (click)="editpwd(selected.innerText)" >Cambiar</button>
+            <button (click)="reset(selected.innerText)" >Resetear</button></td>
         
     </tr>
 </table>

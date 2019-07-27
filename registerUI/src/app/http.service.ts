@@ -305,9 +305,31 @@ export class DataService {
       if(res.body === 'updated'){
         this.toasterService.success("Profesor editado correctamente");
         this.myRoute.navigate(["rprofesor"]);
+      }else{
+        this.toasterService.error("No se pudo actualizar el profesor")
+      }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  updatePpwd(pid:string,oldpwd:string,newpwd:string){
+    return this._http.put("http://localhost:4000/aut/profesor/"+pid,{
+      "oldPassword": oldpwd,
+      "password": newpwd
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.body === 'updated'){
+        this.toasterService.success("Password cambiado correctamente");
+        this.myRoute.navigate(["rprofesor"]);
 
       }else{
-        this.toasterService.error("No se pudo actualizar la asignacion")
+        this.toasterService.error("No se pudo cambiar password")
       }
     },
     error  => {

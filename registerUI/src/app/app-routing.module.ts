@@ -12,6 +12,11 @@ import { SelectAsigComponent } from './select-asig/select-asig.component';
 import { EditAsigComponent } from './edit-asig/edit-asig.component';
 import { SelectProfesorComponent } from './select-profesor/select-profesor.component';
 import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
+import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
+import { SelectUserComponent } from './select-user/select-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditPwdUComponent } from './edit-pwd-u/edit-pwd-u.component';
+
 import { AuthGuard } from './auth.guard';
 
 
@@ -28,7 +33,12 @@ const routes: Routes = [
     {path: 'selectasig',component: SelectAsigComponent, canActivate: [AuthGuard]},
     {path: 'editasig',component: EditAsigComponent, canActivate: [AuthGuard]},
     {path: 'selectprof',component: SelectProfesorComponent, canActivate: [AuthGuard]},
-    {path: 'editprof',component: EditProfesorComponent, canActivate: [AuthGuard]}
+    {path: 'editprof',component: EditProfesorComponent, canActivate: [AuthGuard]},
+    {path: 'editpwdP',component: EditPwdPComponent, canActivate: [AuthGuard]},
+    {path: 'selectuser',component: SelectUserComponent, canActivate: [AuthGuard]},
+    {path: 'edituser',component: EditUserComponent, canActivate: [AuthGuard]},
+    {path: 'editpwdU',component: EditPwdUComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
