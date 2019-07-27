@@ -29,6 +29,10 @@ import { SelectAsigComponent } from './select-asig/select-asig.component';
 import {WebcamModule} from 'ngx-webcam';
 import { SelectProfesorComponent } from './select-profesor/select-profesor.component';
 import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
+import { SelectUserComponent } from './select-user/select-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditPwdUComponent } from './edit-pwd-u/edit-pwd-u.component';
+import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
     SelectAsigComponent,
     SelectProfesorComponent,
     EditProfesorComponent,
+    SelectUserComponent,
+    EditUserComponent,
+    EditPwdUComponent,
+    EditPwdPComponent,
   ],
   imports: [
     NgbModule,
