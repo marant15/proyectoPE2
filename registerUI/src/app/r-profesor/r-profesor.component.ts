@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-r-profesor',
@@ -10,7 +11,7 @@ export class RProfesorComponent implements OnInit {
 
   date: Date = new Date();
   
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService, private myRoute: Router) { }
 
   ngOnInit() {
     
@@ -24,4 +25,9 @@ export class RProfesorComponent implements OnInit {
     var newdate = year + "-" + month + "-" + day + " 00:00:00";
     this._dataService.regprofessor(name,lastNameP,lastNameM,user,pass,newdate);
   }
+
+  edit(){
+    this.myRoute.navigate(["selectprof"]);
+  }
+
 }

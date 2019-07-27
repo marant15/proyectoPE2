@@ -1,0 +1,19 @@
+<app-nav-bar></app-nav-bar>
+<br>
+<table id="registers">
+    <tr>
+        <th>Profesor</th>
+        <th>Codigo</th>
+        <th>Editar</th>
+        <th>Password</th>
+    </tr>
+    <tr *ngFor="let profesor of this.profesors">
+        <td>{{profesor.nombre}} {{profesor.apellidoP}} {{profesor.apellidoM}}</td>
+        <td>{{profesor.codigo}}</td>
+        <td #selected style="display:none;">{{profesor.profesorID}}</td>
+        <td><button (click)="edit(selected.innerText)" >Editar</button></td>
+        <td><button (click)="edit(selected.innerText)" >Cambiar</button>
+            <button (click)="edit(selected.innerText)" >Resetear</button></td>
+        
+    </tr>
+</table>

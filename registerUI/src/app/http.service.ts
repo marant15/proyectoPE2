@@ -85,8 +85,13 @@ export class DataService {
     });
   }
 
-  getprofesor(){
+  getprofesores(){
     return this._http.get("http://localhost:4000/courses/profesor");
+  }
+
+  getprofesor(codigo:string){
+    console.log("http://localhost:4000/courses/profesor/"+codigo);
+    return this._http.get("http://localhost:4000/courses/profesor/"+codigo);
   }
 
   getmateria(){
@@ -273,6 +278,32 @@ export class DataService {
       console.log(res.body,res.status);
       if(res.body === 'updated'){
         this.toasterService.success("Asignacion editada correctamente");
+        this.myRoute.navigate(["rprofesor"]);
+
+      }else{
+        this.toasterService.error("No se pudo actualizar la asignacion")
+      }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  updateprofesor(pid:string,name:string,pln:string,mln:string,user:string,fecha:string){
+    return this._http.put("http://localhost:4000/courses/profesor/"+pid,{
+      "nombre": name,
+      "apellidoP": pln,
+      "apellidoM": mln,
+      "codigo":user,
+      "fechaContratacion":fecha
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.body === 'updated'){
+        this.toasterService.success("Profesor editado correctamente");
         this.myRoute.navigate(["rprofesor"]);
 
       }else{

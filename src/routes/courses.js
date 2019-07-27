@@ -175,4 +175,18 @@ router.put('/asignacion/:id', async(req, res) => {
     res.status(200).send("updated");
 })
 
+router.put('/profesor/:id', async(req, res) => {
+    const { id } = req.params;
+    const { nombre, apellidoP, apellidoM, codigo, fechaContratacion } = req.body
+    const newProf = {
+        nombre,
+        apellidoP,
+        apellidoM,
+        codigo,
+        fechaContratacion
+    }
+    const result = await pool.query('UPDATE profesor set ? WHERE profesorID = ?', [newProf, id]);
+    res.status(200).send("updated");
+})
+
 module.exports = router;

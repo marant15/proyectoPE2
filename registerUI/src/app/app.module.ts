@@ -27,6 +27,8 @@ import { ExcepcionesComponent } from './excepciones/excepciones.component';
 import { EditAsigComponent } from './edit-asig/edit-asig.component';
 import { SelectAsigComponent } from './select-asig/select-asig.component';
 import {WebcamModule} from 'ngx-webcam';
+import { SelectProfesorComponent } from './select-profesor/select-profesor.component';
+import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import {WebcamModule} from 'ngx-webcam';
     ExcepcionesComponent,
     EditAsigComponent,
     SelectAsigComponent,
+    SelectProfesorComponent,
+    EditProfesorComponent,
   ],
   imports: [
     NgbModule,
