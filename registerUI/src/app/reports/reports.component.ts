@@ -3,6 +3,7 @@ import {ExcelService} from '../services/excel.service';
 import { ToasterService } from '../services/toaster.service';
 import { DataService } from '../http.service';
 import { mapToMapExpression } from '@angular/compiler/src/render3/util';
+import { ImageDialogService } from '../imageDialog/imageDialog.service';
 
 @Component({
   selector: 'app-reports',
@@ -20,7 +21,8 @@ export class ReportsComponent implements OnInit {
     {"month":"Octubre", "value":10},{"month":"Noviembre", "value":11},{"month":"Diciembre", "value":12},
   ]
 
-  constructor(private _dataService: DataService,private excelService:ExcelService, private toaterservice:ToasterService){}
+  constructor(private _dataService: DataService,private excelService:ExcelService,private imageDialogService: ImageDialogService,
+     private toaterservice:ToasterService){}
   ngOnInit() {
     this._dataService.getprofesor().subscribe(response =>{
       var count = Object.keys(response).length;
@@ -65,6 +67,7 @@ export class ReportsComponent implements OnInit {
         var hourE = this.convertHours(dateE);
         var di = response[index].fechaRegistro.substr(0,10)+" "+response[index].horaInicio;
         this.registros.push({
+         "id": response[index].registroID,
          "grupo": response[index].grupo,
          "materia": response[index].materia,
          "fecha":response[index].fechaRegistro.substr(0,10),
@@ -140,6 +143,14 @@ export class ReportsComponent implements OnInit {
 
   error(){
     this.toaterservice.error("error")
+  }
+
+  showImage(id:String){
+    this.imageDialogService.confirm('Imagen', ''+id)
+          .then((confirmed) => {
+            console.log('User confirmed:', confirmed)
+          })
+          .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
 }

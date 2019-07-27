@@ -28,6 +28,7 @@
 			<th>Entrada</th>
 			<th>Especificacion</th>
 			<th>Tipo</th>
+			<th>Imagen</th>
 		</tr>
 		<tr *ngFor="let item of this.registros">
 			<td>{{item.grupo}}</td>
@@ -37,6 +38,7 @@
 			<td>{{item.inicio}}</td>
 			<td>{{item.estado}}</td>
 			<td>{{item.tipo}}</td>
+			<td><button (click)="showImage(item.id)">Imagen</button></td>
 		</tr>
 	</table>
 </div>

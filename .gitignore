@@ -64,7 +64,7 @@ typings/
 .next
 
 # exclude images
-images/*
+registerUI/src/assets/images/*
 
 # exception to the rule
-!images/.gitkeep 
+!registerUI/src/assets/images/.gitkeep 
