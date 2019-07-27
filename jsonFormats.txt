@@ -143,3 +143,12 @@ PUT: localhost:4000/courses/profesor/:id
 PUT: localhost:4000/admin/reg/:id
 (mandar el json con todos los datos)
 (devuelve updated)
+
+
+(los 2 mandas lo mismo)
+PUT: localhost:4000/aut/usuario/1
+PUT: localhost:4000/aut/profesor/1
+{
+	"oldPassword":"admin",
+	"password":"codigo"
+}
