@@ -54,4 +54,50 @@ router.post('/exc', async (req,res) => {
     res.status(200).send("exception saved");
 })
 
+router.put('/usuario/:id',async (req,res) => {
+    const { id } = req.params;
+    const { oldPassword, password } = req.body
+    const rows = await pool.query('SELECT * FROM usuario WHERE usuarioID = ?',[id]);
+    if(rows.length > 0){
+        const user = rows[0];
+        const valid = await helpers.matchPassword(oldPassword, user.password);
+        if(valid){  
+            const newProf = {
+                password
+            }
+            newProf.password = await helpers.encryptPassword(password)
+            const result = await pool.query('UPDATE usuario set ? WHERE usuarioID = ?', [newProf, id]);
+            res.status(200).send("updated");
+        }
+        else{
+            res.status(400).send('Incorrect Password');
+        }
+    }else{
+        res.status(400).send('Incorrect code');
+    }
+})
+
+router.put('/profesor/:id',async (req,res) => {
+    const { id } = req.params;
+    const { oldPassword, password } = req.body
+    const rows = await pool.query('SELECT * FROM profesor WHERE profesorID = ?',[id]);
+    if(rows.length > 0){
+        const user = rows[0];
+        const valid = await helpers.matchPassword(oldPassword, user.password);
+        if(valid){  
+            const newProf = {
+                password
+            }
+            newProf.password = await helpers.encryptPassword(password)
+            const result = await pool.query('UPDATE profesor set ? WHERE profesorID = ?', [newProf, id]);
+            res.status(200).send("updated");
+        }
+        else{
+            res.status(400).send('Incorrect Password');
+        }
+    }else{
+        res.status(400).send('Incorrect code');
+    }
+})
+
 module.exports = router;
