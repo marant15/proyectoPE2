@@ -57,7 +57,7 @@ GET: localhost:4000/courses/registro		localhost:4000/courses/registro/:id
 
 GET: localhost:4000/courses/exc				localhost:4000/courses/exc/:id
 
-GEt: localhost:4000/admin/usuario/:id
+GET: localhost:4000/admin/usuario			GET: localhost:4000/admin/usuario/:id
 (todos estos son JSON)
 
 POST: localhost:4000/aut/exc
@@ -152,3 +152,8 @@ PUT: localhost:4000/aut/profesor/1
 	"oldPassword":"admin",
 	"password":"codigo"
 }
+
+GET: localhost:4000/aut/usuario/1
+GET: localhost:4000/aut/profesor/1
+(reset a password generico en config.js)
+
