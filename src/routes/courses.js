@@ -136,25 +136,25 @@ router.get('/asignacion/:id',async(req,res)=>{
     res.json(result);
 })
 
-router.get('/registros/:mes/:codigo', async(req, res) => {
+router.get('/registros/:fecha1/:fecha2/:codigo', async(req, res) => {
     const result = await pool.query('select registro.registroID, asignacion.asignacionID, fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from registro inner join '+
     'asignacion on registro.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
     'materia on materia.materiaID = asignacion.materiaID inner join '+
     'profesor on profesor.profesorID = asignacion.profesorID '+
-    'where (month(fechaFin)=?) AND codigo = ?',[req.params.mes,req.params.codigo]);
+    'where (DATE(fechaRegistro) BETWEEN ? AND ?) AND codigo = ?',[req.params.fecha1,req.params.fecha2,req.params.codigo]);
     res.json(result);
 })
 
-router.get('/excs/:mes/:codigo', async(req, res) => {
+router.get('/excs/:fecha1/:fecha2/:codigo', async(req, res) => {
     const result = await pool.query('select asignacion.asignacionID, fechaExcepcion, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'tipo, grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from excepcion inner join '+
     'asignacion on excepcion.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
     'materia on materia.materiaID = asignacion.materiaID inner join '+
     'profesor on profesor.profesorID = excepcion.profesorID '+
-    'where (month(fechaFin) = ?) AND codigo = ?',[req.params.mes,req.params.codigo]);
+    'where (DATE(fechaExcepcion) BETWEEN ? AND ?) AND codigo = ?',[req.params.fecha1,req.params.fecha2,req.params.codigo]);
     res.json(result);
 })
 
