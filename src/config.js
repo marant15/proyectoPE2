@@ -5,5 +5,6 @@ module.exports = {
         password: 'admin1234',
         database: 'PE2'
     },
-    adelanto: 20
+    adelanto: 20,
+    defaultPassword: 'abcd1234'
 };

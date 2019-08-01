@@ -1,1 +1,17 @@
-<p>select-user works!</p>
+<app-nav-bar></app-nav-bar>
+<br>
+<table id="registers">
+    <tr>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Editar</th>
+        <th>Password</th>
+    </tr>
+    <tr *ngFor="let user of this.users">
+        <td>{{user.nombre}} {{user.apellidoP}} {{user.apellidoM}}</td>
+        <td #selected>{{user.usuario}}</td>
+        <td><button (click)="edit(selected.innerText)" >Editar</button></td>
+        <td><button (click)="editpwd(selected.innerText)" >Cambiar</button>
+            <button (click)="reset(selected.innerText)" >Resetear</button></td>
+    </tr>
+</table>

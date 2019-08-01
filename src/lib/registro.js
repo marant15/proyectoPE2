@@ -21,7 +21,7 @@ registro.registrar = async (date, time, profesorID, image) => {
                         if(verification.length == 0){
                             const result = await pool.query('INSERT INTO registro set ?', [newReg]);
                             const res = await pool.query('SELECT * FROM registro WHERE fechaRegistro = ? and asignacionID = ?',[fechaRegistro,row.asignacionID]);
-                            require("fs").writeFile("images/"+res[0].registroID+".jpg", image, 'base64', function(err) {
+                            require("fs").writeFile("/registerUI/src/assets/images/"+res[0].registroID+".jpg", image, 'base64', function(err) {
                                 console.log(err);
                             });
                             return res[0].registroID;

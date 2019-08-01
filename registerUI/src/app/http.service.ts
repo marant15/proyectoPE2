@@ -90,7 +90,6 @@ export class DataService {
   }
 
   getprofesor(codigo:string){
-    console.log("http://localhost:4000/courses/profesor/"+codigo);
     return this._http.get("http://localhost:4000/courses/profesor/"+codigo);
   }
 
@@ -107,7 +106,6 @@ export class DataService {
   }
 
   getexcepciones(mes:string,codigo:string){
-    console.log("http://localhost:4000/courses/excs/"+mes+"/"+codigo);
     return this._http.get("http://localhost:4000/courses/excs/"+mes+"/"+codigo);
   }
 
@@ -117,6 +115,15 @@ export class DataService {
 
   getAsignacion(id:string){
     return this._http.get("http://localhost:4000/courses/asignacion/"+id);
+  }
+
+  getusers(){
+    return this._http.get("http://localhost:4000/admin/usuario/");
+  }
+
+  getuser(user:string){
+    console.log("http://localhost:4000/admin/usuario/"+user);
+    return this._http.get("http://localhost:4000/admin/usuario/"+user);
   }
 
   regprofessor(name:string,pln:string,mln:string,user:string,passwd:string,fecha:string){
@@ -315,6 +322,54 @@ export class DataService {
   }
 
   updatePpwd(pid:string,oldpwd:string,newpwd:string){
+    return this._http.put("http://localhost:4000/aut/profesor/"+pid,{
+      "oldPassword": oldpwd,
+      "password": newpwd
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.body === 'updated'){
+        this.toasterService.success("Password cambiado correctamente");
+        this.myRoute.navigate(["rprofesor"]);
+
+      }else{
+        this.toasterService.error("No se pudo cambiar password")
+      }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  updateuser(pid:string,name:string,admin:boolean,pln:string,mln:string,user:string){
+    return this._http.put("http://localhost:4000/admin/reg/"+pid,{
+      "usuario":user,
+	    "isAdmin":admin,
+	    "nombre":name,
+	    "apellidoP":pln,
+      "apellidoM":mln
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res.body,res.status);
+      if(res.body === 'updated'){
+        this.toasterService.success("Usuario editado correctamente");
+        this.myRoute.navigate(["cusers"]);
+      }else{
+        this.toasterService.error("No se pudo actualizar el Usuario")
+      }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  updateUpwd(pid:string,oldpwd:string,newpwd:string){
     return this._http.put("http://localhost:4000/aut/profesor/"+pid,{
       "oldPassword": oldpwd,
       "password": newpwd
