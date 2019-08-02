@@ -23,7 +23,7 @@ export class AssignComponent implements OnInit {
   materias = [];
   grupos = [];  
   ngOnInit() {
-    this._dataService.getprofesor().subscribe(response =>{
+    this._dataService.getprofesores().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);

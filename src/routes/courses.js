@@ -137,7 +137,7 @@ router.get('/asignacion/:id',async(req,res)=>{
 })
 
 router.get('/registros/:mes/:codigo', async(req, res) => {
-    const result = await pool.query('select asignacion.asignacionID, fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
+    const result = await pool.query('select registro.registroID, asignacion.asignacionID, fechaRegistro, profesor.nombre as nombre, apellidoM, apellidoP, fechaInicio, fechaFin, horaInicio, horaFin, '+
     'grupo.nombre as grupo, materia.nombre as materia, fechaContratacion, codigo from registro inner join '+
     'asignacion on registro.asignacionID = asignacion.asignacionID inner join '+
     'grupo on grupo.grupoID = asignacion.grupoID inner join '+
@@ -172,6 +172,20 @@ router.put('/asignacion/:id', async(req, res) => {
         estado
     }
     const result = await pool.query('UPDATE asignacion set ? WHERE asignacionID = ?', [newAsig, id]);
+    res.status(200).send("updated");
+})
+
+router.put('/profesor/:id', async(req, res) => {
+    const { id } = req.params;
+    const { nombre, apellidoP, apellidoM, codigo, fechaContratacion } = req.body
+    const newProf = {
+        nombre,
+        apellidoP,
+        apellidoM,
+        codigo,
+        fechaContratacion
+    }
+    const result = await pool.query('UPDATE profesor set ? WHERE profesorID = ?', [newProf, id]);
     res.status(200).send("updated");
 })
 

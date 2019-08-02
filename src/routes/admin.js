@@ -24,8 +24,27 @@ router.post('/reg', async (req, res) =>{
     }
 })
 
+router.put('/reg/:id', async (req, res) =>{
+    const { id } = req.params;
+    const { usuario, isAdmin, nombre, apellidoP, apellidoM } = req.body;
+    const newReg = {
+        usuario,
+        isAdmin,
+        nombre,
+        apellidoP,
+        apellidoM
+    };
+    const result = await pool.query('UPDATE usuario set ? WHERE usuarioID = ?', [newReg, id]);
+    res.status(200).send("updated");
+})
+
 router.get('/usuario/:id', async(req, res) => {
     const result = await pool.query('SELECT * FROM usuario WHERE usuario=?',[req.params.id]);
+    res.json(result);
+})
+
+router.get('/usuario', async(req, res) => {
+    const result = await pool.query('SELECT * FROM usuario');
     res.json(result);
 })
 
