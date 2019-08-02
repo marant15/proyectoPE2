@@ -23,6 +23,8 @@ import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angul
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { ImageDialogComponent } from './imageDialog/imageDialog.component';
+import { ImageDialogService } from './imageDialog/imageDialog.service';
 import { ExcepcionesComponent } from './excepciones/excepciones.component';
 import { EditAsigComponent } from './edit-asig/edit-asig.component';
 import { SelectAsigComponent } from './select-asig/select-asig.component';
@@ -47,6 +49,7 @@ import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
     ReportsComponent,
     CusersComponent,
     ConfirmationDialogComponent,
+    ImageDialogComponent,
     ExcepcionesComponent,
     EditAsigComponent,
     SelectAsigComponent,
@@ -76,9 +79,10 @@ import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
     AuthGuard,
     ExcelService,
     ToasterService,
-    ConfirmationDialogService
+    ConfirmationDialogService,
+    ImageDialogService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent],
+  entryComponents: [ConfirmationDialogComponent, ImageDialogComponent],
 })
 export class AppModule { }
