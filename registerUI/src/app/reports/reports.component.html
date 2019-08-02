@@ -3,18 +3,27 @@
 <h2>Obtener datos para reporte</h2>
 <div>
 	<label>Profesor: 
-		<select #profID>
-			<option *ngFor="let profesor of profesors" [value]="profesor.codigo">{{profesor.codigo}}</option> 
-		</select>
+		<mat-form-field>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        </mat-form-field>          
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
+        </mat-autocomplete>
 	</label>
 	<br>
-	<label>Mes: 
+	<input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
+    <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
+    <br>
+    <input [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
+    <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
+	<br>
+	<!--<label>Mes: 
 		<select #mesValue>
 			<option *ngFor="let mes of meses" [value]="mes.value">{{mes.month}}</option> 
 		</select>
 	</label>
-	<br>
-    <button (click)="getData(profID.value,mesValue.value)" >Registrar</button>
+	<br>-->
+    <button (click)="getData(finicio._selected,ffin._selected)" >Registrar</button>
 </div>
 <br>
 <div *ngIf="reporteActivo">

@@ -1,7 +1,7 @@
 import { Injectable, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ToasterService } from './services/toaster.service'
+import { ToasterService } from './services/toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -101,12 +101,12 @@ export class DataService {
     return this._http.get("http://localhost:4000/courses/grupo");
   }
 
-  getfirmas(mes:string,codigo:string){
-    return this._http.get("http://localhost:4000/courses/registros/"+mes+"/"+codigo);
+  getfirmas(fechai:string,fechaf:string,codigo:string){
+    return this._http.get("http://localhost:4000/courses/registros/"+fechai+"/"+fechaf+"/"+codigo);
   }
 
-  getexcepciones(mes:string,codigo:string){
-    return this._http.get("http://localhost:4000/courses/excs/"+mes+"/"+codigo);
+  getexcepciones(fechai:string,fechaf:string,codigo:string){
+    return this._http.get("http://localhost:4000/courses/excs/"+fechai+"/"+fechaf+"/"+codigo);
   }
 
   getAsignaciones(){
@@ -370,7 +370,7 @@ export class DataService {
   }
 
   updateUpwd(pid:string,oldpwd:string,newpwd:string){
-    return this._http.put("http://localhost:4000/aut/profesor/"+pid,{
+    return this._http.put("http://localhost:4000/aut/usuario/"+pid,{
       "oldPassword": oldpwd,
       "password": newpwd
     },
@@ -389,6 +389,20 @@ export class DataService {
     },
     error  => {
       console.log("Error", error);  
+    });
+  }
+
+  resetPPassword(id:string){
+    return this._http.get("http://localhost:4000/aut/profesor/"+id,{
+      responseType: 'text',
+      observe:'response'
+    });
+  }
+
+  resetUPassword(id:string){
+    return this._http.get("http://localhost:4000/aut/usuario/"+id,{
+      responseType: 'text',
+      observe:'response'
     });
   }
 }

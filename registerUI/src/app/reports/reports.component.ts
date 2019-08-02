@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ExcelService} from '../services/excel.service';
+import { ExcelService } from '../services/excel.service';
 import { ToasterService } from '../services/toaster.service';
 import { DataService } from '../http.service';
+import { Observable } from 'rxjs';
 import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 import { ImageDialogService } from '../imageDialog/imageDialog.service';
+import { map, startWith } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-reports',
@@ -11,9 +14,13 @@ import { ImageDialogService } from '../imageDialog/imageDialog.service';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
+
+  myControl = new FormControl();
+  filteredOptions: Observable<string[]>;
   reporteActivo = false;
   profesors = [];
   registros = [];
+  codes = [];
   meses = [
     {"month":"Enero", "value":1},{"month":"Febrero", "value":2},{"month":"Marzo", "value":3},
     {"month":"Abril", "value":4},{"month":"Mayo", "value":5},{"month":"Junio", "value":6},
@@ -28,39 +35,46 @@ export class ReportsComponent implements OnInit {
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
+         this.codes.push(response[index].codigo + "-" + response[index].nombre + " " + response[index].apellidoP + " " + response[index].apellidoM);
       }
     },
     error => {
       console.log("Error", error);
     });
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
   }
 
-  getData(profID:string,mes:string){
-    this.fillasignaciones(mes,profID);
-    /*this._dataService.entry("7891011","7891011","2019-07-01","11:05:00","");
-    this._dataService.entry("7891011","7891011","2019-07-02","10:55:00","");
-    this._dataService.entry("7891011","7891011","2019-07-03","11:01:00","");
-    this._dataService.entry("7891011","7891011","2019-07-04","10:58:00","");
-
-    this._dataService.getfirmas(profID).subscribe(response =>{
-      var count = Object.keys(response).length;
-      console.log(response);
-      for (let index = 0; index < count; index++) {
-         this.firmas.push(response[index]);
-      }
-      
-      if(this.firmas.length>0){
-        this.fillingRegistros(salary);
-        this.reporteActivo = true;
-      }
-    },
-    error => {
-      console.log("Error", error);
-    });*/
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.codes.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  fillasignaciones(mes:string,profID:string){
-    this._dataService.getfirmas(mes,profID).subscribe(response =>{
+  getData(fechai:Date,fechaf:Date){
+    var mi = fechai.getUTCMonth() + 1; //months from 1-12
+    var di = fechai.getUTCDate();
+    var yi = fechai.getUTCFullYear();
+    var datei = yi + "-" + mi + "-" + di;
+    var mf = fechaf.getUTCMonth() + 1; //months from 1-12
+    var df = fechaf.getUTCDate();
+    var yf = fechaf.getUTCFullYear();
+    var datef = yf + "-" + mf + "-" + df;
+    console.log(datei,datef);
+    var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-", 1)[0])[0];
+    if(prof){
+      console.log(prof.codigo);
+      var profID = prof.codigo;
+      this.fillasignaciones(datei,datef,profID);
+    }
+  }
+
+  fillasignaciones(fi:string,ff:string,profID:string){
+    var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
+    this._dataService.getfirmas(fi,ff,profID).subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         var dateE = new Date(response[index].fechaRegistro.substr(0,10)+" "+response[index].fechaRegistro.substr(11,8));
@@ -77,15 +91,15 @@ export class ReportsComponent implements OnInit {
          "tipo":'Reg'
         });
       }
-      this.fillexcepciones(mes,profID);
+      this.fillexcepciones(fi,ff,profID);
     },
     error => {
       console.log("Error", error);
     });
   }
 
-  fillexcepciones(mes:string,profID:string){
-    this._dataService.getexcepciones(mes,profID).subscribe(response =>{
+  fillexcepciones(fi:string,ff:string,profID:string){
+    this._dataService.getexcepciones(fi,ff,profID).subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         var dateE = new Date(response[index].fechaExcepcion.substr(0,10)+" "+response[index].fechaExcepcion.substr(11,8));

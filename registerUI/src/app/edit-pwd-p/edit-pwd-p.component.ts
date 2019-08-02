@@ -10,11 +10,27 @@ export class EditPwdPComponent implements OnInit {
 
   constructor(private _dataService: DataService) { }
 
+  pwdmatch = '';
+  samepwd = false;
+
   ngOnInit() {
   }
 
-  change(oldpwd:string,newpwd:string){
+  edit(oldpwd:string,newpwd:string){
     var user = localStorage.getItem('editProf');
     this._dataService.updatePpwd(user,oldpwd,newpwd);
+  }
+
+  compare(newpwd:string,repeatpwd:string){
+    if(repeatpwd===newpwd && newpwd!=''){
+      this.pwdmatch = '';
+      this.samepwd = true;
+    }else if(newpwd!=''){
+      this.pwdmatch = 'Passwords NO coinciden';
+      this.samepwd = false;
+    }else{
+      this.pwdmatch = 'Passwords NO coinciden';
+      this.samepwd = false;
+    }
   }
 }

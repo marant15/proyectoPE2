@@ -118,7 +118,7 @@ router.get('/profesor/:id',async (req,res) => {
     }
 })
 
-router.put('/usuario/:id',async (req,res) => {
+router.get('/usuario/:id',async (req,res) => {
     const { id } = req.params;
     const rows = await pool.query('SELECT * FROM usuario WHERE usuarioID = ?',[id]);
     if(rows.length > 0){

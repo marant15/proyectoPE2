@@ -1,10 +1,12 @@
 <app-nav-bar></app-nav-bar>
-<h1>Registrar Profesor</h1>
-<h2>Datos del Profesor</h2>
+<h1>Cambio Password Profesor</h1>
+<h2>Llene los datos, si los passwords coinciden aparecera el boton</h2>
 <div>
+    <input type="password" (change)="compare(newpwd.value,repeatpwd.value)" #newpwd placeholder="Password nuevo">
+    <br>
+    <label><input type="password" (change)="compare(newpwd.value,repeatpwd.value)" #repeatpwd placeholder="Repetir password"> {{this.pwdmatch}}</label>
+    <br>
     <input type="password" #oldpwd placeholder="Password antiguo">
     <br>
-    <input type="password" #newpwd placeholder="Password nuevo">
-    <br>
-    <button (click)="change(oldpwd.value,newpwd.value)" >Editar</button>
+    <button *ngIf= this.samepwd (click)="edit(oldpwd.value,newpwd.value)" >Editar</button>
 </div>

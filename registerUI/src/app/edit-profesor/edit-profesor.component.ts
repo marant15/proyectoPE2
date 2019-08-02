@@ -21,9 +21,7 @@ export class EditProfesorComponent implements OnInit {
 
   ngOnInit() {
     this.profesor.id = localStorage.getItem('editProf');
-    console.log(localStorage.getItem('editProf'));
     this._dataService.getprofesor(this.profesor.id).subscribe(response=>{
-      console.log(response);
       this.profesor.codigo = response[0].codigo;
       this.profesor.nombre = response[0].nombre;
       this.profesor.apellidoP = response[0].apellidoP;
