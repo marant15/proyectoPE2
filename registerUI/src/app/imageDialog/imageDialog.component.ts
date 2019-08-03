@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AutService } from '../services/aut.service';
 
 @Component({
   selector: 'app-imageDialog',
@@ -12,7 +13,8 @@ export class ImageDialogComponent implements OnInit {
   @Input() btnOkText: string;
   @Input() btnCancelText: string;
 
-  constructor(private activeModal: NgbActiveModal) { }
+  image: string;
+  constructor(private _dataService: AutService, private activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
@@ -27,6 +29,11 @@ export class ImageDialogComponent implements OnInit {
 
   public dismiss() {
     this.activeModal.dismiss();
+  }
+  
+  public getImage(){
+    this.image = this._dataService.getImage(this.message);
+    return this.image;
   }
 
 }

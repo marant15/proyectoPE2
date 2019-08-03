@@ -156,4 +156,8 @@ export class AutService {
       observe:'response'
     });
   }
+
+  getImage(codigo:string){
+    return "http://localhost:4000/aut/image/"+codigo;
+  }
 }
