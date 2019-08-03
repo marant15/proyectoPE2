@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
+const fileW = require("fs");
 const pool = require('../database');
 const helpers = require('../lib/helpers');
 const registro = require('../lib/registro');
 const { defaultPassword } = require('../config');
+const path = require('path');
 
 //rutas referentes a la autentificacion de profesores y usuarios
 router.post('/profesor', async (req, res) => {
@@ -132,6 +133,11 @@ router.get('/usuario/:id',async (req,res) => {
     }else{
         res.status(400).send('Incorrect code');
     }
+})
+
+router.get('/image/:id',async (req, res)=>{
+    const { id } = req.params;
+    res.sendFile(path.join(__dirname, "../../images/"+id+".jpg"));
 })
 
 module.exports = router;

@@ -89,6 +89,10 @@ export class DataService {
     return this._http.get("http://localhost:4000/courses/profesor");
   }
 
+  getImage(codigo:string){
+    return "http://localhost:4000/aut/image/"+codigo;
+  }
+
   getprofesor(codigo:string){
     return this._http.get("http://localhost:4000/courses/profesor/"+codigo);
   }
