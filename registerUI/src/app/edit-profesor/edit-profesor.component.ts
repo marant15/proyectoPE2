@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-edit-profesor',
@@ -8,7 +8,7 @@ import { DataService } from '../http.service';
 })
 export class EditProfesorComponent implements OnInit {
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _coursesService: CoursesService) { }
 
   profesor = {
     nombre:'',
@@ -21,7 +21,7 @@ export class EditProfesorComponent implements OnInit {
 
   ngOnInit() {
     this.profesor.id = localStorage.getItem('editProf');
-    this._dataService.getprofesor(this.profesor.id).subscribe(response=>{
+    this._coursesService.getprofesor(this.profesor.id).subscribe(response=>{
       this.profesor.codigo = response[0].codigo;
       this.profesor.nombre = response[0].nombre;
       this.profesor.apellidoP = response[0].apellidoP;
@@ -35,7 +35,7 @@ export class EditProfesorComponent implements OnInit {
     var day = fecha.getUTCDate();
     var year = fecha.getUTCFullYear();
     var newdate = year + "-" + month + "-" + day + " 00:00:00";
-    this._dataService.updateprofesor(this.profesor.id,name,lastNameP,lastNameM,username,newdate);
+    this._coursesService.updateprofesor(this.profesor.id,name,lastNameP,lastNameM,username,newdate);
   }
 
 }

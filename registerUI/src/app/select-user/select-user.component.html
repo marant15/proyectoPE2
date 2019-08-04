@@ -12,7 +12,7 @@
         <td #selected>{{user.usuario}}</td>
         <td #selected2 style="display:none;">{{user.usuarioID}}</td>
         <td><button (click)="edit(selected.innerText)" >Editar</button></td>
-        <td><button (click)="editpwd(selected2.innerText)" >Cambiar</button>
+        <td><button (click)="editpwd(selected.innerText)" >Cambiar</button>
             <button (click)="reset(selected2.innerText)" >Resetear</button></td>
     </tr>
 </table>

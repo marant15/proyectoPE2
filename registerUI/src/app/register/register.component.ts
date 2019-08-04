@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { AutService } from '../services/aut.service';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
@@ -28,10 +28,11 @@ export class RegisterComponent implements OnInit {
    private trigger: Subject<void> = new Subject<void>();
    // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
    private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
-  constructor(private _dataService: DataService) { }
+  constructor(private _autService: AutService,) { }
 
   ngOnInit() {
     localStorage.removeItem('token');
+    localStorage.removeItem('codigo');
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
@@ -49,8 +50,9 @@ export class RegisterComponent implements OnInit {
     var segi = date.getUTCSeconds();
     var ihour = houri+":"+mini+":"+segi;
     this.triggerSnapshot();
-    this._dataService.entry(username,password,datei,ihour,this.webcamImage.imageAsBase64);
+    this._autService.entry(username,password,datei,ihour,this.webcamImage.imageAsBase64);
   }
+  
   public triggerSnapshot(): void {
     this.trigger.next();
   }

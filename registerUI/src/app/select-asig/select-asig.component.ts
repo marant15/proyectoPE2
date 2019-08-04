@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,10 +11,10 @@ export class SelectAsigComponent implements OnInit {
 
   asignaciones = [];
 
-  constructor(private _dataService: DataService, private myRoute: Router) { }
+  constructor(private _coursesService: CoursesService, private myRoute: Router) { }
 
   ngOnInit() {
-    this._dataService.getAsignaciones().subscribe(response =>{
+    this._coursesService.getAsignaciones().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         if(response[index].estado){

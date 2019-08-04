@@ -35,6 +35,7 @@ import { SelectUserComponent } from './select-user/select-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditPwdUComponent } from './edit-pwd-u/edit-pwd-u.component';
 import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
+import { EditPwdDComponent } from './edit-pwd-d/edit-pwd-d.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
     EditUserComponent,
     EditPwdUComponent,
     EditPwdPComponent,
+    EditPwdDComponent,
   ],
   imports: [
     NgbModule,

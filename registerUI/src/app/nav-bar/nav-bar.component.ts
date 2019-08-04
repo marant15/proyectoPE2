@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,12 +8,12 @@ import { DataService } from '../http.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _adminService: AdminService) { }
 
   isadmin = false;
 
   ngOnInit() {
-    this._dataService.isadmin().subscribe(response=>{
+    this._adminService.isadmin().subscribe(response=>{
       if(response[0].isAdmin===1){
         this.isadmin = true;
       }else{
@@ -23,6 +23,6 @@ export class NavBarComponent implements OnInit {
   }
 
   logout(){
-    this._dataService.logout();
+    this._adminService.logout();
   }
 }

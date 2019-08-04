@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,11 +17,11 @@ export class EditUserComponent implements OnInit {
     id:''
   }
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _adminService: AdminService) { }
 
   ngOnInit() {
     this.user.codigo = localStorage.getItem('editUser');
-    this._dataService.getuser(this.user.codigo).subscribe(response=>{
+    this._adminService.getuser(this.user.codigo).subscribe(response=>{
       this.user.id = response[0].usuarioID;
       this.user.nombre = response[0].nombre;
       this.user.apellidoP = response[0].apellidoP;
@@ -32,7 +32,7 @@ export class EditUserComponent implements OnInit {
 
   edit(username:string,name:string,lastNameP:string,lastNameM:string){
     console.log(name,this.user.isAdmin,username,lastNameP,lastNameM);
-    this._dataService.updateuser(this.user.id,name,this.user.isAdmin,lastNameP,lastNameM,username);
+    this._adminService.updateuser(this.user.id,name,this.user.isAdmin,lastNameP,lastNameM,username);
   }
 
 }

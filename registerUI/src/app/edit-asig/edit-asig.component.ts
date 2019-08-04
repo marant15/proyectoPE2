@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -19,20 +19,20 @@ export class EditAsigComponent implements OnInit {
   codes = [];
   isActive:boolean=false;
   oAsig=[];
-  constructor(private _dataService: DataService, private confirmationDialogService: ConfirmationDialogService,
+  constructor(private _coursesService: CoursesService, private confirmationDialogService: ConfirmationDialogService,
     private toasterService: ToasterService) { }
   filteredOptions: Observable<string[]>;
 
   ngOnInit() {
     var nasig = localStorage.getItem('editAsig');
-    this._dataService.getAsignacion(nasig).subscribe(response => {
+    this._coursesService.getAsignacion(nasig).subscribe(response => {
       this.oAsig.push(response[0]);
     },
     error => {
       console.log("Error", error);
     });
 
-    this._dataService.getprofesores().subscribe(response =>{
+    this._coursesService.getprofesores().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
@@ -43,7 +43,7 @@ export class EditAsigComponent implements OnInit {
       console.log("Error", error);
     });
 
-    this._dataService.getmateria().subscribe(response =>{
+    this._coursesService.getmateria().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.materias.push(response[index]);
@@ -53,7 +53,7 @@ export class EditAsigComponent implements OnInit {
       console.log("Error", error);
     });
 
-    this._dataService.getgrupo().subscribe(response =>{
+    this._coursesService.getgrupo().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.grupos.push(response[index]);
@@ -104,7 +104,7 @@ export class EditAsigComponent implements OnInit {
           if(confirmed){
             console.log(nasig,pid,gid,mid,this.isActive);
             console.log(datei,datef,ihour,fhour);
-            this._dataService.updateAsig(nasig,pid,gid,mid,this.isActive,datei,datef,ihour,fhour);
+            this._coursesService.updateAsig(nasig,pid,gid,mid,this.isActive,datei,datef,ihour,fhour);
           }
         })
         .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

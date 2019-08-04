@@ -16,7 +16,7 @@ import { EditPwdPComponent } from './edit-pwd-p/edit-pwd-p.component';
 import { SelectUserComponent } from './select-user/select-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditPwdUComponent } from './edit-pwd-u/edit-pwd-u.component';
-
+import { EditPwdDComponent } from './edit-pwd-d/edit-pwd-d.component';
 import { AuthGuard } from './auth.guard';
 
 
@@ -37,7 +37,8 @@ const routes: Routes = [
     {path: 'editpwdP',component: EditPwdPComponent, canActivate: [AuthGuard]},
     {path: 'selectuser',component: SelectUserComponent, canActivate: [AuthGuard]},
     {path: 'edituser',component: EditUserComponent, canActivate: [AuthGuard]},
-    {path: 'editpwdU',component: EditPwdUComponent, canActivate: [AuthGuard]}
+    {path: 'editpwdU',component: EditPwdUComponent, canActivate: [AuthGuard]},
+    {path: 'editpwdD', component: EditPwdDComponent},
 
 ];
 

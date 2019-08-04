@@ -17,12 +17,6 @@
     <input [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
     <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
 	<br>
-	<!--<label>Mes: 
-		<select #mesValue>
-			<option *ngFor="let mes of meses" [value]="mes.value">{{mes.month}}</option> 
-		</select>
-	</label>
-	<br>-->
     <button (click)="getData(finicio._selected,ffin._selected)" >Registrar</button>
 </div>
 <br>

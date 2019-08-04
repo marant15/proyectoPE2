@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { AutService } from '../services/aut.service';
+import { CoursesService } from '../services/courses.service';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -19,11 +20,11 @@ export class ExcepcionesComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   codes = [];
 
-  constructor(private _dataService: DataService, private confirmationDialogService: ConfirmationDialogService,
+  constructor(private _coursesService: CoursesService, private _autService: AutService, private confirmationDialogService: ConfirmationDialogService,
     private toasterService: ToasterService) { }
 
   ngOnInit() {
-    this._dataService.getAsignaciones().subscribe(response =>{
+    this._coursesService.getAsignaciones().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         if(response[index].estado){
@@ -36,7 +37,7 @@ export class ExcepcionesComponent implements OnInit {
       console.log("Error", error);
     });
 
-    this._dataService.getprofesores().subscribe(response =>{
+    this._coursesService.getprofesores().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
@@ -88,7 +89,7 @@ export class ExcepcionesComponent implements OnInit {
             .then((confirmed) => {
               console.log('User confirmed:', confirmed)
               if(confirmed){
-                this._dataService.excep(assigID,tipo,pid,date,hour);
+                this._autService.excep(assigID,tipo,pid,date,hour);
               }
             })
             .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
@@ -115,7 +116,7 @@ export class ExcepcionesComponent implements OnInit {
           .then((confirmed) => {
             console.log('User confirmed:', confirmed)
             if(confirmed){
-              this._dataService.excep(assigID,tipo,pid,date,hour);
+              this._autService.excep(assigID,tipo,pid,date,hour);
             }
           })
           .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

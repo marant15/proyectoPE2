@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 })
 export class AssignComponent implements OnInit {
   myControl = new FormControl();
-  constructor(private _dataService: DataService, private confirmationDialogService: ConfirmationDialogService,
-    private toasterService: ToasterService, private myRoute: Router) { }
+  constructor(private _coursesService: CoursesService, private myRoute: Router,
+    private confirmationDialogService: ConfirmationDialogService, private toasterService: ToasterService) { }
   filteredOptions: Observable<string[]>;
 
   codes = [];
@@ -23,7 +23,7 @@ export class AssignComponent implements OnInit {
   materias = [];
   grupos = [];
   ngOnInit() {
-    this._dataService.getprofesores().subscribe(response => {
+    this._coursesService.getprofesores().subscribe(response => {
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         this.profesors.push(response[index]);
@@ -35,7 +35,7 @@ export class AssignComponent implements OnInit {
         console.log("Error", error);
       });
 
-    this._dataService.getmateria().subscribe(response => {
+    this._coursesService.getmateria().subscribe(response => {
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         this.materias.push(response[index]);
@@ -45,7 +45,7 @@ export class AssignComponent implements OnInit {
         console.log("Error", error);
       });
 
-    this._dataService.getgrupo().subscribe(response => {
+    this._coursesService.getgrupo().subscribe(response => {
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         this.grupos.push(response[index]);
@@ -96,7 +96,7 @@ export class AssignComponent implements OnInit {
             console.log('User confirmed:', confirmed)
             if (confirmed) {
               this.toasterService.success("Asignacion guardada correctamente");
-              this._dataService.assign(pid, gid, mid, datei, datef, ihour, fhour);
+              this._coursesService.assign(pid, gid, mid, datei, datef, ihour, fhour);
             }
           })
           .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

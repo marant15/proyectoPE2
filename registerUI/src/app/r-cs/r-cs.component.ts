@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 
 
 @Component({
@@ -9,17 +9,17 @@ import { DataService } from '../http.service';
 })
 export class RCsComponent implements OnInit {
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _coursesService: CoursesService) { }
 
   ngOnInit() {
   }
 
   registerM(name:string) {
-    this._dataService.regMateria(name);
+    this._coursesService.regMateria(name);
   }
 
   registerG(name:string) {
-    this._dataService.regGrupo(name);
+    this._coursesService.regGrupo(name);
   }
 
 }

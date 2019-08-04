@@ -59,7 +59,7 @@ router.post('/exc', async (req,res) => {
 router.put('/usuario/:id',async (req,res) => {
     const { id } = req.params;
     const { oldPassword, password } = req.body
-    const rows = await pool.query('SELECT * FROM usuario WHERE usuarioID = ?',[id]);
+    const rows = await pool.query('SELECT * FROM usuario WHERE usuario = ?',[id]);
     if(rows.length > 0){
         const user = rows[0];
         const valid = await helpers.matchPassword(oldPassword, user.password);
@@ -68,7 +68,7 @@ router.put('/usuario/:id',async (req,res) => {
                 password
             }
             newProf.password = await helpers.encryptPassword(password)
-            const result = await pool.query('UPDATE usuario set ? WHERE usuarioID = ?', [newProf, id]);
+            const result = await pool.query('UPDATE usuario set ? WHERE usuario = ?', [newProf, id]);
             res.status(200).send("updated");
         }
         else{
@@ -82,7 +82,7 @@ router.put('/usuario/:id',async (req,res) => {
 router.put('/profesor/:id',async (req,res) => {
     const { id } = req.params;
     const { oldPassword, password } = req.body
-    const rows = await pool.query('SELECT * FROM profesor WHERE profesorID = ?',[id]);
+    const rows = await pool.query('SELECT * FROM profesor WHERE codigo = ?',[id]);
     if(rows.length > 0){
         const user = rows[0];
         const valid = await helpers.matchPassword(oldPassword, user.password);
@@ -91,7 +91,7 @@ router.put('/profesor/:id',async (req,res) => {
                 password
             }
             newProf.password = await helpers.encryptPassword(password)
-            const result = await pool.query('UPDATE profesor set ? WHERE profesorID = ?', [newProf, id]);
+            const result = await pool.query('UPDATE profesor set ? WHERE codigo = ?', [newProf, id]);
             res.status(200).send("updated");
         }
         else{

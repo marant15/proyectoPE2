@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
-import { Router } from '@angular/router';
+import { AutService } from '../services/aut.service';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +8,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _dataService: DataService, private myRoute: Router) { }
+  constructor(private _autService: AutService) { }
 
   ngOnInit() {
     localStorage.removeItem('token');
+    localStorage.removeItem('codigo');
   }
+
 
   logIn(user:string, pass:string) {
-    this._dataService.login(user,pass);
-  }
-
-  stat(){
-    console.log(this._dataService.isLoggedin());
+    this._autService.login(user,pass);
   }
 
 }

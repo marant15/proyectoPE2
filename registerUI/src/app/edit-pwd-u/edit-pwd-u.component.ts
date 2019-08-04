@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { AutService } from '../services/aut.service';
 
 @Component({
   selector: 'app-edit-pwd-u',
@@ -11,14 +11,14 @@ export class EditPwdUComponent implements OnInit {
   pwdmatch = '';
   samepwd = false;
 
-  constructor(private _dataService: DataService) { }
+  constructor(private _autService: AutService) { }
 
   ngOnInit() {
   }
 
   edit(oldpwd:string,newpwd:string){
     var user = localStorage.getItem('editUser');
-    this._dataService.updateUpwd(user,oldpwd,newpwd);
+    this._autService.updateUpwd(user,oldpwd,newpwd);
   }
 
   compare(newpwd:string,repeatpwd:string){

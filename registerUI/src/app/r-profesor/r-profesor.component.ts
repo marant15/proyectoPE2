@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class RProfesorComponent implements OnInit {
 
   date: Date = new Date();
   
-  constructor(private _dataService: DataService, private myRoute: Router) { }
+  constructor(private _coursesService: CoursesService, private myRoute: Router) { }
 
   ngOnInit() {
     
@@ -23,7 +23,7 @@ export class RProfesorComponent implements OnInit {
     var day = fecha.getUTCDate();
     var year = fecha.getUTCFullYear();
     var newdate = year + "-" + month + "-" + day + " 00:00:00";
-    this._dataService.regprofessor(name,lastNameP,lastNameM,user,pass,newdate);
+    this._coursesService.regprofessor(name,lastNameP,lastNameM,user,pass,newdate);
   }
 
   edit(){

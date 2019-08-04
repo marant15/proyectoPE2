@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ExcelService } from '../services/excel.service';
 import { ToasterService } from '../services/toaster.service';
-import { DataService } from '../http.service';
+import { CoursesService } from '../services/courses.service';
 import { Observable } from 'rxjs';
-import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 import { ImageDialogService } from '../imageDialog/imageDialog.service';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -21,17 +20,12 @@ export class ReportsComponent implements OnInit {
   profesors = [];
   registros = [];
   codes = [];
-  meses = [
-    {"month":"Enero", "value":1},{"month":"Febrero", "value":2},{"month":"Marzo", "value":3},
-    {"month":"Abril", "value":4},{"month":"Mayo", "value":5},{"month":"Junio", "value":6},
-    {"month":"Julio", "value":7},{"month":"Agosto", "value":8},{"month":"Septiembre", "value":9},
-    {"month":"Octubre", "value":10},{"month":"Noviembre", "value":11},{"month":"Diciembre", "value":12},
-  ]
 
-  constructor(private _dataService: DataService,private excelService:ExcelService,private imageDialogService: ImageDialogService,
-     private toaterservice:ToasterService){}
+  constructor(private _coursesService: CoursesService, private excelService:ExcelService,
+    private imageDialogService: ImageDialogService, private toaterservice:ToasterService){}
+
   ngOnInit() {
-    this._dataService.getprofesores().subscribe(response =>{
+    this._coursesService.getprofesores().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
          this.profesors.push(response[index]);
@@ -74,7 +68,7 @@ export class ReportsComponent implements OnInit {
 
   fillasignaciones(fi:string,ff:string,profID:string){
     var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
-    this._dataService.getfirmas(fi,ff,profID).subscribe(response =>{
+    this._coursesService.getfirmas(fi,ff,profID).subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         var dateE = new Date(response[index].fechaRegistro.substr(0,10)+" "+response[index].fechaRegistro.substr(11,8));
@@ -99,7 +93,7 @@ export class ReportsComponent implements OnInit {
   }
 
   fillexcepciones(fi:string,ff:string,profID:string){
-    this._dataService.getexcepciones(fi,ff,profID).subscribe(response =>{
+    this._coursesService.getexcepciones(fi,ff,profID).subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         var dateE = new Date(response[index].fechaExcepcion.substr(0,10)+" "+response[index].fechaExcepcion.substr(11,8));
