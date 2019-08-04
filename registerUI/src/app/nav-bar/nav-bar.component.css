@@ -1,9 +1,9 @@
 ul {
     list-style-type: none;
-    margin: -10px;
+    margin: 0px 0px 0px 0px;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: DodgerBlue;
   }
   
   li {
@@ -19,5 +19,5 @@ ul {
   }
   
   li a:hover {
-    background-color: #111;
+    background-color: RoyalBlue;
   }

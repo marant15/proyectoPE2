@@ -1,19 +1,17 @@
-<app-menu-bar></app-menu-bar>
-<div>
+<body>
+    <app-menu-bar></app-menu-bar>
     <h1>Registrar Entrada</h1>
-    <input type="text" #username placeholder="Username">
-    <br>
-    <input type="password" #password placeholder="Password">
-    <br>
-    <button (click)="register(username.value, password.value)" >Registrar</button>
-</div>
-<div>
-    <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-            [videoOptions]="videoOptions"
-            [imageQuality]="1"
-            (cameraSwitched)="cameraWasSwitched($event)"
-            (initError)="handleInitError($event)"
-    ></webcam>
-</div>
-  
+    <div class="login">
+        <input class="color" type="text" #username placeholder="Username" required>
+        <br>
+        <input class="color" type="password" #password placeholder="Password" required>
+        <button class="center" (click)="register(username.value, password.value)">Registrar</button>
+    </div>
+    <div class="camera">
+        <webcam [height]="700" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
+    </div>
+    <img src="../../assets/logo.jpeg">
+</body>

@@ -1,0 +1,48 @@
+h1{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+div.login{
+    margin: 20px 0px 75px 75px;
+    height: 125px;
+    width: 230px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
+button.center{
+    margin-top: 5px;
+    margin-left: 60px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+input.color{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: white; 
+} 
+
+div.camera{
+    margin: 25px 50px 75px 100px;
+    position: absolute;
+    left: 300px;
+    top: 120px;
+}
+
+img{
+    position: absolute;
+    left: 75px;
+    top: 350px;
+}
