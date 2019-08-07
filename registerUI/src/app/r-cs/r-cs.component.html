@@ -1,11 +1,10 @@
 <app-nav-bar></app-nav-bar>
 <h1>Registrar Materia/Grupo</h1>
 <h2>Datos de Materia/Grupo</h2>
-<div>
+<div class="theme">
     <form>
-        <input type="text" #name placeholder="Nombre Materia/Grupo">
-        <br>
-        <button (click)="registerM(name.value)">Registrar Materia</button>
-        <button (click)="registerG(name.value)">Registrar Grupo</button>
+        <input class="theme" type="text" #name placeholder="Nombre Materia/Grupo">
+        <button class="theme" (click)="registerM(name.value)">Registrar Materia</button>
+        <button class="theme" (click)="registerG(name.value)">Registrar Grupo</button>
     </form>
 </div>

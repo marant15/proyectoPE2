@@ -11,7 +11,7 @@
         <th>Fecha Fin</th>
         <th>Horario</th>
     </tr>
-    <tr *ngFor="let asignacion of this.oAsig" >
+    <tr *ngFor="let asignacion of this.oAsig">
         <td>{{asignacion.pName}} {{asignacion.apellidoP}}</td>
         <td>{{asignacion.grupo}}</td>
         <td>{{asignacion.materia}}</td>
@@ -23,42 +23,42 @@
 
 <br>
 <h3>Datos A cambiar</h3>
-<div>
-    <label>Profesor: 
-        <mat-form-field>
-            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        </mat-form-field>          
+<h5>Antes de enviar el formulario debes llenar todos los datos correspondientes que se encuentran en la tabla en el formulario para evitar errores</h5>
+<div class="formulario">
+    <label class="theme">Profesor:
+        <mat-form-field class="searchw">
+            <input class="search" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        </mat-form-field>
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
         </mat-autocomplete>
     </label>
     <br>
-    <label>Materia: 
-        <select #matID>
-                <option *ngFor="let materia of materias" [value]="materia.materiaID">{{materia.nombre}}</option> 
+    <label class="theme">Materia:
+        <select class="theme" #matID>
+            <option *ngFor="let materia of materias" [value]="materia.materiaID">{{materia.nombre}}</option>
         </select>
     </label>
     <br>
-    <label>Grupo
-        <select #groupID>
-                <option *ngFor="let grupo of grupos" [value]="grupo.grupoID">{{grupo.nombre}}</option> 
+    <label class="theme">Grupo
+        <select class="theme" #groupID>
+            <option *ngFor="let grupo of grupos" [value]="grupo.grupoID">{{grupo.nombre}}</option>
         </select>
     </label>
     <br>
-    <label>Grupo Abierto: 
-        <input type="checkbox" [(ngModel)]="isActive" >
+    <label class="theme">Grupo Abierto:
+        <input type="checkbox" value="true" [(ngModel)]="isActive">
     </label>
-    
     <br>
-    <input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
+    <input class="theme" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
     <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
-    <input [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
+    <input class="theme" [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
     <owl-date-time [pickerType]="'timer'" #hinicio></owl-date-time>
     <br>
-    <input [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
+    <input class="theme" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
     <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
-    <input [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
+    <input class="theme" [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
     <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
-    <br>
-    <button (click)="register(matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)" >Editar</button>
+    <button class="center"
+        (click)="register(matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)">Editar</button>
 </div>

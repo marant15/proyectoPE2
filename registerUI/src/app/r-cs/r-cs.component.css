@@ -1,0 +1,43 @@
+h1{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+h2{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+div.theme{
+    margin: 20px 0px 75px 50px;
+    height: 110px;
+    width: 225px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
+button.theme{
+    margin-left: 20px;
+    height: 50px;
+    width: 80px;
+    margin-top: 5px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+input.theme{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: white; 
+} 

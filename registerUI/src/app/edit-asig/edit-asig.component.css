@@ -11,23 +11,96 @@ td.size {
     width: 100%;
 }
   
-#registers td, #registers th {
+ #registers td, #registers th {
     border: 1px solid #ddd;
     padding: 8px;
-}
+ }
   
-#registers tr:nth-child(even){
-    background-color: #f2f2f2;
-}
+ #registers tr:nth-child(even){background-color: #f2f2f2;}
   
-#registers tr:hover {
-    background-color: #ddd;
-}
+ #registers tr:hover {background-color: #ddd;}
   
-#registers th {
+ #registers th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #000000;
+    background-color: dodgerblue;
     color: white;
 }
+
+h1{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+h2{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+h3{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+h5{
+    color: navy;
+    margin-left: 50px;
+}
+
+div.formulario{
+    margin: 20px 0px 75px 50px;
+    height: 295px;
+    width: 450px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
+button.center{
+    margin-top: 5px;
+    margin-left: 160px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+input.theme{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+input.search{
+    width: 300px;
+    color: white;
+}
+
+.searchw{
+    width: 300px;
+}
+
+label.theme{
+    color: white;
+    margin-left: 5px;
+}
+
+
+
+select.theme{
+    background-color: navy;
+    color: white;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+select:hover{
+    background-color: RoyalBlue;
+}
+
+::placeholder {
+    color: white; 
+} 

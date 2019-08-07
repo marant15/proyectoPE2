@@ -17,8 +17,9 @@ export class EditAsigComponent implements OnInit {
   materias = [];
   grupos = [];
   codes = [];
-  isActive:boolean=false;
+  isActive:boolean=true;
   oAsig=[];
+
   constructor(private _coursesService: CoursesService, private confirmationDialogService: ConfirmationDialogService,
     private toasterService: ToasterService) { }
   filteredOptions: Observable<string[]>;
