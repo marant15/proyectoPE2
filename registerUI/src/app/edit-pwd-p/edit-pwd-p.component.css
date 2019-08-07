@@ -1,0 +1,52 @@
+h1{
+    margin-left: 100px;
+    color: dodgerblue;
+}
+
+h2{
+    margin-left: 100px;
+    color: dodgerblue;
+}
+
+div.change{
+    margin: 20px 0px 75px 100px;
+    height: 160px;
+    width: 230px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
+button.center{
+    margin-top: 5px;
+    margin-left: 70px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+input.theme{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: white; 
+} 
+
+label.theme{
+    position: absolute;
+    left: 400px;
+    top: 200px;
+    height: 40px;
+    font-size: 25px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}

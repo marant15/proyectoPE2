@@ -2,10 +2,12 @@
     <app-menu-bar></app-menu-bar>
     <h1>Registrar Entrada</h1>
     <div class="login">
-        <input class="color" type="text" #username placeholder="Username" required>
-        <br>
-        <input class="color" type="password" #password placeholder="Password" required>
-        <button class="center" (click)="register(username.value, password.value)">Registrar</button>
+        <form>
+            <input class="color" type="text" #username placeholder="Username" required>
+            <input class="color" type="password" #password placeholder="Password" required>
+            <button class="center" type="reset" (click)="register(username.value, password.value)">Registrar</button>
+        </form>
+
     </div>
     <div class="camera">
         <webcam [height]="700" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"

@@ -43,7 +43,6 @@ export class CoursesService {
   }
 
   regprofessor(name:string,pln:string,mln:string,user:string,passwd:string,fecha:string){
-    console.log('sending');
     return this._http.post("http://localhost:4000/courses/profesor",
     {
         "nombre": name,
@@ -57,7 +56,6 @@ export class CoursesService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === "saved"){
         this.toasterService.success("Profesor guardado correctamente");
       }else{
