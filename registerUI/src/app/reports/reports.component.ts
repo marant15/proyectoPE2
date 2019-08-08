@@ -49,6 +49,7 @@ export class ReportsComponent implements OnInit {
   }
 
   getData(fechai:Date,fechaf:Date){
+    this.registros = [];
     var mi = fechai.getUTCMonth() + 1; //months from 1-12
     var di = fechai.getUTCDate();
     var yi = fechai.getUTCFullYear();
@@ -57,17 +58,14 @@ export class ReportsComponent implements OnInit {
     var df = fechaf.getUTCDate();
     var yf = fechaf.getUTCFullYear();
     var datef = yf + "-" + mf + "-" + df;
-    console.log(datei,datef);
     var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-", 1)[0])[0];
     if(prof){
-      console.log(prof.codigo);
       var profID = prof.codigo;
       this.fillasignaciones(datei,datef,profID);
     }
   }
 
   fillasignaciones(fi:string,ff:string,profID:string){
-    var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
     this._coursesService.getfirmas(fi,ff,profID).subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {

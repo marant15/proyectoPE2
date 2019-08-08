@@ -15,8 +15,7 @@ export class CusersComponent implements OnInit {
   }
 
   register(user:string, pass:string,name:string,lastNameP:string,lastNameM:string){
-    this._adminService.regusuario(user,pass,this.isadmin,name,lastNameP,lastNameM);
-    console.log(user,pass,this.isadmin,name,lastNameP,lastNameM);  
+    this._adminService.regusuario(user,pass,this.isadmin,name,lastNameP,lastNameM);  
   }
 
   edit(){

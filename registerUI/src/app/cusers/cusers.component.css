@@ -1,0 +1,58 @@
+h1{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+h2{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+div.formulario{
+    margin: 20px 0px 75px 50px;
+    height: 270px;
+    width: 250px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
+button.center{
+    margin-top: 5px;
+    margin-left: 60px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+button.edit{
+    position: absolute;
+    left: 400px;
+    top: 75px;
+    height: 100px;
+    width: 180px;
+    font-size: 25px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+input.theme{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+label.theme{
+    color: white;
+    margin-left: 5px;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+::placeholder {
+    color: white; 
+} 

@@ -1,39 +1,37 @@
 <app-nav-bar></app-nav-bar>
 <h1>Reemplazos y Reposiciones</h1>
 <h2>Datos de Excepcion</h2>
-<div>
-    <label>Asignacion: 
-        <select #asignID>
-                <option *ngFor="let asignacion of asignaciones" [value]="asignacion.asignacionID">{{asignacion.grupo}}-{{asignacion.materia}}-{{asignacion.pName}} {{asignacion.apellidoP}}</option> 
+<div class="formulario">
+    <label class="theme">Asignacion:
+        <select class="theme" #asignID>
+            <option *ngFor="let asignacion of asignaciones" [value]="asignacion.asignacionID">
+                {{asignacion.grupo}}-{{asignacion.materia}}-{{asignacion.pName}} {{asignacion.apellidoP}}</option>
         </select>
     </label>
-    <br>
-    <label>Profesor: 
-        <mat-form-field>
-            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        </mat-form-field>          
+    <label class="theme">Profesor:
+        <mat-form-field class="searchw">
+            <input class="search" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        </mat-form-field>
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
         </mat-autocomplete>
     </label>
-    <br>
-    <label>Tipo: 
-        <select #tipo>
-                <option value="RM">Reemplazo</option>
-                <option value="RP">Reposicion</option> 
+    <label class="theme">Tipo:
+        <select class="theme" #tipo>
+            <option value="RM">Reemplazo</option>
+            <option value="RP">Reposicion</option>
         </select>
     </label>
-    <br>
-    <label>Poner tiempos</label>
+    <label class="theme">Poner tiempos</label>
     <input type="checkbox" [(ngModel)]="tiempos" (click)="checkTiempos()">
-    <br>
     <div id="seccion">
-    <input [owlDateTimeTrigger]="fe" [owlDateTime]="fe" placeholder="Fecha" readonly>
-    <owl-date-time [pickerType]="'calendar'" #fe></owl-date-time>
-    <input [owlDateTimeTrigger]="ho" [owlDateTime]="ho" placeholder="Hora" readonly>
-    <owl-date-time [pickerType]="'timer'" #ho></owl-date-time>
+        <input class="theme" [owlDateTimeTrigger]="fe" [owlDateTime]="fe" placeholder="Fecha" readonly>
+        <owl-date-time [pickerType]="'calendar'" #fe></owl-date-time>
+        <input class="theme" [owlDateTimeTrigger]="ho" [owlDateTime]="ho" placeholder="Hora" readonly>
+        <owl-date-time [pickerType]="'timer'" #ho></owl-date-time>
     </div>
-    <br>
-    <button *ngIf="tiempos" (click)="register(asignID.value,tipo.value,fe._selected,ho._selected)" >Registrar</button>
-    <button *ngIf="!tiempos" (click)="register(asignID.value,tipo.value,null,null)" >Registrar</button>
+    <button *ngIf="tiempos" class="center" type="reset"
+        (click)="register(asignID.value,tipo.value,fe._selected,ho._selected)">Registrar</button>
+    <button *ngIf="!tiempos" class="center" type="reset"
+        (click)="register(asignID.value,tipo.value,null,null)">Registrar</button>
 </div>

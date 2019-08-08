@@ -17,6 +17,19 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #000000;
+    background-color: dodgerblue;
     color: white;
+}
+
+button.st{
+    margin-left: 10px;
+    /*background-color: navy;
+    border: solid dodgerblue;*/
+    background-color: dodgerblue;
+    border: solid navy;
+    color: white;
+}
+
+button:hover{
+    background-color: navy ;
 }

@@ -1,27 +1,26 @@
 <app-nav-bar></app-nav-bar>
 <h1>Reportes</h1>
 <h2>Obtener datos para reporte</h2>
-<div>
-	<label>Profesor: 
-		<mat-form-field>
-            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        </mat-form-field>          
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
-        </mat-autocomplete>
+<div class="formulario">
+	<label class="theme">Profesor:
+		<mat-form-field class="searchw">
+			<input class="search" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+		</mat-form-field>
+		<mat-autocomplete #auto="matAutocomplete">
+			<mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
+		</mat-autocomplete>
 	</label>
 	<br>
-	<input [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
-    <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
-    <br>
-    <input [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
-    <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
+	<input class="theme" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
+	<owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
 	<br>
-    <button (click)="getData(finicio._selected,ffin._selected)" >Registrar</button>
+	<input class="theme" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
+	<owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
+	<br>
+	<button class="center" (click)="getData(finicio._selected,ffin._selected)">Generar Reporte</button>
 </div>
 <br>
 <div *ngIf="reporteActivo">
-	<button (click)="exportAsXLSX()">export excel</button>
 	<table id="registers">
 		<tr>
 			<th>Grupo</th>
@@ -41,7 +40,9 @@
 			<td>{{item.inicio}}</td>
 			<td>{{item.estado}}</td>
 			<td>{{item.tipo}}</td>
-			<td><button (click)="showImage(item.id)">Imagen</button></td>
+			<td><button class="st" (click)="showImage(item.id)">Imagen</button></td>
 		</tr>
 	</table>
+	<button class="export" (click)="exportAsXLSX()">Export to Excel</button>
 </div>
+
