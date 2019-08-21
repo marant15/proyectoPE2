@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToasterService } from './toaster.service';
+import config from '../../assets/config.json';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,20 +26,20 @@ export class AdminService {
 
   isadmin(){
     var user = localStorage.getItem('token');
-    return this._http.get("http://localhost:4000/admin/usuario/"+user);
+    return this._http.get("http://"+config.hostServer+":4000/admin/usuario/"+user);
   }
 
   getusers(){
-    return this._http.get("http://localhost:4000/admin/usuario/");
+    return this._http.get("http://"+config.hostServer+":4000/admin/usuario/");
   }
 
   getuser(user:string){
-    return this._http.get("http://localhost:4000/admin/usuario/"+user);
+    return this._http.get("http://"+config.hostServer+":4000/admin/usuario/"+user);
   }
 
   regusuario(user:string,pwd:string,admin:boolean,name:string,pln:string,mln:string){
     console.log("registrando");
-    return this._http.post("http://localhost:4000/admin/reg",
+    return this._http.post("http://"+config.hostServer+":4000/admin/reg",
     {
       "usuario":user,
 	    "password":pwd,
@@ -63,7 +65,7 @@ export class AdminService {
   }
 
   updateuser(pid:string,name:string,admin:boolean,pln:string,mln:string,user:string){
-    return this._http.put("http://localhost:4000/admin/reg/"+pid,{
+    return this._http.put("http://"+config.hostServer+":4000/admin/reg/"+pid,{
       "usuario":user,
 	    "isAdmin":admin,
 	    "nombre":name,

@@ -29,7 +29,6 @@ export class AssignComponent implements OnInit {
         this.profesors.push(response[index]);
         this.codes.push(response[index].codigo + "-" + response[index].nombre + " " + response[index].apellidoP + " " + response[index].apellidoM);
       }
-      console.log(this.profesors);
       },
       error => {
         console.log("Error", error);
@@ -93,7 +92,6 @@ export class AssignComponent implements OnInit {
           datei + "   " + datef + " en el periodo: " +
           ihour + " - " + fhour)
           .then((confirmed) => {
-            console.log('User confirmed:', confirmed)
             if (confirmed) {
               this.toasterService.success("Asignacion guardada correctamente");
               this._coursesService.assign(pid, gid, mid, datei, datef, ihour, fhour);

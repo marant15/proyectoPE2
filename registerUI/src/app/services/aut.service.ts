@@ -12,7 +12,7 @@ export class AutService {
   constructor(private _http: HttpClient, private myRoute: Router, private toasterService: ToasterService) { }
 
   login(user:string,pwd:string){
-    return this._http.post("http://localhost:4000/aut/usuario",
+    return this._http.post("http://"+config.hostServer+":4000/aut/usuario",
     {
       "usuario":user,
       "password":pwd
@@ -42,7 +42,7 @@ export class AutService {
   }
 
   entry(user:string,pwd:string,date:string,time:string,image:string){
-    return this._http.post("http://localhost:4000/aut/profesor",
+    return this._http.post("http://"+config.hostServer+":4000/aut/profesor",
     {
       "codigo":user,
       "password":pwd,
@@ -75,7 +75,7 @@ export class AutService {
   }
 
   excep(assig:number,tipo:string,pid:number,fecha:string,tiempo:string){
-    return this._http.post("http://localhost:4000/aut/exc",
+    return this._http.post("http://"+config.hostServer+":4000/aut/exc",
     {
       "asignacionID":assig,
       "tipo":tipo,
@@ -96,7 +96,7 @@ export class AutService {
   }
 
   updatePpwd(pid:string,oldpwd:string,newpwd:string){
-    return this._http.put("http://localhost:4000/aut/profesor/"+pid,{
+    return this._http.put("http://"+config.hostServer+":4000/aut/profesor/"+pid,{
       "oldPassword": oldpwd,
       "password": newpwd
     },
@@ -119,9 +119,7 @@ export class AutService {
   }
 
   updateUpwd(pid:string,oldpwd:string,newpwd:string){
-    console.log("http://localhost:4000/aut/usuario/"+pid);
-    console.log(oldpwd);
-    return this._http.put("http://localhost:4000/aut/usuario/"+pid,{
+    return this._http.put("http://"+config.hostServer+":4000/aut/usuario/"+pid,{
       "oldPassword": oldpwd,
       "password": newpwd
     },
@@ -144,20 +142,20 @@ export class AutService {
   }
 
   resetPPassword(id:string){
-    return this._http.get("http://localhost:4000/aut/profesor/"+id,{
+    return this._http.get("http://"+config.hostServer+":4000/aut/profesor/"+id,{
       responseType: 'text',
       observe:'response'
     });
   }
 
   resetUPassword(id:string){
-    return this._http.get("http://localhost:4000/aut/usuario/"+id,{
+    return this._http.get("http://"+config.hostServer+":4000/aut/usuario/"+id,{
       responseType: 'text',
       observe:'response'
     });
   }
 
   getImage(codigo:string){
-    return "http://localhost:4000/aut/image/"+codigo;
+    return "http://"+config.hostServer+":4000/aut/image/"+codigo;
   }
 }

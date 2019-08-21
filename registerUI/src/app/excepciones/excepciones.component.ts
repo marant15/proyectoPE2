@@ -31,7 +31,6 @@ export class ExcepcionesComponent implements OnInit {
           this.asignaciones.push(response[index]);
         }
       }
-      console.log(this.asignaciones);
     },
     error => {
       console.log("Error", error);
@@ -43,7 +42,6 @@ export class ExcepcionesComponent implements OnInit {
          this.profesors.push(response[index]);
          this.codes.push(response[index].codigo+"-"+response[index].nombre+" "+response[index].apellidoP+" "+response[index].apellidoM);
       }
-      console.log(this.profesors);
     },
     error => {
       console.log("Error", error);
@@ -74,7 +72,6 @@ export class ExcepcionesComponent implements OnInit {
     if(this.myControl.value){
       if(this.tiempos){
         if(fecha && hora){
-          console.log(assigID,tipo,fecha,hora);
           var mi = fecha.getUTCMonth() + 1; //months from 1-12
           var di = fecha.getUTCDate();
           var yi = fecha.getUTCFullYear();

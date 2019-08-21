@@ -10,7 +10,7 @@
 
     </div>
     <div class="camera">
-        <webcam [height]="700" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+        <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
             *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
             [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
             (initError)="handleInitError($event)"></webcam>

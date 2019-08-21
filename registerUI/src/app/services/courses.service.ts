@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToasterService } from './toaster.service';
+import config from '../../assets/config.json';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,39 +13,39 @@ export class CoursesService {
   constructor(private _http: HttpClient, private myRoute: Router, private toasterService: ToasterService) { }
 
   getprofesores(){
-    return this._http.get("http://localhost:4000/courses/profesor");
+    return this._http.get("http://"+config.hostServer+":4000/courses/profesor");
   }
 
   getprofesor(codigo:string){
-    return this._http.get("http://localhost:4000/courses/profesor/"+codigo);
+    return this._http.get("http://"+config.hostServer+":4000/courses/profesor/"+codigo);
   }
 
   getmateria(){
-    return this._http.get("http://localhost:4000/courses/materia");
+    return this._http.get("http://"+config.hostServer+":4000/courses/materia");
   }
 
   getgrupo(){
-    return this._http.get("http://localhost:4000/courses/grupo");
+    return this._http.get("http://"+config.hostServer+":4000/courses/grupo");
   }
 
   getfirmas(fechai:string,fechaf:string,codigo:string){
-    return this._http.get("http://localhost:4000/courses/registros/"+fechai+"/"+fechaf+"/"+codigo);
+    return this._http.get("http://"+config.hostServer+":4000/courses/registros/"+fechai+"/"+fechaf+"/"+codigo);
   }
 
   getexcepciones(fechai:string,fechaf:string,codigo:string){
-    return this._http.get("http://localhost:4000/courses/excs/"+fechai+"/"+fechaf+"/"+codigo);
+    return this._http.get("http://"+config.hostServer+":4000/courses/excs/"+fechai+"/"+fechaf+"/"+codigo);
   }
 
   getAsignaciones(){
-    return this._http.get("http://localhost:4000/courses/asignacion");
+    return this._http.get("http://"+config.hostServer+":4000/courses/asignacion");
   }
 
   getAsignacion(id:string){
-    return this._http.get("http://localhost:4000/courses/asignacion/"+id);
+    return this._http.get("http://"+config.hostServer+":4000/courses/asignacion/"+id);
   }
 
   regprofessor(name:string,pln:string,mln:string,user:string,passwd:string,fecha:string){
-    return this._http.post("http://localhost:4000/courses/profesor",
+    return this._http.post("http://"+config.hostServer+":4000/courses/profesor",
     {
         "nombre": name,
         "apellidoP": pln,
@@ -68,7 +70,7 @@ export class CoursesService {
   }
 
   regGrupo(name:string){
-    return this._http.post("http://localhost:4000/courses/grupo",
+    return this._http.post("http://"+config.hostServer+":4000/courses/grupo",
     {
         "nombre": name,
     },
@@ -89,7 +91,7 @@ export class CoursesService {
   }
 
   regMateria(name:string){
-    return this._http.post("http://localhost:4000/courses/materia",
+    return this._http.post("http://"+config.hostServer+":4000/courses/materia",
     {
         "nombre": name,
     },
@@ -110,7 +112,7 @@ export class CoursesService {
   }
 
   assign(pid:number,gid:number,mid:number,finicio:string,ffin:string,hinicio:string,hfin:string){
-    return this._http.post("http://localhost:4000/courses/asignacion",
+    return this._http.post("http://"+config.hostServer+":4000/courses/asignacion",
     {
       "profesorID":pid,
       "grupoID":gid,
@@ -134,7 +136,7 @@ export class CoursesService {
   }
 
   updateAsig(aID,pid:number,gid:number,mid:number,estado:boolean,finicio:string,ffin:string,hinicio:string,hfin:string){
-    return this._http.put("http://localhost:4000/courses/asignacion/"+aID,{
+    return this._http.put("http://"+config.hostServer+":4000/courses/asignacion/"+aID,{
       "profesorID":pid,
       "grupoID":gid,
       "materiaID":mid,
@@ -163,7 +165,7 @@ export class CoursesService {
   }
 
   updateprofesor(pid:string,name:string,pln:string,mln:string,user:string,fecha:string){
-    return this._http.put("http://localhost:4000/courses/profesor/"+pid,{
+    return this._http.put("http://"+config.hostServer+":4000/courses/profesor/"+pid,{
       "nombre": name,
       "apellidoP": pln,
       "apellidoM": mln,

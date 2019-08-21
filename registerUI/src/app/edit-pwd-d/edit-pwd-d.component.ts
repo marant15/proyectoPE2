@@ -26,10 +26,7 @@ export class EditPwdDComponent implements OnInit {
   edit(newpwd:string){
     var tipo = localStorage.getItem('tipo');
     var user = localStorage.getItem('codigo');
-    console.log(tipo);
-    console.log(config.defaultPassword);
     if (tipo=='usuario'){
-      console.log('soy un usuario');
       this._autService.updateUpwd(user,config.defaultPassword,newpwd);
     }else{
       this._autService.updatePpwd(user,config.defaultPassword,newpwd);
