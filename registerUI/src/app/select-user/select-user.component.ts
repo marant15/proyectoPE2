@@ -23,7 +23,6 @@ export class SelectUserComponent implements OnInit {
       for (let index = 0; index < count; index++) {
         this.users.push(response[index]);
       }
-      console.log(this.users);
     },
     error => {
       console.log("Error", error);

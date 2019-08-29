@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,7 +19,8 @@ export class EditUserComponent implements OnInit {
     id:''
   }
 
-  constructor(private _adminService: AdminService) { }
+  constructor(private _adminService: AdminService,
+    private confirmationDialogService: ConfirmationDialogService, private toasterService: ToasterService) { }
 
   ngOnInit() {
     this.user.codigo = localStorage.getItem('editUser');
@@ -31,8 +34,27 @@ export class EditUserComponent implements OnInit {
   }
 
   edit(username:string,name:string,lastNameP:string,lastNameM:string){
-    console.log(name,this.user.isAdmin,username,lastNameP,lastNameM);
-    this._adminService.updateuser(this.user.id,name,this.user.isAdmin,lastNameP,lastNameM,username);
+    if(name && lastNameP && lastNameM && username){
+      this.confirmationDialogService.confirm('Confirmacion de Usuario', 'Usuario: '+ username+" con nombre: " + name+" "+lastNameP+" "+lastNameM+ this.isAdmin())
+      .then((confirmed) => {
+        if (confirmed) {
+          this._adminService.updateuser(this.user.id,name,this.user.isAdmin,lastNameP,lastNameM,username);
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    }else{
+      this.toasterService.warning("Debe llenar todos los campos");
+    }
+  }
+
+  isAdmin(){
+    var response = ""
+    if(this.user.isAdmin){
+      response = ", SI es administrador";
+    }else{
+      response = ", NO es administrador";
+    }
+    return response;
   }
 
 }

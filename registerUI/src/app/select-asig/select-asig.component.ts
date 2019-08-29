@@ -17,15 +17,22 @@ export class SelectAsigComponent implements OnInit {
     this._coursesService.getAsignaciones().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
-        if(response[index].estado){
-          this.asignaciones.push(response[index]);
-        }
+        this.asignaciones.push(response[index]);
       }
-      console.log(this.asignaciones);
     },
     error => {
       console.log("Error", error);
     });
+  }
+
+  setEstado(estado:boolean ){
+    var response = "";
+    if(estado){
+      response ="Abierta"
+    }else{
+      response = "Cerrada"
+    }
+    return response;
   }
 
   edit(numero:string){

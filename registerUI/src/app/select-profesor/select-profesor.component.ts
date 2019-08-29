@@ -23,7 +23,6 @@ export class SelectProfesorComponent implements OnInit {
       for (let index = 0; index < count; index++) {
         this.profesors.push(response[index]);
       }
-      console.log(this.profesors);
     },
       error => {
         console.log("Error", error);

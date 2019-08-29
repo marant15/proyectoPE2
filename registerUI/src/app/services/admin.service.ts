@@ -52,7 +52,6 @@ export class AdminService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'saved'){
         this.toasterService.success("Usuario guardado correctamente");
       }else{
@@ -76,7 +75,6 @@ export class AdminService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'updated'){
         this.toasterService.success("Usuario editado correctamente");
         this.myRoute.navigate(["cusers"]);

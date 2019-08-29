@@ -20,7 +20,7 @@ import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angular/material';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { ImageDialogComponent } from './imageDialog/imageDialog.component';
@@ -28,7 +28,7 @@ import { ImageDialogService } from './imageDialog/imageDialog.service';
 import { ExcepcionesComponent } from './excepciones/excepciones.component';
 import { EditAsigComponent } from './edit-asig/edit-asig.component';
 import { SelectAsigComponent } from './select-asig/select-asig.component';
-import {WebcamModule} from 'ngx-webcam';
+import { WebcamModule } from 'ngx-webcam';
 import { SelectProfesorComponent } from './select-profesor/select-profesor.component';
 import { EditProfesorComponent } from './edit-profesor/edit-profesor.component';
 import { SelectUserComponent } from './select-user/select-user.component';
@@ -75,7 +75,7 @@ import { EditPwdDComponent } from './edit-pwd-d/edit-pwd-d.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    WebcamModule,
+    WebcamModule
   ],
   providers: [
     AuthGuard,

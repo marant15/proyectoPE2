@@ -20,8 +20,8 @@ export class ExcepcionesComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   codes = [];
 
-  constructor(private _coursesService: CoursesService, private _autService: AutService, private confirmationDialogService: ConfirmationDialogService,
-    private toasterService: ToasterService) { }
+  constructor(private _coursesService: CoursesService, private _autService: AutService,
+    private confirmationDialogService: ConfirmationDialogService, private toasterService: ToasterService) { }
 
   ngOnInit() {
     this._coursesService.getAsignaciones().subscribe(response =>{
@@ -84,7 +84,6 @@ export class ExcepcionesComponent implements OnInit {
             var pid = prof.profesorID;
             this.confirmationDialogService.confirm('Confirmacion de excepcion', 'Esta seguro de guardar la excepcion?')
             .then((confirmed) => {
-              console.log('User confirmed:', confirmed)
               if(confirmed){
                 this._autService.excep(assigID,tipo,pid,date,hour);
               }
@@ -111,7 +110,6 @@ export class ExcepcionesComponent implements OnInit {
           var pid = prof.profesorID;
           this.confirmationDialogService.confirm('Confirmacion de excepcion', 'Esta seguro de guardar la excepcion?')
           .then((confirmed) => {
-            console.log('User confirmed:', confirmed)
             if(confirmed){
               this._autService.excep(assigID,tipo,pid,date,hour);
             }

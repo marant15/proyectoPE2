@@ -21,7 +21,6 @@ export class AutService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.status==200){
         localStorage.setItem('token',user);
         if(config.defaultPassword == pwd && user!=''){
@@ -104,7 +103,6 @@ export class AutService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'updated'){
         this.toasterService.success("Password cambiado correctamente");
         this.myRoute.navigate(["rprofesor"]);
@@ -127,7 +125,6 @@ export class AutService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'updated'){
         this.toasterService.success("Password cambiado correctamente");
         this.myRoute.navigate(["rprofesor"]);

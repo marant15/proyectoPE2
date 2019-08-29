@@ -101,10 +101,7 @@ export class EditAsigComponent implements OnInit {
         datei+"   "+datef+" en el periodo: "+
         ihour+" - "+fhour)
         .then((confirmed) => {
-          console.log('User confirmed:', confirmed)
           if(confirmed){
-            console.log(nasig,pid,gid,mid,this.isActive);
-            console.log(datei,datef,ihour,fhour);
             this._coursesService.updateAsig(nasig,pid,gid,mid,this.isActive,datei,datef,ihour,fhour);
           }
         })

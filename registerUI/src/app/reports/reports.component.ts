@@ -153,10 +153,10 @@ export class ReportsComponent implements OnInit {
 
   showImage(id:String){
     this.imageDialogService.confirm('Imagen', ''+id)
-          .then((confirmed) => {
-            console.log('User confirmed:', confirmed)
-          })
-          .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+      .then((confirmed) => {
+        console.log('User confirmed:', confirmed)
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
 }

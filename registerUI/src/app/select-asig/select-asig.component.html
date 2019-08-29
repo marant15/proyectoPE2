@@ -5,12 +5,14 @@
         <th>Profesor</th>
         <th>Grupo</th>
         <th>Materia</th>
+        <th>Estado</th>
         <th>Editar</th>
     </tr>
     <tr *ngFor="let asignacion of this.asignaciones">
         <td>{{asignacion.pName}} {{asignacion.apellidoP}}</td>
         <td>{{asignacion.grupo}}</td>
         <td>{{asignacion.materia}}</td>
+        <td>{{this.setEstado(asignacion.estado)}}</td>
         <td #selected style="display:none;">{{asignacion.asignacionID}}</td>
         <button class="st" (click)="edit(selected.innerText)" >Editar</button>
     </tr>

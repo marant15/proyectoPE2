@@ -78,7 +78,6 @@ export class CoursesService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'saved'){
         this.toasterService.success("grupo guardado correctamente");
       }else{
@@ -99,7 +98,6 @@ export class CoursesService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'saved'){
         this.toasterService.success("Materia guardada correctamente");
       }else{
@@ -127,7 +125,6 @@ export class CoursesService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       this.toasterService.success("Asignacion guardada correctamente");
     },
     error  => {
@@ -150,7 +147,6 @@ export class CoursesService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'updated'){
         this.toasterService.success("Asignacion editada correctamente");
         this.myRoute.navigate(["rprofesor"]);
@@ -176,7 +172,6 @@ export class CoursesService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res.body,res.status);
       if(res.body === 'updated'){
         this.toasterService.success("Profesor editado correctamente");
         this.myRoute.navigate(["rprofesor"]);

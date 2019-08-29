@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         console.log("habilitando Camara");
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+        console.log(this.multipleWebcamsAvailable);
       });
   }
 
