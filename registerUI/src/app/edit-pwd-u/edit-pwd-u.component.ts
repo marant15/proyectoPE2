@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutService } from '../services/aut.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-edit-pwd-u',
@@ -8,30 +9,22 @@ import { AutService } from '../services/aut.service';
 })
 export class EditPwdUComponent implements OnInit {
 
-  pwdmatch = '';
-  samepwd = false;
-
-  constructor(private _autService: AutService) { }
+  constructor(private _autService: AutService, private toasterService: ToasterService) { }
 
   ngOnInit() {
   }
 
-  edit(oldpwd:string,newpwd:string){
+  edit(oldpwd:string,newpwd:string,repeatpwd:string){
     var user = localStorage.getItem('editUser');
-    this._autService.updateUpwd(user,oldpwd,newpwd);
-  }
-
-  compare(newpwd:string,repeatpwd:string){
-    if(repeatpwd===newpwd && newpwd!=''){
-      this.pwdmatch = '';
-      this.samepwd = true;
-    }else if(newpwd===''){
-      this.pwdmatch = 'Password Vacio';
-      this.samepwd = false;
+    if(newpwd && repeatpwd){
+      if(newpwd===repeatpwd){
+        this._autService.updateUpwd(user,oldpwd,newpwd);
+      }else{
+        this.toasterService.warning("Passwords no coinciden");
+      }
     }else{
-      this.pwdmatch = 'Passwords NO coinciden';
-      this.samepwd = false;
+      this.toasterService.warning("LLene todos los datos");
     }
+    
   }
-
 }

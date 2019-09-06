@@ -11,9 +11,6 @@ import { ToasterService } from '../services/toaster.service';
 })
 export class EditPwdDComponent implements OnInit {
 
-  pwdmatch = '';
-  samepwd = false;
-
   constructor(private _autService: AutService, private myRoute: Router, private toasterService: ToasterService) { }
 
   ngOnInit() {
@@ -23,27 +20,22 @@ export class EditPwdDComponent implements OnInit {
     }
   }
 
-  edit(newpwd:string){
+  edit(newpwd:string, repeatpwd:string){
     var tipo = localStorage.getItem('tipo');
     var user = localStorage.getItem('codigo');
-    if (tipo=='usuario'){
-      this._autService.updateUpwd(user,config.defaultPassword,newpwd);
+    if(newpwd && repeatpwd){
+      if(newpwd===repeatpwd){
+        if (tipo=='usuario'){
+          this._autService.updateUpwd(user,config.defaultPassword,newpwd);
+        }else{
+          this._autService.updatePpwd(user,config.defaultPassword,newpwd);
+          this.toasterService.success("registro guardado");
+        }
+      }else{
+        this.toasterService.warning("Passwords no coinciden");
+      }
     }else{
-      this._autService.updatePpwd(user,config.defaultPassword,newpwd);
-      this.toasterService.success("registro guardado");
-    }
-  }
-
-  compare(newpwd:string,repeatpwd:string){
-    if(repeatpwd===newpwd && newpwd!=''){
-      this.pwdmatch = '';
-      this.samepwd = true;
-    }else if(newpwd===''){
-      this.pwdmatch = 'Password Vacio';
-      this.samepwd = false;
-    }else{
-      this.pwdmatch = 'Passwords NO coinciden';
-      this.samepwd = false;
+      this.toasterService.warning("LLene todos los datos");
     }
   }
 }

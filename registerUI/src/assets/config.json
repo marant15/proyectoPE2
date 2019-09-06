@@ -1,5 +1,6 @@
 {
     "adelanto": 20,
     "defaultPassword": "abcd1234",
-    "hostServer": "192.168.56.101"
+    "hostServer": "localhost"
+    
 }

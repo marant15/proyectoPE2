@@ -62,6 +62,8 @@ export class AutService {
           localStorage.setItem('tipo','profesor');
           localStorage.setItem('codigo',user);
           this.myRoute.navigate(["editpwdD"]);
+        }else{
+          this.toasterService.success("Registro Guardado");
         }
       }
     },

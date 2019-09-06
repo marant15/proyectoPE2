@@ -35,9 +35,8 @@ export class RegisterComponent implements OnInit {
     localStorage.removeItem('codigo');
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
-        console.log("habilitando Camara");
+        console.log(mediaDevices);
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-        console.log(this.multipleWebcamsAvailable);
       });
   }
 

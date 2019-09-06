@@ -19,6 +19,7 @@ export class SelectAsigComponent implements OnInit {
       for (let index = 0; index < count; index++) {
         this.asignaciones.push(response[index]);
       }
+      console.log(this.asignaciones);
     },
     error => {
       console.log("Error", error);
