@@ -8,10 +8,10 @@
         <input class="color" type="text" #lastNameM placeholder="Apellido Materno">
         <input class="color" type="text" #username placeholder="Codigo Usuario">
         <input class="color" type="password" #password placeholder="Password">
-        <input class="color" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Fecha Contratacion" readonly>
+        <input class="color" [(ngModel)]="fecha" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Fecha Contratacion" readonly>
         <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
         <button class="center" type="reset"
-            (click)="register(name.value,lastNameP.value,lastNameM.value,username.value,password.value,dt1._selected)">Registrar</button>
+            (click)="register(name.value,lastNameP.value,lastNameM.value,username.value,password.value)">Registrar</button>
     </form>
 </div>
 <div>

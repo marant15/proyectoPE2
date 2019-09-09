@@ -13,6 +13,8 @@ import { ToasterService } from '../services/toaster.service';
   styleUrls: ['./excepciones.component.css']
 })
 export class ExcepcionesComponent implements OnInit {
+  fecha:Date;
+  hora:Date;
   myControl = new FormControl();
   tiempos = true;
   asignaciones = [];
@@ -68,16 +70,16 @@ export class ExcepcionesComponent implements OnInit {
     }
   }
 
-  register(assigID:number,tipo:string,fecha:Date,hora:Date){
+  register(assigID:number,tipo:string){
     if(this.myControl.value){
       if(this.tiempos){
-        if(fecha && hora){
-          var mi = fecha.getUTCMonth() + 1; //months from 1-12
-          var di = fecha.getUTCDate();
-          var yi = fecha.getUTCFullYear();
+        if(this.fecha && this.hora){
+          var mi = this.fecha.getUTCMonth() + 1; //months from 1-12
+          var di = this.fecha.getUTCDate();
+          var yi = this.fecha.getUTCFullYear();
           var date = yi + "-" + mi + "-" + di;
-          var houri = hora.getHours();
-          var mini = hora.getUTCMinutes();
+          var houri = this.hora.getHours();
+          var mini = this.hora.getUTCMinutes();
           var hour = houri+":"+mini+":00";
           var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
           if(prof){

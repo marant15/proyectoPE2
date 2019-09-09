@@ -9,7 +9,7 @@ import { ToasterService } from '../services/toaster.service';
   styleUrls: ['./edit-profesor.component.css']
 })
 export class EditProfesorComponent implements OnInit {
-
+  fechan:Date;
   constructor(private _coursesService: CoursesService, private confirmationDialogService: ConfirmationDialogService, private toasterService: ToasterService) { }
 
   profesor = {
@@ -32,11 +32,11 @@ export class EditProfesorComponent implements OnInit {
     });
   }
 
-  edit(name:string,lastNameP:string,lastNameM:string,username:string,fecha:Date){
-    if(name && lastNameP && lastNameM && username && fecha){
-      var month = fecha.getUTCMonth() + 1; //months from 1-12
-      var day = fecha.getUTCDate();
-      var year = fecha.getUTCFullYear();
+  edit(name:string,lastNameP:string,lastNameM:string,username:string){
+    if(name && lastNameP && lastNameM && username && this.fechan){
+      var month = this.fechan.getUTCMonth() + 1; //months from 1-12
+      var day = this.fechan.getUTCDate();
+      var year = this.fechan.getUTCFullYear();
       var newdate = year + "-" + month + "-" + day + " 00:00:00";
       this.confirmationDialogService.confirm('Confirmacion de Edicion', 'Profesor: ' + name+" "+lastNameP+" "+lastNameM+" con usuario: "+username +" y fecha contratacion: "+newdate.substr(0,9))
       .then((confirmed) => {

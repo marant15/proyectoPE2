@@ -24,18 +24,18 @@
             </select>
         </label>
         <br>
-        <input class="theme" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
+        <input class="theme" [(ngModel)]="fi" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
         <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
-        <input class="theme" [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
+        <input class="theme" [(ngModel)]="hi" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
         <owl-date-time [pickerType]="'timer'" #hinicio></owl-date-time>
         <br>
-        <input class="theme" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
+        <input class="theme" [(ngModel)]="ff" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
         <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
-        <input class="theme" [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
+        <input class="theme" [(ngModel)]="hf" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
         <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
         <br>
         <button class="center" type="reset"
-            (click)="register(matID.value,groupID.value,finicio._selected,hinicio._selected,ffin._selected,hfin._selected)">Registrar</button>
+            (click)="register(matID.value,groupID.value)">Registrar</button>
     </form>
 </div>
 <br>

@@ -11,13 +11,13 @@
 		</mat-autocomplete>
 	</label>
 	<br>
-	<input class="theme" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
+	<input class="theme" [(ngModel)]="fechai" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
 	<owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
 	<br>
-	<input class="theme" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
+	<input class="theme" [(ngModel)]="fechaf" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
 	<owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
 	<br>
-	<button class="center" (click)="getData(finicio._selected,ffin._selected)">Generar Reporte</button>
+	<button class="center" (click)="getData()">Generar Reporte</button>
 </div>
 <br>
 <div *ngIf="reporteActivo">

@@ -13,7 +13,8 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
-
+  fechai:Date;
+  fechaf:Date;
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   reporteActivo = false;
@@ -48,15 +49,15 @@ export class ReportsComponent implements OnInit {
     return this.codes.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  getData(fechai:Date,fechaf:Date){
+  getData(){
     this.registros = [];
-    var mi = fechai.getUTCMonth() + 1; //months from 1-12
-    var di = fechai.getUTCDate();
-    var yi = fechai.getUTCFullYear();
+    var mi = this.fechai.getUTCMonth() + 1; //months from 1-12
+    var di = this.fechai.getUTCDate();
+    var yi = this.fechai.getUTCFullYear();
     var datei = yi + "-" + mi + "-" + di;
-    var mf = fechaf.getUTCMonth() + 1; //months from 1-12
-    var df = fechaf.getUTCDate();
-    var yf = fechaf.getUTCFullYear();
+    var mf = this.fechaf.getUTCMonth() + 1; //months from 1-12
+    var df = this.fechaf.getUTCDate();
+    var yf = this.fechaf.getUTCFullYear();
     var datef = yf + "-" + mf + "-" + df;
     var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-", 1)[0])[0];
     if(prof){

@@ -12,7 +12,7 @@ import { ToasterService } from '../services/toaster.service';
 })
 export class RProfesorComponent implements OnInit {
 
-  date: Date = new Date();
+  public fecha: Date;
   
   constructor(private _coursesService: CoursesService, private myRoute: Router,
     private confirmationDialogService: ConfirmationDialogService, private toasterService: ToasterService) { }
@@ -22,11 +22,11 @@ export class RProfesorComponent implements OnInit {
   }
 
 
-  register(name:string,lastNameP:string,lastNameM:string,user:string, pass:string, fecha:Date) {
-    if(name && lastNameP && lastNameM && user && pass && fecha){
-      var month = fecha.getUTCMonth() + 1; //months from 1-12
-      var day = fecha.getUTCDate();
-      var year = fecha.getUTCFullYear();
+  register(name:string,lastNameP:string,lastNameM:string,user:string, pass:string) {
+    if(name && lastNameP && lastNameM && user && pass && this.fecha){
+      var month = this.fecha.getUTCMonth() + 1; //months from 1-12
+      var day = this.fecha.getUTCDate();
+      var year = this.fecha.getUTCFullYear();
       var newdate = year + "-" + month + "-" + day + " 00:00:00";
       this.confirmationDialogService.confirm('Confirmacion de Profesor', 'Profesor: ' + name+" "+lastNameP+" "+lastNameM+" con usuario: "+user +" y fecha contratacion: "+newdate.substr(0,9))
       .then((confirmed) => {
