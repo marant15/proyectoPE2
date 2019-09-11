@@ -157,3 +157,16 @@ GET: localhost:4000/aut/usuario/1
 GET: localhost:4000/aut/profesor/1
 (reset a password generico en config.js)
 
+--------------------------------------------------------------------------------------------------
+
+POST: localhost:4000/books/book
+
+{
+	"nombre": "abc",
+	"apellidoP": "abc",
+	"apellidoM": "abc",
+	"codigo":"codigo",
+	"password":"pass123",
+	"fechaContratacion":"2012-03-19 10:00:00"
+}
+(texto)

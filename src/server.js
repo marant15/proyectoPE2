@@ -18,7 +18,8 @@ app.use(express.json());
 app.use(require('./routes/routes.js'));
 app.use('/courses', require('./routes/courses.js'));
 app.use('/aut',require('./routes/aut.js'));
-app.use('/admin',require('./routes/admin.js'))
+app.use('/admin',require('./routes/admin.js'));
+app.use('/books',require('./routes/books.js'))
 
 //Starting
 app.listen(app.get('port'), ()=>{
