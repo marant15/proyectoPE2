@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BooksService } from '../services/books.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private _bookService: BooksService) { }
 
   ngOnInit() {
+  }
+
+  isLogged(){
+    return this._bookService.isLoggedin();
+  }
+
+  logout(){
+    this._bookService.logout();
   }
 
 }

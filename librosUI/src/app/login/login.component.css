@@ -1,17 +1,11 @@
 h1{
-    margin-left: 50px;
+    margin-left: 150px;
     color: dodgerblue;
 }
-
-h2{
-    margin-left: 50px;
-    color: dodgerblue;
-}
-
-div.formulario{
-    margin: 20px 0px 75px 50px;
-    height: 175px;
-    width: 200px;
+div.login{
+    margin: 20px 0px 75px 150px;
+    height: 125px;
+    width: 230px;
     background-color: DodgerBlue;
     border: 5px solid navy;
     display: inline-block;
@@ -19,23 +13,23 @@ div.formulario{
 
 button.center{
     margin-top: 5px;
-    margin-left: 60px;
+    margin-left: 70px;
     background-color: navy;
     border: solid white;
     color: white;
-}
-
-input.theme{
-    margin: 5px 5px 0px 5px;
-    background-color: DodgerBlue ;
-    color: white;
-    border: solid white;
 }
 
 button:hover{
     background-color: RoyalBlue;
 }
 
-::placeholder {
+input.color{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+::placeholder { /* Firefox, Chrome, Opera */ 
     color: white; 
 } 

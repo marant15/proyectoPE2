@@ -1,1 +1,13 @@
-<p>register-libro works!</p>
+<h1>Registrar Libro</h1>
+<h2>Datos del Libro</h2>
+<div class="formulario">
+    <form>
+        <input class="theme" type="text" #title placeholder="Titulo">
+        <input class="theme" type="text" #autor placeholder="Autor">
+        <input class="theme" type="text" #isbn placeholder="ISBN">
+        <input class="theme" type="number" step="any" #price placeholder="Precio">
+        <input class="theme" type="number" #edition placeholder="Edicion">
+        <button class="center" type="reset"
+            (click)="register(title.value,autor.value,isbn.value,price.value,edition.value)">Registrar</button>
+    </form>
+</div>

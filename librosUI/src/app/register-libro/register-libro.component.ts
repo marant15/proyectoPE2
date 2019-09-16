@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-register-libro',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterLibroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toasterService: ToasterService) { }
 
   ngOnInit() {
+  }
+
+  register(title:string, autor:string,isbn:string,price:string,edition:string){
+    if(title && autor && isbn && price && edition){
+      console.log(title,autor,isbn,price,edition);
+    }else{
+      this.toasterService.error("Llena todos los datos");
+    }
   }
 
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import config from '../../assets/config.json';
 import { ToasterService } from './toaster.service';
+import config from '../../assets/config.json';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class BooksService {
   constructor(private _http: HttpClient, private myRoute: Router, private toasterService: ToasterService) { }
 
   login(user:string,pwd:string){
-    return this._http.post("http://"+config.hostServer+":4000/aut/usuario",
+    return this._http.post("http://localhost:4000/aut/usuario",
     {
       "usuario":user,
       "password":pwd
@@ -26,9 +26,9 @@ export class BooksService {
         if(config.defaultPassword == pwd && user!=''){
           localStorage.setItem('tipo','usuario');
           localStorage.setItem('codigo',user);
-          this.myRoute.navigate(["editpwdD"]);
+          //this.myRoute.navigate(["editpwdD"]);
         }else{
-          this.myRoute.navigate(["rprofesor"]);
+          this.myRoute.navigate(["register"]);
         }
       }
     },
@@ -45,5 +45,10 @@ export class BooksService {
       return true;
     }
     return false;
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.myRoute.navigate(["login"]);
   }
 }
