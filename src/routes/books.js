@@ -63,6 +63,17 @@ router.post('/stock', async (req, res) =>{
     }
 })
 
+router.get('/stock/:id', async (req, res) =>{
+    const { id } = req.params;
+    const verification = await pool.query('SELECT * FROM libro WHERE isbn = ?',[id]);
+    if(verification.length != 0){
+        const result = await pool.query('SELECT stockID, libro.libroID, cantidad FROM libro inner join stock on stock.libroID = libro.libroID WHERE isbn=?',[id]);
+        res.json(result);
+    }else{
+        res.status(200).send("no existe isbn");
+    }
+})
+
 router.put('/stock/:id', async(req, res) => {
     const { id } = req.params;
     const { libroID, cantidad } = req.body
