@@ -9,46 +9,37 @@ import config from '../../assets/config.json';
 })
 export class BooksService {
 
-  constructor(private _http: HttpClient, private myRoute: Router, private toasterService: ToasterService) { }
+  constructor(private _http: HttpClient, private toasterService: ToasterService) { }
 
-  login(user:string,pwd:string){
-    return this._http.post("http://localhost:4000/aut/usuario",
+  getBooks(){
+    return this._http.get("http://"+config.hostServer+":4000/books/book");
+  }
+
+  getBook(id:string){
+    return this._http.get("http://"+config.hostServer+":4000/books/book/"+id);
+  }
+
+  regbook(title:string,autor:string,isbn:string,edition:string,price:string){
+    return this._http.post("http://"+config.hostServer+":4000/books/book",
     {
-      "usuario":user,
-      "password":pwd
+        "titulo": title,
+        "autor": autor,
+        "isbn": isbn,
+        "edicion": edition,
+        "precio": price
     },
     {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      if(res.status==200){
-        localStorage.setItem('token',user);
-        if(config.defaultPassword == pwd && user!=''){
-          localStorage.setItem('tipo','usuario');
-          localStorage.setItem('codigo',user);
-          //this.myRoute.navigate(["editpwdD"]);
-        }else{
-          this.myRoute.navigate(["register"]);
-        }
+      if(res.body === "saved"){
+        this.toasterService.success("Libro Guardado Correctamente");
+      }else{
+        this.toasterService.error("codigo repetido")
       }
     },
     error  => {
-      console.log("Error", error);
-      if(error.status==400){
-        this.toasterService.error("Password o usuario incorrecto");
-      } 
+      console.log("Error", error);  
     });
-  }
-
-  isLoggedin(){
-    if(localStorage.getItem('token')!=null){
-      return true;
-    }
-    return false;
-  }
-
-  logout(){
-    localStorage.removeItem('token');
-    this.myRoute.navigate(["login"]);
   }
 }

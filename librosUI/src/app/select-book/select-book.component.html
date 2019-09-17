@@ -1,0 +1,16 @@
+<p>select-book works!</p>
+<table id="registers">
+    <tr>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Editar</th>
+    </tr>
+    <tr *ngFor="let book of this.books">
+        <td>{{book.titulo}}</td>
+        <td>{{book.autor}}</td>
+        <td>{{book.isbn}}</td>
+        <td #selected style="display:none;">{{book.libroID}}</td>
+        <td><button class="st" (click)="edit(selected.innerText)" >Editar</button></td>
+    </tr>
+</table>

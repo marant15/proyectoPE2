@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from '../services/books.service';
+import { AutService } from '../services/aut.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,17 +9,17 @@ import { BooksService } from '../services/books.service';
 export class NavBarComponent implements OnInit {
 
 
-  constructor(private _bookService: BooksService) { }
+  constructor(private _autService: AutService) { }
 
   ngOnInit() {
   }
 
   isLogged(){
-    return this._bookService.isLoggedin();
+    return this._autService.isLoggedin();
   }
 
   logout(){
-    this._bookService.logout();
+    this._autService.logout();
   }
 
 }

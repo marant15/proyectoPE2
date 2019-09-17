@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from '../services/books.service';
+import { AutService } from '../services/aut.service';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +8,14 @@ import { BooksService } from '../services/books.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _bookService: BooksService) { }
+  constructor(private _autService: AutService) { }
 
   ngOnInit() {
     localStorage.removeItem('token');
   }
 
   logIn(user:string, pass:string) {
-    this._bookService.login(user,pass);
+    this._autService.login(user,pass);
   }
 
 }

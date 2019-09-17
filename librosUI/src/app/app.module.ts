@@ -9,6 +9,8 @@ import { VentaLibroComponent } from './venta-libro/venta-libro.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ToasterService } from './services/toaster.service';
+import { SelectBookComponent } from './select-book/select-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ToasterService } from './services/toaster.service';
     RegisterLibroComponent,
     NavBarComponent,
     VentaLibroComponent,
-    LoginComponent
+    LoginComponent,
+    SelectBookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,
