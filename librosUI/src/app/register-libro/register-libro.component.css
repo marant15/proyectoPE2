@@ -8,8 +8,22 @@ h2{
     color: dodgerblue;
 }
 
+h3{
+    margin-left: 50px;
+    color: dodgerblue;
+}
+
+div.cuadro{
+    margin: 20px 0px 20px 50px;
+    height: 100px;
+    width: 200px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
 div.formulario{
-    margin: 20px 0px 75px 50px;
+    margin: 10px 0px 75px 50px;
     height: 175px;
     width: 200px;
     background-color: DodgerBlue;

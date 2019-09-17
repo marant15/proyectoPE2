@@ -14,13 +14,11 @@ export class SelectBookComponent implements OnInit {
   constructor(private _bookService: BooksService, private myRoute: Router) { }
 
   ngOnInit() {
-    console.log("Hello");
     this._bookService.getBooks().subscribe(response =>{
       var count = Object.keys(response).length;
       for (let index = 0; index < count; index++) {
         this.books.push(response[index]);
       }
-      console.log("Libros", this.books);
     },
     error => {
       console.log("Error", error);

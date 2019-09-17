@@ -12,6 +12,7 @@ export class EditBookComponent implements OnInit {
   constructor(private _bookService: BooksService) { }
 
   book={
+    id:0,
     title:'',
     autor:'',
     isbn:'',
@@ -27,11 +28,12 @@ export class EditBookComponent implements OnInit {
       this.book.isbn = response[0].isbn;
       this.book.edition = response[0].edicion;
       this.book.price = response[0].precio;
+      this.book.id = response[0].libroID;
     });
   }
 
   edit(title:string,autor:string,isbn:string,price:string,edition:string){
-    console.log(title,autor,isbn,price,edition);
+    this._bookService.editBook(this.book.isbn,title,autor,isbn,edition,price);
   }
 
 }
