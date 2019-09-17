@@ -26,6 +26,11 @@ router.get('/book/:id', async(req, res) => {
     res.json(result);
 })
 
+router.get('/bookisbn/:id', async(req, res) => {
+    const result = await pool.query('SELECT * FROM libro WHERE isbn=?',[req.params.id]);
+    res.json(result);
+})
+
 router.post('/sell', async (req, res) =>{
     const { fecha, total } = req.body;
     const newsell = {
@@ -66,6 +71,21 @@ router.put('/stock/:id', async(req, res) => {
     }
     const result = await pool.query('UPDATE stock set ? WHERE stockID = ?', [newstock, id]);
     res.status(200).send("updated");
+})
+
+router.put('/book/:id', async (req, res) =>{
+    const { id } = req.params;
+    const { titulo, autor, isbn, edicion, precio } = req.body;
+    const newbook = {
+        titulo, autor, isbn, edicion, precio
+    };
+    const verification = await pool.query('SELECT * FROM libro WHERE isbn = ?',[id]);
+    if(verification.length == 1){
+        const result = await pool.query('UPDATE libro set ? WHERE isbn = ?', [newbook, id]);
+        res.status(200).send("updated");
+    }else{
+        res.status(200).send("isbn no existe");
+    }
 })
 
 module.exports = router;
