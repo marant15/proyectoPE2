@@ -1,0 +1,90 @@
+h3{
+    margin-left: 10px;
+    color: dodgerblue;
+}
+
+div.formulario{
+    margin: 20px 0px 75px 50px;
+    height: 130px;
+    width: 350px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+}
+
+button.center{
+    margin-top: 5px;
+    margin-left: 60px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+
+button.delete{
+    margin-top: 5px;
+    margin-left: 60px;
+    background-color: red;
+    border: solid white;
+    color: black;
+}
+
+input.theme{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+input.search{
+    width: 250px;
+    color: white;
+}
+
+.searchw{
+    width: 250px;
+}
+
+label.theme{
+    color: white;
+    margin-left: 5px;
+}
+
+select.theme{
+    background-color: navy;
+    color: white;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+select:hover{
+    background-color: RoyalBlue;
+}
+
+::placeholder {
+    color: white; 
+} 
+
+#registers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+#registers td, #registers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#registers tr:nth-child(even){background-color: #f2f2f2;}
+  
+#registers tr:hover {background-color: #ddd;}
+  
+#registers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: dodgerblue;
+    color: white;
+}

@@ -32,12 +32,13 @@ router.get('/bookisbn/:id', async(req, res) => {
 })
 
 router.post('/sell', async (req, res) =>{
-    const { fecha, total } = req.body;
+    const { fecha, hora, total } = req.body;
     const newsell = {
-        fecha, total
+        fecha, hora, total
     };
     const result = await pool.query('INSERT INTO venta set ?', [newsell]);
-    res.status(200).send("saved")
+    const realresult = await pool.query('SELECT * FROM venta WHERE fecha=? and hora=?',[fecha,hora]);
+    res.json(realresult);
 })
 
 router.post('/detail', async (req, res) =>{
@@ -47,6 +48,11 @@ router.post('/detail', async (req, res) =>{
     };
     const result = await pool.query('INSERT INTO detalle set ?', [newdetail]);
     res.status(200).send("saved")
+})
+
+router.get('/stock/:id', async(req,res)=>{
+    const result = await pool.query('SELECT * FROM stock WHERE libroID=?',req.params.id);
+    res.json(result);
 })
 
 router.post('/stock', async (req, res) =>{

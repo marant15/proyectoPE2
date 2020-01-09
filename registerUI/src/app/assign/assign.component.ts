@@ -67,7 +67,6 @@ export class AssignComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.codes.filter(option => option.toLowerCase().includes(filterValue));
   }
 

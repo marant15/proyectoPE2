@@ -18,7 +18,6 @@ export class RegisterLibroComponent implements OnInit {
 
   register(title:string, autor:string,isbn:string,price:string,edition:string,quantity:string){
     if(title && autor && isbn && price && edition && quantity){
-      console.log(title,autor,isbn,price,edition,quantity);
       this._bookService.regbook(title,autor,isbn,edition,price,quantity);
     }else{
       this.toasterService.error("Llena todos los datos");
@@ -32,15 +31,23 @@ export class RegisterLibroComponent implements OnInit {
         if(count===0){
           this.exist = true;
         }else{
-          
-          console.log("Existe libro");
+          this.stocking(response[0].libroID,quantity);
         }        
       },
       error => {
         console.log("Error", error);
       });
-      //
     }
+  }
+
+  stocking(libroID:string,quantity:string){
+    this._bookService.getStock(libroID).subscribe(response =>{
+      var nq=parseInt(quantity, 10)+parseInt(response[0].cantidad, 10);
+      this._bookService.editStock(libroID,nq+"") 
+    },
+    error => {
+      console.log("Error", error);
+    });
   }
 
   edit(){

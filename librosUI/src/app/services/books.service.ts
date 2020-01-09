@@ -73,8 +73,8 @@ export class BooksService {
     });
   }
 
-  getStock(){
-    
+  getStock(id:string){
+    return this._http.get("http://"+config.hostServer+":4000/books/stock/"+id);
   }
 
   stock(id:string,quantity:string){
@@ -109,10 +109,6 @@ export class BooksService {
     });
   }
 
-  AddStock(){
-
-  }
-
   editStock(libroID:string,quantity:string){
     return this._http.put("http://"+config.hostServer+":4000/books/stock/"+libroID,
     {
@@ -129,6 +125,45 @@ export class BooksService {
       }else{
         this.toasterService.error("No se pudo realizar")
       }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  sell(fecha:string,hora:string,total:string,soldbooks:any[]){
+    console.log(soldbooks);
+    return this._http.post("http://"+config.hostServer+":4000/books/sell",
+    {
+        "fecha": fecha,
+        "hora":hora,
+        "total": total
+    },
+    {
+      observe:'response'
+    }).subscribe(res => {
+      var id = res.body[0].ventaID;
+      for (let soldBook of soldbooks) {
+        this.detail(soldBook,id);
+      }
+    },
+    error  => {
+      console.log("Error", error);  
+    });
+  }
+
+  detail(soldbook:any,ventaID:string){
+    return this._http.post("http://"+config.hostServer+":4000/books/detail",
+    {
+      "libroID":soldbook.libroID,
+      "ventaID":ventaID,
+      "cantidad": soldbook.cantidad
+    },
+    {
+      responseType: 'text',
+      observe:'response'
+    }).subscribe(res => {
+      console.log(res);
     },
     error  => {
       console.log("Error", error);  

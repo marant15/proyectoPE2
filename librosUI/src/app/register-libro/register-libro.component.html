@@ -1,12 +1,16 @@
 <h1>Registrar Libro</h1>
 <h2>Datos del Libro</h2>
-<div class="cuadro">
-    <input class="theme" type="text" #isbn placeholder="ISBN">
-    <input class="theme" type="number" #quantity placeholder="Cantidad">
-    <button class="center" (click)="check(isbn.value,quantity.value)">Registrar</button>
+<div class="cuadro" *ngIf="!exist">
+    <form>
+        <input class="theme" type="text" #isbn placeholder="ISBN">
+        <input class="theme" type="number" #quantity placeholder="Cantidad">
+        <button class="center" type="reset" (click)="check(isbn.value,quantity.value)">Registrar</button>
+    </form>
+
 </div>
 <div *ngIf="exist">
     <h3>El libro no existe por favor llene los Datos</h3>
+    <label>The book isbn is </label>
     <div class="formulario">
         <form>
             <input class="theme" type="text" #title placeholder="Titulo">
