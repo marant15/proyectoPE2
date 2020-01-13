@@ -19,6 +19,16 @@ button.center{
     color: white;
 }
 
+button.venta{
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    background-color: navy;
+    border: solid dodgerblue;
+    color: white;
+    font-size: 25px;
+}
+
 
 button.delete{
     margin-top: 5px;
@@ -42,6 +52,12 @@ input.search{
 
 .searchw{
     width: 250px;
+}
+
+label.venta{
+    color: dodgerblue;
+    margin-left: 5px;
+    font-size: 25px;
 }
 
 label.theme{

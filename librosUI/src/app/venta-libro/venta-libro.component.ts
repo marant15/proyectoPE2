@@ -4,8 +4,8 @@ import { ToasterService } from '../services/toaster.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { BooksService } from '../services/books.service';
-import { splitAtColon } from '@angular/compiler/src/util';
-import { getMatTooltipInvalidPositionError } from '@angular/material';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-venta-libro',
@@ -16,7 +16,7 @@ export class VentaLibroComponent implements OnInit {
   myControl = new FormControl();
 
 
-  constructor(private _bookService: BooksService, private toasterService: ToasterService) { }
+  constructor(private myRoute: Router,private _bookService: BooksService, private toasterService: ToasterService) { }
   selectedDate:Date;
   filteredOptions: Observable<string[]>;
   isbns=[];
@@ -77,6 +77,7 @@ export class VentaLibroComponent implements OnInit {
     var hours = hour+":"+min+":"+seg;
     var total = this.getTotal();
     this._bookService.sell(dates,hours, total, this.sellBooks);
+    this.sellBooks=[];
   }
 
   getTotal(){

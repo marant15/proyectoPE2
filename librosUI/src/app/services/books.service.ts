@@ -65,7 +65,7 @@ export class BooksService {
         this.toasterService.success("Libro Editado Correctamente");
         this.myRoute.navigate(["register"]);
       }else{
-        this.toasterService.error("No se pudo realizar")
+        this.toasterService.error("No se pudo realizar");
       }
     },
     error  => {
@@ -109,7 +109,7 @@ export class BooksService {
     });
   }
 
-  editStock(libroID:string,quantity:string){
+  editStock(libroID:string,quantity:string,type:string){
     return this._http.put("http://"+config.hostServer+":4000/books/stock/"+libroID,
     {
         "libroID": libroID,
@@ -120,8 +120,12 @@ export class BooksService {
       observe:'response'
     }).subscribe(res => {
       if(res.body === "updated"){
-        this.toasterService.success("Stock Actualizado correctamente");
-        this.myRoute.navigate(["register"]);
+        if(type=="register"){
+          this.myRoute.navigate(["register"]);
+          this.toasterService.success("Stock Actualizado correctamente");
+        }else{
+          this.toasterService.success("Se realizo la venta");
+        }
       }else{
         this.toasterService.error("No se pudo realizar")
       }
@@ -132,7 +136,24 @@ export class BooksService {
   }
 
   sell(fecha:string,hora:string,total:string,soldbooks:any[]){
-    console.log(soldbooks);
+    if(soldbooks.length>1){
+      this.createsell(fecha,hora,total,soldbooks);
+    }else{
+      this.getStock(soldbooks[0].libroID).subscribe(response =>{
+        var stock=response[0].cantidad;
+        if(stock>=soldbooks[0].cantidad){
+          this.createsell(fecha,hora,total,soldbooks);
+        }else{
+          this.toasterService.error("No hay suficiente stock del libro: "+soldbooks[0].titulo);
+        }
+      },
+      error => {
+        console.log("Error", error);
+      });
+    }
+  }
+
+  createsell(fecha:string,hora:string,total:string,soldbooks:any[]){
     return this._http.post("http://"+config.hostServer+":4000/books/sell",
     {
         "fecha": fecha,
@@ -144,7 +165,7 @@ export class BooksService {
     }).subscribe(res => {
       var id = res.body[0].ventaID;
       for (let soldBook of soldbooks) {
-        this.detail(soldBook,id);
+        this.checkstock(soldBook,id);
       }
     },
     error  => {
@@ -152,7 +173,21 @@ export class BooksService {
     });
   }
 
-  detail(soldbook:any,ventaID:string){
+  checkstock(soldBook:any,ventaID:string){
+    this.getStock(soldBook.libroID).subscribe(response =>{
+      var stock=response[0].cantidad;
+      if(stock>=soldBook.cantidad){
+        this.detail(soldBook,ventaID,stock);
+      }else{
+        this.toasterService.error("No hay suficiente stock del libro: "+soldBook.titulo);
+      }
+    },
+    error => {
+      console.log("Error", error);
+    });
+  }
+
+  detail(soldbook:any,ventaID:string,stock:string){
     return this._http.post("http://"+config.hostServer+":4000/books/detail",
     {
       "libroID":soldbook.libroID,
@@ -163,7 +198,8 @@ export class BooksService {
       responseType: 'text',
       observe:'response'
     }).subscribe(res => {
-      console.log(res);
+      var rstock=(parseInt(stock)-soldbook.cantidad)+"";
+      this.editStock(soldbook.libroID,rstock,"venta");
     },
     error  => {
       console.log("Error", error);  

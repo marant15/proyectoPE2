@@ -43,7 +43,7 @@ export class RegisterLibroComponent implements OnInit {
   stocking(libroID:string,quantity:string){
     this._bookService.getStock(libroID).subscribe(response =>{
       var nq=parseInt(quantity, 10)+parseInt(response[0].cantidad, 10);
-      this._bookService.editStock(libroID,nq+"") 
+      this._bookService.editStock(libroID,nq+"","register") 
     },
     error => {
       console.log("Error", error);
