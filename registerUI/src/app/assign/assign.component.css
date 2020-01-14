@@ -10,7 +10,7 @@ h2{
 
 div.formulario{
     margin: 20px 0px 75px 50px;
-    height: 275px;
+    height: 325px;
     width: 450px;
     background-color: DodgerBlue;
     border: 5px solid navy;
@@ -44,6 +44,10 @@ input.theme{
     border: solid white;
 }
 
+input.calendar{
+    color: white;
+}
+
 input.search{
     width: 300px;
     color: white;
@@ -74,3 +78,12 @@ select:hover{
 ::placeholder {
     color: white; 
 } 
+
+::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
+    background-color: white !important;
+    color: white !important
+}
+  
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: white;
+}

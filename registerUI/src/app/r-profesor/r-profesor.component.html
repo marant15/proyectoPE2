@@ -8,8 +8,12 @@
         <input class="color" type="text" #lastNameM placeholder="Apellido Materno">
         <input class="color" type="text" #username placeholder="Codigo Usuario">
         <input class="color" type="password" #password placeholder="Password">
-        <input class="color" [(ngModel)]="fecha" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Fecha Contratacion" readonly>
-        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+        <mat-form-field>
+            <input class="calendar" matInput [matDatepicker]="fech" placeholder="Fecha Contratacion" [(ngModel)]="fecha"
+                [ngModelOptions]="{standalone: true}">
+            <mat-datepicker-toggle matSuffix [for]="fech"></mat-datepicker-toggle>
+            <mat-datepicker #fech></mat-datepicker>
+        </mat-form-field>
         <button class="center" type="reset"
             (click)="register(name.value,lastNameP.value,lastNameM.value,username.value,password.value)">Registrar</button>
     </form>

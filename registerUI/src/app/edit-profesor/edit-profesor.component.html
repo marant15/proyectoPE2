@@ -7,9 +7,12 @@
         <input class="theme" type="text" #lastNameP value={{profesor.apellidoP}} placeholder="Apellido Paterno">
         <input class="theme" type="text" #lastNameM value={{profesor.apellidoM}} placeholder="Apellido Materno">
         <input class="theme" type="text" #username value={{profesor.codigo}} placeholder="Codigo Usuario">
-        <input class="theme" [(ngModel)]="fechan" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="fecha" [owlDateTime]="fecha" value={{profesor.fechaC}}
-            placeholder="Fecha Contratacion" readonly>
-        <owl-date-time [pickerType]="'calendar'" #fecha></owl-date-time>
+        <mat-form-field>
+            <input class="calendar" matInput [matDatepicker]="fech" placeholder="Fecha Contratacion" [(ngModel)]="fechan" value={{profesor.fechaC}}
+                [ngModelOptions]="{standalone: true}" readonly>
+            <mat-datepicker-toggle matSuffix [for]="fech"></mat-datepicker-toggle>
+            <mat-datepicker #fech></mat-datepicker>
+        </mat-form-field>
         <button class="center"
             (click)="edit(name.value,lastNameP.value,lastNameM.value,username.value)">Editar</button>
 

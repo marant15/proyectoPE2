@@ -19,7 +19,7 @@ import { ToasterService } from './services/toaster.service'
 import { CusersComponent } from './cusers/cusers.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatAutocompleteModule} from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatAutocompleteModule,MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
@@ -75,6 +75,8 @@ import { EditPwdDComponent } from './edit-pwd-d/edit-pwd-d.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     WebcamModule
   ],
   providers: [

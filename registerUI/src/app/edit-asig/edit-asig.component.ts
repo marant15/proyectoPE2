@@ -12,10 +12,8 @@ import { ToasterService } from '../services/toaster.service';
   styleUrls: ['./edit-asig.component.css']
 })
 export class EditAsigComponent implements OnInit {
-  fi:Date;
-  hi:Date;
-  ff:Date;
-  hf:Date;
+  fi: Date;
+  ff: Date;
   myControl = new FormControl();
   profesors = [];
   materias = [];
@@ -79,23 +77,19 @@ export class EditAsigComponent implements OnInit {
     return this.codes.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  register(mid:number,gid:number) {
-    if(this.fi && this.hi && this.ff && this.hf && this.myControl.value){
+  register(mid:number,gid:number,hf:string,hi:string) {
+    if(this.fi && this.ff && this.myControl.value){
       var nasig = localStorage.getItem('editAsig');
       var mi = this.fi.getUTCMonth() + 1; //months from 1-12
       var di = this.fi.getUTCDate();
       var yi = this.fi.getUTCFullYear();
       var datei = yi + "-" + mi + "-" + di;
-      var houri = this.hi.getHours();
-      var mini = this.hi.getUTCMinutes();
-      var ihour = houri+":"+mini+":00";
+      var ihour = hi+ ":00";
       var mf = this.ff.getUTCMonth() + 1; //months from 1-12
       var df = this.ff.getUTCDate();
       var yf = this.ff.getUTCFullYear();
       var datef = yf + "-" + mf + "-" + df;
-      var hourf = this.hf.getHours();
-      var minf = this.hf.getUTCMinutes();
-      var fhour = hourf+":"+minf+":00";
+      var fhour = hf+ ":00";
       var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
       if(prof){
         var pid = prof.profesorID;
