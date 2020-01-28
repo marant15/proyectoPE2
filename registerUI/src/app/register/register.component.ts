@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
     localStorage.removeItem('codigo');
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
-        console.log(mediaDevices);
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
   }
@@ -74,12 +73,10 @@ export class RegisterComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    console.info('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
   }
 
   public cameraWasSwitched(deviceId: string): void {
-    console.log('active device: ' + deviceId);
     this.deviceId = deviceId;
   }
 

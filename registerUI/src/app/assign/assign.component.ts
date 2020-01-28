@@ -90,8 +90,7 @@ export class AssignComponent implements OnInit {
           ihour + " - " + fhour)
           .then((confirmed) => {
             if (confirmed) {
-              console.log(pid,gid,mid,datei,datef,ihour,fhour);
-              //this._coursesService.assign(pid, gid, mid, datei, datef, ihour, fhour);
+              this._coursesService.assign(pid, gid, mid, datei, datef, ihour, fhour);
             }
           })
           .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

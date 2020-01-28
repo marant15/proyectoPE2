@@ -3,18 +3,18 @@
 <h2>Datos del Profesor</h2>
 <div class="formulario">
     <form>
-        <input class="theme" type="text" #name value={{profesor.nombre}} placeholder="Nombre">
-        <input class="theme" type="text" #lastNameP value={{profesor.apellidoP}} placeholder="Apellido Paterno">
-        <input class="theme" type="text" #lastNameM value={{profesor.apellidoM}} placeholder="Apellido Materno">
-        <input class="theme" type="text" #username value={{profesor.codigo}} placeholder="Codigo Usuario">
+        <!--<input class="theme" type="text" #name value={{profesor.nombre}} placeholder="Nombre">-->
+        <input class="theme" type="text" [(ngModel)]="profesor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre">
+        <input class="theme" type="text" [(ngModel)]="profesor.apellidoP" [ngModelOptions]="{standalone: true}" placeholder="Apellido Paterno">
+        <input class="theme" type="text" [(ngModel)]="profesor.apellidoM" [ngModelOptions]="{standalone: true}" placeholder="Apellido Materno">
+        <input class="theme" type="text" [(ngModel)]="profesor.codigo" [ngModelOptions]="{standalone: true}" placeholder="Codigo Usuario">
         <mat-form-field>
-            <input class="calendar" matInput [matDatepicker]="fech" placeholder="Fecha Contratacion" [(ngModel)]="fechan" value={{profesor.fechaC}}
-                [ngModelOptions]="{standalone: true}" readonly>
+            <input class="calendar" matInput [matDatepicker]="fech" placeholder="Fecha Contratacion" [(ngModel)]="fechan" [ngModelOptions]="{standalone: true}" readonly>
             <mat-datepicker-toggle matSuffix [for]="fech"></mat-datepicker-toggle>
             <mat-datepicker #fech></mat-datepicker>
         </mat-form-field>
         <button class="center"
-            (click)="edit(name.value,lastNameP.value,lastNameM.value,username.value)">Editar</button>
+            (click)="edit()">Editar</button>
 
     </form>
 </div>

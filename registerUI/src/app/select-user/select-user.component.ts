@@ -35,7 +35,6 @@ export class SelectUserComponent implements OnInit {
   }
 
   editpwd(numero:string){
-    console.log(numero);
     localStorage.setItem('editUser', numero);
     this.myRoute.navigate(["editpwdU"]);
   }

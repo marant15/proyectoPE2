@@ -17,31 +17,32 @@ export class EditProfesorComponent implements OnInit {
     apellidoP:'',
     apellidoM:'',
     codigo: '',
-    fechaC: '',
-    id:''
+    id:'',
   }
 
   ngOnInit() {
+    
     this.profesor.id = localStorage.getItem('editProf');
     this._coursesService.getprofesor(this.profesor.id).subscribe(response=>{
+      
       this.profesor.codigo = response[0].codigo;
       this.profesor.nombre = response[0].nombre;
       this.profesor.apellidoP = response[0].apellidoP;
       this.profesor.apellidoM = response[0].apellidoM;
-      this.profesor.fechaC = response[0].fechaContratacion;
+      this.fechan=new Date(response[0].fechaContratacion);
     });
   }
 
-  edit(name:string,lastNameP:string,lastNameM:string,username:string){
-    if(name && lastNameP && lastNameM && username && this.fechan){
+  edit(){
+    if(this.profesor.nombre && this.profesor.apellidoP && this.profesor.apellidoM && this.profesor.codigo && this.fechan){
       var month = this.fechan.getUTCMonth() + 1; //months from 1-12
       var day = this.fechan.getUTCDate();
       var year = this.fechan.getUTCFullYear();
       var newdate = year + "-" + month + "-" + day + " 00:00:00";
-      this.confirmationDialogService.confirm('Confirmacion de Edicion', 'Profesor: ' + name+" "+lastNameP+" "+lastNameM+" con usuario: "+username +" y fecha contratacion: "+newdate.substr(0,9))
+      this.confirmationDialogService.confirm('Confirmacion de Edicion', 'Profesor: ' + this.profesor.nombre+" "+this.profesor.apellidoP+" "+this.profesor.apellidoM+" con usuario: "+this.profesor.codigo +" y fecha contratacion: "+newdate.substr(0,9))
       .then((confirmed) => {
         if (confirmed) {
-          this._coursesService.updateprofesor(this.profesor.id,name,lastNameP,lastNameM,username,newdate);
+          this._coursesService.updateprofesor(this.profesor.id,this.profesor.nombre,this.profesor.apellidoP,this.profesor.apellidoM,this.profesor.codigo,newdate);
         }
       })
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
