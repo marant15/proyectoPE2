@@ -1,0 +1,5 @@
+<ul *ngIf="isLogged()">
+    <li><a routerLink="/register">Registro</a></li>
+    <li><a routerLink="/ventas">Ventas</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+</ul>

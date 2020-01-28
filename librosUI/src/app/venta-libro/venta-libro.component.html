@@ -1,0 +1,39 @@
+<h1>Venta Libros</h1>
+<div class="formulario">
+    <form>
+        <label class="theme">Libros:
+            <mat-form-field class="searchw">
+                <input class="search" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            </mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</mat-option>
+            </mat-autocomplete>
+        </label>
+        <input class="theme" type="number" #quantity placeholder="Cantidad">
+        <button class="center" type="reset" (click)="sellBook(quantity.value)">Agregar</button>
+    </form>
+</div>
+
+<div>
+    <h3>Libros a Vender </h3> 
+    <label class="venta"><button class="venta" (click)="selling()">Realizar Venta</button> Total Venta: {{getTotal()}}</label>
+</div>
+
+<table id="registers">
+    <tr>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let book of this.sellBooks">
+        <td>{{book.titulo}}</td>
+        <td>{{book.autor}}</td>
+        <td #selected>{{book.isbn}}</td>
+        <td>{{book.cantidad}}</td>
+        <td>{{book.precio}}</td>
+        <td><button class="delete" (click)="delete(selected.innerText)">X</button></td>
+    </tr>
+</table>

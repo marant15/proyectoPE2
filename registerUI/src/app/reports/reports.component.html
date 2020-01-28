@@ -11,12 +11,19 @@
 		</mat-autocomplete>
 	</label>
 	<br>
-	<input class="theme" [(ngModel)]="fechai" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
-	<owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
-	<br>
-	<input class="theme" [(ngModel)]="fechaf" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
-	<owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
-	<br>
+	<mat-form-field>
+		<input class="calendar" matInput [matDatepicker]="fech" placeholder="Fecha Contratacion" [(ngModel)]="fechai"
+			[ngModelOptions]="{standalone: true}">
+		<mat-datepicker-toggle matSuffix [for]="fech"></mat-datepicker-toggle>
+		<mat-datepicker #fech></mat-datepicker>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input class="calendar" matInput [matDatepicker]="fechf" placeholder="Fecha Contratacion" [(ngModel)]="fechaf"
+			[ngModelOptions]="{standalone: true}">
+		<mat-datepicker-toggle matSuffix [for]="fechf"></mat-datepicker-toggle>
+		<mat-datepicker #fechf></mat-datepicker>
+	</mat-form-field>
 	<button class="center" (click)="getData()">Generar Reporte</button>
 </div>
 <br>

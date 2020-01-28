@@ -50,15 +50,23 @@
         <input type="checkbox" value="true" [(ngModel)]="isActive">
     </label>
     <br>
-    <input class="theme" [(ngModel)]="fi" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="finicio" [owlDateTime]="finicio" placeholder="Fecha Inicio" readonly>
-    <owl-date-time [pickerType]="'calendar'" #finicio></owl-date-time>
-    <input class="theme" [(ngModel)]="hi" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="hinicio" [owlDateTime]="hinicio" placeholder="Hora Inicio" readonly>
-    <owl-date-time [pickerType]="'timer'" #hinicio></owl-date-time>
+
+    <mat-form-field>
+        <input class="calendar" matInput [matDatepicker]="fini" placeholder="Fecha Inicio" [(ngModel)]="fi"
+            [ngModelOptions]="{standalone: true}">
+        <mat-datepicker-toggle matSuffix [for]="fini"></mat-datepicker-toggle>
+        <mat-datepicker #fini></mat-datepicker>
+    </mat-form-field>
+    <input type="time" class="theme" value="08:00" #hi>
     <br>
-    <input class="theme" [(ngModel)]="ff" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="ffin" [owlDateTime]="ffin" placeholder="Fecha Fin" readonly>
-    <owl-date-time [pickerType]="'calendar'" #ffin></owl-date-time>
-    <input class="theme" [(ngModel)]="hf" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="hfin" [owlDateTime]="hfin" placeholder="Hora Fin" readonly>
-    <owl-date-time [pickerType]="'timer'" #hfin></owl-date-time>
+    <mat-form-field>
+        <input class="calendar" matInput [matDatepicker]="ffin" placeholder="Fecha Fin" [(ngModel)]="ff"
+            [ngModelOptions]="{standalone: true}">
+        <mat-datepicker-toggle matSuffix [for]="ffin"></mat-datepicker-toggle>
+        <mat-datepicker #ffin></mat-datepicker>
+    </mat-form-field>
+    <input type="time" class="theme" value="08:00" #hf>
+
     <button class="center"
-        (click)="register(matID.value,groupID.value)">Editar</button>
+        (click)="register(matID.value,groupID.value,hi.value,hf.value)">Editar</button>
 </div>

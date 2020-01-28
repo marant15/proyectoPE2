@@ -25,13 +25,14 @@
     <label class="theme">Poner tiempos</label>
     <input type="checkbox" [(ngModel)]="tiempos" (click)="checkTiempos()">
     <div id="seccion">
-        <input class="theme" [(ngModel)]="fecha" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="fe" [owlDateTime]="fe" placeholder="Fecha" readonly>
-        <owl-date-time [pickerType]="'calendar'" #fe></owl-date-time>
-        <input class="theme" [(ngModel)]="hora" [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="ho" [owlDateTime]="ho" placeholder="Hora" readonly>
-        <owl-date-time [pickerType]="'timer'" #ho></owl-date-time>
+        <mat-form-field>
+            <input class="calendar" matInput [matDatepicker]="fini" placeholder="Fecha Inicio" [(ngModel)]="fecha"
+                [ngModelOptions]="{standalone: true}">
+            <mat-datepicker-toggle matSuffix [for]="fini"></mat-datepicker-toggle>
+            <mat-datepicker #fini></mat-datepicker>
+        </mat-form-field>
+        <input type="time" class="theme" value="08:00" #hora>
     </div>
-    <button *ngIf="tiempos" class="center" type="reset"
-        (click)="register(asignID.value,tipo.value)">Registrar</button>
-    <button *ngIf="!tiempos" class="center" type="reset"
-        (click)="register(asignID.value,tipo.value)">Registrar</button>
+    <button *ngIf="tiempos" class="center" type="reset" (click)="register(asignID.value,tipo.value,hora.value)">Registrar</button>
+    <button *ngIf="!tiempos" class="center" type="reset" (click)="register(asignID.value,tipo.value,hora.value)">Registrar</button>
 </div>

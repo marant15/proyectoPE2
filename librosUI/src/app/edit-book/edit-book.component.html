@@ -1,0 +1,10 @@
+<h1>Editar Libro</h1>
+<h2>Datos del Libro</h2>
+<div class="formulario">
+    <input class="theme" type="text" value={{book.title}} #title placeholder="Titulo">
+    <input class="theme" type="text" value={{book.autor}} #autor placeholder="Autor">
+    <input class="theme" type="text" value={{book.isbn}} #isbn placeholder="ISBN">
+    <input class="theme" type="number" value={{book.price}} step="any" #price placeholder="Precio">
+    <input class="theme" type="number" value={{book.edition}} #edition placeholder="Edicion">
+    <button class="center" (click)="edit(title.value,autor.value,isbn.value,price.value,edition.value)">Editar</button>
+</div>

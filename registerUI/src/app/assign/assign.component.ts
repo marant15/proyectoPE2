@@ -15,9 +15,7 @@ import { Router } from '@angular/router';
 export class AssignComponent implements OnInit {
   myControl = new FormControl();
   fi: Date;
-  hi: Date;
   ff: Date;
-  hf: Date;
   constructor(private _coursesService: CoursesService, private myRoute: Router,
     private confirmationDialogService: ConfirmationDialogService, private toasterService: ToasterService) { }
   filteredOptions: Observable<string[]>;
@@ -67,26 +65,21 @@ export class AssignComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.codes.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  register(mid: number, gid: number) {
-    if (this.fi && this.hi && this.ff && this.hf && this.myControl.value) {
+  register(mid: number, gid: number,hf:string,hi:string) {
+    if (this.fi && this.ff && this.myControl.value) {
       var mi = this.fi.getUTCMonth() + 1; //months from 1-12
       var di = this.fi.getUTCDate();
       var yi = this.fi.getUTCFullYear();
       var datei = yi + "-" + mi + "-" + di;
-      var houri = this.hi.getHours();
-      var mini = this.hi.getUTCMinutes();
-      var ihour = houri + ":" + mini + ":00";
+      var ihour = hi+ ":00";
       var mf = this.ff.getUTCMonth() + 1; //months from 1-12
       var df = this.ff.getUTCDate();
       var yf = this.ff.getUTCFullYear();
       var datef = yf + "-" + mf + "-" + df;
-      var hourf = this.hf.getHours();
-      var minf = this.hf.getUTCMinutes();
-      var fhour = hourf + ":" + minf + ":00";
+      var fhour = hf+ ":00";
       var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-", 1)[0])[0];
       if (prof) {
         var pid = prof.profesorID;
@@ -97,8 +90,8 @@ export class AssignComponent implements OnInit {
           ihour + " - " + fhour)
           .then((confirmed) => {
             if (confirmed) {
-              this.toasterService.success("Asignacion guardada correctamente");
-              this._coursesService.assign(pid, gid, mid, datei, datef, ihour, fhour);
+              console.log(pid,gid,mid,datei,datef,ihour,fhour);
+              //this._coursesService.assign(pid, gid, mid, datei, datef, ihour, fhour);
             }
           })
           .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

@@ -1,0 +1,26 @@
+<h1>Registrar Libro</h1>
+<h2>Datos del Libro</h2>
+<div class="cuadro" *ngIf="!exist">
+    <form>
+        <input class="theme" type="text" #isbn placeholder="ISBN">
+        <input class="theme" type="number" #quantity placeholder="Cantidad">
+        <button class="center" type="reset" (click)="check(isbn.value,quantity.value)">Registrar</button>
+    </form>
+
+</div>
+<div *ngIf="exist">
+    <h3>El libro no existe por favor llene los Datos</h3>
+    <label>The book isbn is </label>
+    <div class="formulario">
+        <form>
+            <input class="theme" type="text" #title placeholder="Titulo">
+            <input class="theme" type="text" #autor placeholder="Autor">
+            <input class="theme" type="number" step="any" #price placeholder="Precio">
+            <input class="theme" type="number" #edition placeholder="Edicion">
+            <button class="center" type="reset"
+                (click)="register(title.value,autor.value,isbn.value,price.value,edition.value,quantity.value)">Registrar</button>
+        </form>
+    </div>
+</div>
+
+<button class="edit" (click)="edit()">Editar Libro</button>

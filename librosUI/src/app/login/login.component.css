@@ -1,0 +1,35 @@
+h1{
+    margin-left: 150px;
+    color: dodgerblue;
+}
+div.login{
+    margin: 20px 0px 75px 150px;
+    height: 90px;
+    width: 200px;
+    background-color: DodgerBlue;
+    border: 5px solid navy;
+    display: inline-block;
+}
+
+button.center{
+    margin-top: 5px;
+    margin-left: 70px;
+    background-color: navy;
+    border: solid white;
+    color: white;
+}
+
+button:hover{
+    background-color: RoyalBlue;
+}
+
+input.color{
+    margin: 5px 5px 0px 5px;
+    background-color: DodgerBlue ;
+    color: white;
+    border: solid white;
+}
+
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: white; 
+} 

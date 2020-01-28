@@ -33,7 +33,7 @@ h2{
 
 div.formulario{
     margin: 20px 0px 75px 50px;
-    height: 215px;
+    height: 260px;
     width: 400px;
     background-color: DodgerBlue;
     border: 5px solid navy;
@@ -103,3 +103,16 @@ select:hover{
     color: white; 
 } 
 
+::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
+    background-color: white !important;
+    color: white !important
+}
+  
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: white;
+}
+
+input.calendar{
+    color: white;
+    margin-left: 5px;
+}

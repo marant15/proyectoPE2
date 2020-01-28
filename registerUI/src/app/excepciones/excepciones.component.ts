@@ -70,17 +70,15 @@ export class ExcepcionesComponent implements OnInit {
     }
   }
 
-  register(assigID:number,tipo:string){
+  register(assigID:number,tipo:string,hora:string){
     if(this.myControl.value){
       if(this.tiempos){
-        if(this.fecha && this.hora){
+        if(this.fecha){
           var mi = this.fecha.getUTCMonth() + 1; //months from 1-12
           var di = this.fecha.getUTCDate();
           var yi = this.fecha.getUTCFullYear();
           var date = yi + "-" + mi + "-" + di;
-          var houri = this.hora.getHours();
-          var mini = this.hora.getUTCMinutes();
-          var hour = houri+":"+mini+":00";
+          var hour = hora+":00";
           var prof = this.profesors.filter(i => i.codigo === this.myControl.value.split("-",1)[0])[0];
           if(prof){
             var pid = prof.profesorID;
